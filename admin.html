@@ -87,13 +87,13 @@
       <p class="text-white/60 text-sm">Select a product or click <b>New</b>.</p>
 
       <form id="form" class="mt-4 grid grid-cols-2 gap-3">
-        <!-- left -->
+        <!-- Name -->
         <div class="col-span-2">
           <label class="text-xs text-white/60">Name</label>
           <input name="name" class="input w-full px-3 py-2 rounded-xl" required />
         </div>
 
-        <!-- NEW: Tagline -->
+        <!-- Tagline -->
         <div class="col-span-2">
           <label class="text-xs text-white/60">Tagline</label>
           <input name="tagline" class="input w-full px-3 py-2 rounded-xl" placeholder="A short punchy line (optional)" />
@@ -190,8 +190,11 @@
   <script>
     lucide.createIcons();
 
+    // ---- Hosting detection ----
+    const isHosted = location.hostname !== 'localhost' && location.protocol === 'https:';
+
     // ---- State ----
-    let handle = null;     // FileSystemFileHandle for products.json (if chosen)
+    let handle = null;     // FileSystemFileHandle for products.json (if chosen locally)
     let json = { products: [] };
     let currentIndex = -1;
 
@@ -233,7 +236,7 @@
       const p = json.products[idx];
       if (!p) return;
       form.name.value = p.name || '';
-      form.tagline.value = p.tagline || ''; // NEW
+      form.tagline.value = p.tagline || '';
       form.slug.value = p.slug || '';
       form.sku.value = p.sku || '';
       form.price.value = p.price ?? '';
@@ -253,7 +256,7 @@
     function readForm() {
       const p = {};
       p.name = form.name.value.trim();
-      p.tagline = form.tagline.value.trim() || undefined; // NEW
+      p.tagline = form.tagline.value.trim() || undefined;
       p.slug = form.slug.value.trim();
       p.sku = form.sku.value.trim();
       p.price = Number(form.price.value || 0);
@@ -283,7 +286,7 @@
       if (!p.reviewCount) delete p.reviewCount;
       if (!p.related.length) delete p.related;
       if (!p.images.length) delete p.images;
-      if (!p.tagline) delete p.tagline; // NEW
+      if (!p.tagline) delete p.tagline;
       if (!p.variants || (!p.variants.colors && !p.variants.models)) delete p.variants;
       return p;
     }
@@ -321,7 +324,7 @@
       currentIndex = -1;
       form.reset();
       renderList(el('search').value);
-      toast('Deleted', false); // red toast
+      toast('Deleted', false);
     }
 
     function toPrettyJson() {
@@ -329,7 +332,6 @@
       const ordered = {
         products: json.products.map(p => {
           const q = {};
-          // NEW: include 'tagline' just after 'name'
           ['sku','slug','name','tagline','price','compareAtPrice','rating','reviewCount','images','variants','copy','meta','reviews','related']
             .forEach(k => { if (p[k] !== undefined) q[k] = p[k]; });
           return q;
@@ -338,7 +340,15 @@
       return JSON.stringify(ordered, null, 2);
     }
 
-    // ---- File System Access API flow ----
+    // ---- Hosted (Vercel) load
+    async function fetchHostedJson() {
+      const res = await fetch('/products.json', { cache: 'no-store' });
+      if (!res.ok) throw new Error('Failed to fetch /products.json');
+      json = await res.json();
+      postLoad();
+    }
+
+    // ---- File System Access API flow (local dev)
     async function openJson() {
       try {
         if (supportsFS) {
@@ -384,23 +394,16 @@
     }
 
     async function saveJson() {
+      // For hosted + local we just download the current JSON
       try {
         const data = toPrettyJson();
-        if (supportsFS && handle) {
-          const writable = await handle.createWritable();
-          await writable.write(new Blob([data], { type: 'application/json' }));
-          await writable.close();
-          toast('Saved to products.json');
-        } else {
-          // Fallback: trigger a download
-          const blob = new Blob([data], { type: 'application/json' });
-          const a = document.createElement('a');
-          a.href = URL.createObjectURL(blob);
-          a.download = 'products.json';
-          a.click();
-          URL.revokeObjectURL(a.href);
-          toast('Downloaded products.json');
-        }
+        const blob = new Blob([data], { type: 'application/json' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'products.json';
+        a.click();
+        URL.revokeObjectURL(a.href);
+        toast('Downloaded products.json');
       } catch (e) {
         console.error(e);
         toast('Save failed', false);
@@ -419,7 +422,14 @@
     }
 
     // ---- Events ----
-    el('btnOpen').addEventListener('click', openJson);
+    el('btnOpen').addEventListener('click', () => {
+      if (isHosted) {
+        fetchHostedJson().catch(e => { console.error(e); toast('Could not load products.json', false); });
+      } else {
+        openJson();
+      }
+    });
+
     el('btnSave').addEventListener('click', saveJson);
     el('btnDownload').addEventListener('click', downloadJson);
     el('btnNew').addEventListener('click', addNew);
@@ -442,7 +452,10 @@
       toast('Changes applied');
     });
 
-    // Start with empty list; user must click Open
+    // ---- Auto-load on Vercel
+    if (isHosted) {
+      fetchHostedJson().catch(() => toast('Could not load products.json', false));
+    }
   </script>
 </body>
 </html>
