@@ -1,0 +1,588 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>NBLAC · Product</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Tailwind config: dark sleek theme
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ink: {
+                            50: "#f7f7f7",
+                            100: "#eaeaea",
+                            200: "#cfcfcf",
+                            300: "#a6a6a6",
+                            400: "#7a7a7a",
+                            500: "#525252",
+                            600: "#3c3c3c",
+                            700: "#2d2d2d",
+                            800: "#1f1f1f",
+                            900: "#141414",
+                            950: "#0b0b0b",
+                        }
+                    },
+                    boxShadow: {
+                        glow: "0 0 0 1px rgba(255,255,255,0.06), 0 8px 30px rgba(0,0,0,0.5)"
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Inter font (optional but nice) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        html,
+        body {
+            background: #0b0b0b;
+            color: #eaeaea;
+            font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji', sans-serif;
+        }
+
+        .focus-ring {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.12), 0 0 0 4px rgba(255, 255, 255, 0.04);
+        }
+
+        .card {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+    </style>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="min-h-screen flex flex-col">
+
+    <!-- Header / Navbar -->
+    <header
+        class="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-black/40 bg-black/60 border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="h-16 flex items-center justify-between gap-3">
+                <!-- Left: Brand -->
+                <a href="index.html" class="flex items-center gap-2 group">
+                    <div class="h-8 w-8 rounded-xl bg-white/5 border border-white/10 grid place-items-center">
+                        <i data-lucide="square" class="w-4 h-4 text-white/70"></i>
+                    </div>
+                    <span class="text-xl font-extrabold tracking-wider">NBLAC</span>
+                </a>
+
+                <!-- Center: Nav -->
+                <nav class="hidden md:flex items-center gap-7 text-sm">
+                    <a class="hover:text-white/90 text-white/70 transition" href="#">Home</a>
+                    <a class="hover:text-white/90 text-white/70 transition" href="#">Shop</a>
+                    <a class="hover:text-white/90 text-white/70 transition" href="#">Discover</a>
+                    <a class="hover:text-white/90 text-white/70 transition" href="#">About</a>
+                </nav>
+
+                <!-- Right: Actions -->
+                <div class="flex items-center gap-2">
+                    <!-- Search -->
+                    <div id="searchWrap" class="flex items-center gap-2">
+                        <button id="openSearch"
+                            class="p-2 rounded-xl border border-white/10 hover:border-white/20 hover:bg-white/5"
+                            aria-label="Open search (/)">
+                            <i data-lucide="search" class="w-5 h-5 text-white/80"></i>
+                        </button>
+                        <div id="searchBar"
+                            class="hidden md:flex items-center overflow-hidden rounded-xl border border-white/10 focus-within:border-white/20 transition-all w-0">
+                            <i data-lucide="search" class="w-4 h-4 mx-3 text-white/50 shrink-0"></i>
+                            <input id="searchInput" type="search" placeholder="Search products…"
+                                class="bg-transparent text-sm placeholder-white/40 flex-1 py-2 pr-3 focus:outline-none">
+                        </div>
+                    </div>
+
+                    <button class="p-2 rounded-xl border border-white/10 hover:border-white/20 hover:bg-white/5"
+                        aria-label="Account">
+                        <i data-lucide="user" class="w-5 h-5 text-white/80"></i>
+                    </button>
+                    <button
+                        class="p-2 rounded-xl border border-white/10 hover:border-white/20 hover:bg-white/5 relative"
+                        aria-label="Wishlist">
+                        <i data-lucide="heart" class="w-5 h-5 text-white/80"></i>
+                    </button>
+                    <button
+                        class="p-2 rounded-xl border border-white/10 hover:border-white/20 hover:bg-white/5 relative"
+                        aria-label="Cart">
+                        <i data-lucide="shopping-bag" class="w-5 h-5 text-white/80"></i>
+                        <span
+                            class="absolute -top-1 -right-1 text-[10px] bg-white text-black font-bold px-1.5 py-0.5 rounded">2</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main -->
+    <main class="flex-1">
+        <!-- Breadcrumbs -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <nav class="text-xs text-white/50 py-4 flex items-center gap-2">
+                <a href="index.html" class="hover:text-white/80">Home</a>
+                <span>/</span>
+                <a href="#" class="hover:text-white/80">Shop</a>
+                <span>/</span>
+                <span class="text-white/80">Turtle Phone Case</span>
+            </nav>
+        </div>
+
+        <!-- Product Section -->
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
+
+                <!-- Left: Gallery -->
+                <div>
+                    <div class="aspect-square w-full rounded-2xl card overflow-hidden shadow-glow relative">
+                        <!-- Main Image (placeholder gradient) -->
+                        <img id="mainImage" alt="Product image" class="w-full h-full object-cover"
+                            src="images/products/nblac-turtle-phone-case.webp" />
+                        <button
+                            class="absolute top-3 right-3 p-2 rounded-xl bg-black/40 border border-white/10 hover:bg-black/60"
+                            aria-label="Zoom">
+                            <i data-lucide="maximize-2" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+
+                    <!-- Thumbs -->
+                    <div class="mt-4 grid grid-cols-4 gap-3">
+                        <button class="thumb rounded-xl overflow-hidden card focus-ring"
+                            data-src="images/products/nblac-turtle-phone-case.webp">
+                            <img class="w-full h-24 object-cover" src="images/products/nblac-turtle-phone-case.webp"
+                                alt="Angle 4">
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right: Details -->
+                <div class="space-y-8">
+                    <div class="space-y-2">
+                        <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight">Turtle Phone Case</h1>
+                        <div class="flex items-center gap-3 text-sm text-white/70">
+                            <div class="flex items-center gap-0.5">
+                                <i data-lucide="star" class="w-4 h-4 fill-white/80 text-white/80"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-white/80 text-white/80"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-white/80 text-white/80"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-white/80 text-white/80"></i>
+                                <i data-lucide="star-half" class="w-4 h-4 text-white/80"></i>
+                            </div>
+                            <span>4.5 · 128 reviews</span>
+                            <span class="mx-1">•</span>
+                            <button class="underline underline-offset-4 hover:text-white">Free 7-day returns</button>
+                        </div>
+                    </div>
+
+                    <div class="flex items-end gap-4">
+                        <p class="text-3xl font-extrabold">₹899</p>
+                        <p class="text-white/50 line-through">₹1,299</p>
+                        <span
+                            class="px-2 py-1 rounded-lg bg-emerald-500/15 text-emerald-300 text-xs border border-emerald-400/30">15%
+                            OFF</span>
+                    </div>
+
+                    <!-- Variants -->
+                    <div class="space-y-5">
+                        <div>
+                            <p class="text-sm mb-2 text-white/70">Color</p>
+                            <div class="flex flex-wrap gap-2">
+                                <button data-color="Obsidian"
+                                    class="variant color px-3 py-2 rounded-xl border border-white/10 hover:border-white/20 card selected">Obsidian</button>
+                                <button data-color="Graphite"
+                                    class="variant color px-3 py-2 rounded-xl border border-white/10 hover:border-white/20 card">Graphite</button>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="text-sm mb-2 text-white/70">Model</p>
+                            <div class="grid grid-cols-3 sm:flex sm:flex-wrap gap-2">
+                                <button data-size="18L"
+                                    class="variant size px-3 py-2 rounded-xl border border-white/10 hover:border-white/20 card selected">iPhone
+                                    16 Pro</button>
+                                <button data-size="22L"
+                                    class="variant size px-3 py-2 rounded-xl border border-white/10 hover:border-white/20 card">iPhone
+                                    16 Pro Max</button>
+                                <button data-size="28L"
+                                    class="variant size px-3 py-2 rounded-xl border border-white/10 hover:border-white/20 card">Google
+                                    Pixel 8 Pro</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quantity + CTA -->
+                    <div class="space-y-4">
+                        <div class="inline-flex items-center rounded-xl border border-white/10 card overflow-hidden">
+                            <button id="qtyMinus" class="px-3 py-2 hover:bg-white/5" aria-label="Decrease quantity">
+                                <i data-lucide="minus" class="w-4 h-4"></i>
+                            </button>
+                            <input id="qtyInput" type="number" min="1" value="1"
+                                class="w-14 text-center bg-transparent py-2 focus:outline-none" aria-label="Quantity">
+                            <button id="qtyPlus" class="px-3 py-2 hover:bg-white/5" aria-label="Increase quantity">
+                                <i data-lucide="plus" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row gap-3">
+                            <button id="addToCart"
+                                class="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-white text-black font-semibold hover:opacity-90 transition shadow-glow">
+                                <i data-lucide="shopping-cart" class="w-5 h-5"></i>
+                                Add to Cart
+                            </button>
+                            <button
+                                class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl border border-white/15 hover:border-white/25 card">
+                                <i data-lucide="heart" class="w-5 h-5"></i>
+                                Wishlist
+                            </button>
+                        </div>
+
+                        <p class="text-sm text-white/60">
+                            Ships in 24 hours · COD available · 1-year warranty
+                        </p>
+                    </div>
+
+                    <!-- Accordions -->
+                    <div class="divide-y divide-white/10 border border-white/10 rounded-2xl card">
+                        <details class="group open">
+                            <summary class="list-none cursor-pointer select-none flex items-center justify-between p-4">
+                                <span class="font-semibold">Details</span>
+                                <i data-lucide="chevron-down" class="w-4 h-4 transition group-open:rotate-180"></i>
+                            </summary>
+                            <div class="px-4 pb-4 text-white/80 text-sm leading-6">
+                                Sleek matte-black finish with embossed turtle emblem. Ultra-slim, lightweight, and
+                                shock-absorbent design.
+                                Precision cutouts ensure seamless fit for all flagship phones (Apple, Samsung, OnePlus,
+                                Google, etc.).
+                            </div>
+                        </details>
+
+                        <details class="group">
+                            <summary class="list-none cursor-pointer select-none flex items-center justify-between p-4">
+                                <span class="font-semibold">Care & Material</span>
+                                <i data-lucide="chevron-down" class="w-4 h-4 transition group-open:rotate-180"></i>
+                            </summary>
+                            <div class="px-4 pb-4 text-white/80 text-sm leading-6">
+                                Made with premium TPU & polycarbonate blend for durability and grip.
+                                Wipe gently with a soft damp cloth to clean. Avoid harsh chemicals or abrasives.
+                            </div>
+                        </details>
+
+                        <details class="group">
+                            <summary class="list-none cursor-pointer select-none flex items-center justify-between p-4">
+                                <span class="font-semibold">Shipping & Returns</span>
+                                <i data-lucide="chevron-down" class="w-4 h-4 transition group-open:rotate-180"></i>
+                            </summary>
+                            <div class="px-4 pb-4 text-white/80 text-sm leading-6">
+                                Free shipping on orders over ₹999 across India.
+                                Hassle-free 7-day returns & exchanges.
+                                International shipping available.
+                            </div>
+                        </details>
+                    </div>
+
+
+                    <!-- Trust badges -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                        <div class="card rounded-xl px-3 py-2 flex items-center gap-2 border border-white/10">
+                            <i data-lucide="shield-check" class="w-4 h-4"></i><span class="text-sm">Secure
+                                Checkout</span>
+                        </div>
+                        <div class="card rounded-xl px-3 py-2 flex items-center gap-2 border border-white/10">
+                            <i data-lucide="package" class="w-4 h-4"></i><span class="text-sm">Fast Delivery</span>
+                        </div>
+                        <div class="card rounded-xl px-3 py-2 flex items-center gap-2 border border-white/10">
+                            <i data-lucide="repeat-2" class="w-4 h-4"></i><span class="text-sm">Easy Returns</span>
+                        </div>
+                        <div class="card rounded-xl px-3 py-2 flex items-center gap-2 border border-white/10">
+                            <i data-lucide="badge-check" class="w-4 h-4"></i><span class="text-sm">1-Year
+                                Warranty</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reviews -->
+            <section class="mt-16">
+                <div class="flex items-end justify-between">
+                    <h2 class="text-xl font-bold">Reviews</h2>
+                    <button class="text-sm underline underline-offset-4 text-white/70 hover:text-white">Write a
+                        review</button>
+                </div>
+
+                <div class="mt-6 grid md:grid-cols-2 gap-4">
+                    <!-- Review 1 -->
+                    <article class="card rounded-2xl p-4 border border-white/10">
+                        <div class="flex items-center gap-2 text-sm text-white/70">
+                            <div class="flex">
+                                <i data-lucide="star" class="w-4 h-4 fill-white/80 text-white/80"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-white/80 text-white/80"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-white/80 text-white/80"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-white/80 text-white/80"></i>
+                                <i data-lucide="star" class="w-4 h-4 text-white/60"></i>
+                            </div>
+                            <span>by Aarav</span>
+                        </div>
+                        <p class="mt-2 text-sm text-white/85">
+                            Love the matte finish and embossed turtle design. Makes my iPhone feel premium and
+                            protected.
+                        </p>
+                    </article>
+
+                    <!-- Review 2 -->
+                    <article class="card rounded-2xl p-4 border border-white/10">
+                        <div class="flex items-center gap-2 text-sm text-white/70">
+                            <div class="flex">
+                                <i data-lucide="star" class="w-4 h-4 fill-white/80 text-white/80"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-white/80 text-white/80"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-white/80 text-white/80"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-white/80 text-white/80"></i>
+                                <i data-lucide="star-half" class="w-4 h-4 text-white/60"></i>
+                            </div>
+                            <span>by Nisha</span>
+                        </div>
+                        <p class="mt-2 text-sm text-white/85">
+                            Stylish and sturdy. Dropped my phone once, no damage at all. Wish it had more color options
+                            though.
+                        </p>
+                    </article>
+
+                    <!-- Review 3 -->
+                    <article class="card rounded-2xl p-4 border border-white/10">
+                        <div class="flex items-center gap-2 text-sm text-white/70">
+                            <div class="flex">
+                                <i data-lucide="star" class="w-4 h-4 fill-white/80 text-white/80"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-white/80 text-white/80"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-white/80 text-white/80"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-white/80 text-white/80"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-white/80 text-white/80"></i>
+                            </div>
+                            <span>by Kabir</span>
+                        </div>
+                        <p class="mt-2 text-sm text-white/85">
+                            Fits perfectly on my Galaxy S23 Ultra. Buttons feel responsive, and wireless charging works
+                            flawlessly.
+                        </p>
+                    </article>
+
+                    <!-- Review 4 -->
+                    <article class="card rounded-2xl p-4 border border-white/10">
+                        <div class="flex items-center gap-2 text-sm text-white/70">
+                            <div class="flex">
+                                <i data-lucide="star" class="w-4 h-4 fill-white/80 text-white/80"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-white/80 text-white/80"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-white/80 text-white/80"></i>
+                                <i data-lucide="star" class="w-4 h-4 text-white/60"></i>
+                                <i data-lucide="star" class="w-4 h-4 text-white/60"></i>
+                            </div>
+                            <span>by Meera</span>
+                        </div>
+                        <p class="mt-2 text-sm text-white/85">
+                            The design is unique and eye-catching, but the case is slightly bulkier than I expected.
+                            Still, great value.
+                        </p>
+                    </article>
+                </div>
+            </section>
+
+
+            <!-- Related -->
+            <section class="mt-20">
+                <div class="flex items-end justify-between">
+                    <h2 class="text-xl font-bold">You may also like</h2>
+                    <a class="text-sm underline underline-offset-4 text-white/70 hover:text-white" href="#">View all</a>
+                </div>
+                <div class="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <!-- Card -->
+                    <a href="#"
+                        class="group card rounded-2xl overflow-hidden border border-white/10 hover:border-white/20 transition block">
+                        <div class="aspect-square overflow-hidden">
+                            <img class="w-full h-full object-cover group-hover:scale-105 transition"
+                                src="https://images.unsplash.com/photo-1520975624747-34d6bbf3db19?q=80&w=1200&auto=format&fit=crop"
+                                alt="Sling">
+                        </div>
+                        <div class="p-3">
+                            <p class="text-sm font-semibold">Everyday Sling</p>
+                            <p class="text-xs text-white/60">₹3,499</p>
+                        </div>
+                    </a>
+                    <a href="#"
+                        class="group card rounded-2xl overflow-hidden border border-white/10 hover:border-white/20 transition block">
+                        <div class="aspect-square overflow-hidden">
+                            <img class="w-full h-full object-cover group-hover:scale-105 transition"
+                                src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1200&auto=format&fit=crop"
+                                alt="Sneakers">
+                        </div>
+                        <div class="p-3">
+                            <p class="text-sm font-semibold">Mono Sneakers</p>
+                            <p class="text-xs text-white/60">₹5,999</p>
+                        </div>
+                    </a>
+                    <a href="#"
+                        class="group card rounded-2xl overflow-hidden border border-white/10 hover:border-white/20 transition block">
+                        <div class="aspect-square overflow-hidden">
+                            <img class="w-full h-full object-cover group-hover:scale-105 transition"
+                                src="https://images.unsplash.com/photo-1516478177764-9fe5bd7e9717?q=80&w=1200&auto=format&fit=crop"
+                                alt="Watch">
+                        </div>
+                        <div class="p-3">
+                            <p class="text-sm font-semibold">Shadow Watch</p>
+                            <p class="text-xs text-white/60">₹8,499</p>
+                        </div>
+                    </a>
+                    <a href="#"
+                        class="group card rounded-2xl overflow-hidden border border-white/10 hover:border-white/20 transition block">
+                        <div class="aspect-square overflow-hidden">
+                            <img class="w-full h-full object-cover group-hover:scale-105 transition"
+                                src="https://images.unsplash.com/photo-1511389026070-a14ae610a1be?q=80&w=1200&auto=format&fit=crop"
+                                alt="Wallet">
+                        </div>
+                        <div class="p-3">
+                            <p class="text-sm font-semibold">Slim Wallet</p>
+                            <p class="text-xs text-white/60">₹1,999</p>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+        </section>
+    </main>
+
+    <!-- Sticky mobile add-to-cart bar -->
+    <div class="lg:hidden fixed bottom-0 left-0 right-0 z-40 border-t border-white/10 bg-black/70 backdrop-blur">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
+            <div>
+                <p class="text-xs text-white/60">Monochrome Tech Backpack</p>
+                <p class="text-base font-semibold">₹7,999</p>
+            </div>
+            <button class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white text-black font-semibold">
+                <i data-lucide="shopping-cart" class="w-4 h-4"></i>
+                Add
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-24 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid md:grid-cols-3 gap-8 text-sm">
+            <div class="space-y-2">
+                <div class="flex items-center gap-2">
+                    <div class="h-8 w-8 rounded-xl bg-white/5 border border-white/10 grid place-items-center">
+                        <i data-lucide="square" class="w-4 h-4 text-white/70"></i>
+                    </div>
+                    <span class="text-lg font-extrabold tracking-wider">NBLAC</span>
+                </div>
+                <p class="text-white/60">Minimal gear for maximal focus.</p>
+            </div>
+            <div class="grid grid-cols-2 gap-6 md:col-span-2">
+                <div class="space-y-2">
+                    <p class="font-semibold">Support</p>
+                    <a class="block text-white/60 hover:text-white/90" href="#">Contact</a>
+                    <a class="block text-white/60 hover:text-white/90" href="#">Shipping</a>
+                    <a class="block text-white/60 hover:text-white/90" href="#">Returns</a>
+                </div>
+                <div class="space-y-2">
+                    <p class="font-semibold">Company</p>
+                    <a class="block text-white/60 hover:text-white/90" href="#">About</a>
+                    <a class="block text-white/60 hover:text-white/90" href="#">Careers</a>
+                    <a class="block text-white/60 hover:text-white/90" href="#">Press</a>
+                </div>
+            </div>
+        </div>
+        <div class="border-t border-white/10 py-6 text-center text-xs text-white/50">
+            © <span id="y"></span> NBLAC. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Lucide init
+        lucide.createIcons();
+
+        // Year
+        document.getElementById('y').textContent = new Date().getFullYear();
+
+        // Search expand + "/" shortcut
+        const openBtn = document.getElementById('openSearch');
+        const bar = document.getElementById('searchBar');
+        const input = document.getElementById('searchInput');
+
+        function openSearch() {
+            bar.classList.remove('hidden');
+            bar.style.width = '280px';
+            setTimeout(() => input.focus(), 10);
+        }
+        function closeSearch() {
+            bar.style.width = '0px';
+            setTimeout(() => bar.classList.add('hidden'), 150);
+        }
+
+        openBtn.addEventListener('click', () => {
+            if (bar.classList.contains('hidden')) openSearch(); else closeSearch();
+        });
+
+        // "/" to search, but ignore if typing in an input/textarea
+        document.addEventListener('keydown', (e) => {
+            const tag = (e.target.tagName || '').toLowerCase();
+            if (e.key === '/' && tag !== 'input' && tag !== 'textarea' && !e.metaKey && !e.ctrlKey) {
+                e.preventDefault();
+                openSearch();
+            }
+            if (e.key === 'Escape' && !bar.classList.contains('hidden')) closeSearch();
+        });
+
+        // Gallery thumbs
+        const mainImage = document.getElementById('mainImage');
+        const thumbs = document.querySelectorAll('.thumb');
+        thumbs.forEach(btn => {
+            btn.addEventListener('click', () => {
+                thumbs.forEach(b => b.classList.remove('ring-2', 'ring-white/30'));
+                btn.classList.add('ring-2', 'ring-white/30');
+                mainImage.src = btn.dataset.src;
+            });
+        });
+
+        // Variant selectors
+        function wireVariant(selector) {
+            document.querySelectorAll(selector).forEach(el => {
+                el.addEventListener('click', () => {
+                    document.querySelectorAll(selector).forEach(b => b.classList.remove('selected', 'ring-2', 'ring-white/20'));
+                    el.classList.add('selected', 'ring-2', 'ring-white/20');
+                });
+            });
+        }
+        wireVariant('.variant.color');
+        wireVariant('.variant.size');
+
+        // Quantity controls
+        const qtyInput = document.getElementById('qtyInput');
+        document.getElementById('qtyMinus').addEventListener('click', () => {
+            qtyInput.value = Math.max(1, (parseInt(qtyInput.value, 10) || 1) - 1);
+        });
+        document.getElementById('qtyPlus').addEventListener('click', () => {
+            qtyInput.value = (parseInt(qtyInput.value, 10) || 1) + 1;
+        });
+
+        // Add to Cart demo
+        document.getElementById('addToCart').addEventListener('click', () => {
+            const color = document.querySelector('.variant.color.selected')?.dataset.color || 'Obsidian';
+            const size = document.querySelector('.variant.size.selected')?.dataset.size || '18L';
+            const qty = parseInt(qtyInput.value, 10) || 1;
+            const msg = `Added ${qty} × ${size} · ${color} to cart`;
+            // Toast
+            const t = document.createElement('div');
+            t.className = 'fixed bottom-6 left-1/2 -translate-x-1/2 z-[100] px-4 py-2 rounded-xl bg-white text-black shadow-glow';
+            t.textContent = msg;
+            document.body.appendChild(t);
+            setTimeout(() => t.classList.add('opacity-0', 'transition'), 1700);
+            setTimeout(() => t.remove(), 2100);
+        });
+    </script>
+</body>
+
+</html>

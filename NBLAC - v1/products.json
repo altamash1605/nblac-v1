@@ -1,0 +1,163 @@
+{
+  "products": [
+    {
+      "sku": "CRD-HLDR-001",
+      "slug": "card-holder",
+      "name": "Card Holder",
+      "tagline": "Fits in Every Pocket",
+      "price": 799,
+      "compareAtPrice": 1299,
+      "rating": 4.5,
+      "reviewCount": 23,
+      "images": [
+        "images/products/nblac-card-holder.webp"
+      ],
+      "variants": {
+        "colors": [
+          {
+            "name": "Raisin Black"
+          }
+        ]
+      },
+      "related": [
+        "turtle-phone-case",
+        "crossbody-bag",
+        "notebook-pen"
+      ]
+    },
+    {
+      "sku": "NTBK-PN-001",
+      "slug": "notebook-pen",
+      "name": "Notebook x Pen",
+      "price": 399,
+      "compareAtPrice": 699,
+      "rating": 5,
+      "reviewCount": 113,
+      "images": [
+        "images/products/nblac-notebook-pen.webp",
+        "images/products/nblac-notebook-pen-open.webp"
+      ],
+      "variants": {
+        "colors": [
+          {
+            "name": "Jet Black"
+          }
+        ]
+      },
+      "related": [
+        "turtle-phone-case",
+        "crossbody-bag"
+      ]
+    },
+    {
+      "sku": "CASE-TRTL-OBS-001",
+      "slug": "turtle-phone-case",
+      "name": "Turtle Phone Case",
+      "tagline": "Available For All Flagships",
+      "price": 899,
+      "compareAtPrice": 1299,
+      "rating": 4.5,
+      "reviewCount": 128,
+      "images": [
+        "images/products/nblac-turtle-phone-case.webp",
+        "images/products/nblac-turtle-phone-case-angle1.webp",
+        "images/products/nblac-turtle-phone-case-angle2.webp",
+        "images/products/nblac-turtle-phone-case-angle3.webp"
+      ],
+      "variants": {
+        "colors": [
+          {
+            "name": "Obsidian"
+          },
+          {
+            "name": "Graphite"
+          }
+        ],
+        "models": [
+          {
+            "name": "iPhone 16 Pro"
+          },
+          {
+            "name": "iPhone 16 Pro Max"
+          },
+          {
+            "name": "Google Pixel 8 Pro"
+          }
+        ]
+      },
+      "copy": {
+        "details": "Sleek matte-black finish with embossed turtle emblem. Ultra-slim, lightweight, and shock-absorbent design. Precision cutouts ensure seamless fit for all flagship phones.",
+        "care": "Premium TPU & polycarbonate blend for durability and grip. Wipe gently with a soft damp cloth; avoid harsh chemicals.",
+        "shipping": "Free shipping on orders over ₹999 across India. Hassle-free 7-day returns & exchanges. International shipping available."
+      },
+      "meta": {
+        "shippingNote": "Ships in 24 hours · COD available · 1-year warranty"
+      },
+      "reviews": [
+        {
+          "author": "Aarav",
+          "stars": 4,
+          "text": "Love the matte finish and embossed turtle design. Makes my iPhone feel premium and protected."
+        },
+        {
+          "author": "Nisha",
+          "stars": 4.5,
+          "text": "Stylish and sturdy. Dropped my phone once, no damage at all. Wish it had more color options though."
+        },
+        {
+          "author": "Kabir",
+          "stars": 5,
+          "text": "Fits perfectly on my Galaxy S23 Ultra. Buttons feel responsive, and wireless charging works flawlessly."
+        },
+        {
+          "author": "Meera",
+          "stars": 3,
+          "text": "Design is unique, but case is slightly bulkier than expected. Still, great value."
+        }
+      ],
+      "related": [
+        "notebook-pen",
+        "crossbody-bag"
+      ]
+    },
+    {
+      "sku": "CRSBDY-BAG-001",
+      "slug": "crossbody-bag",
+      "name": "Crossbody Bag",
+      "price": 2999,
+      "compareAtPrice": 5999,
+      "rating": 4.5,
+      "reviewCount": 89,
+      "images": [
+        "images/products/nblac-crossbody-bag-side.webp",
+        "images/products/nblac-crossbody-bag-zip-open.webp",
+        "images/products/nblac-crossbody-bag-model.webp",
+        "images/products/nblac-crossbody-bag.webp"
+      ],
+      "variants": {
+        "colors": [
+          {
+            "name": "Obsidian"
+          },
+          {
+            "name": "Graphite"
+          }
+        ]
+      },
+      "related": [
+        "turtle-phone-case",
+        "card-holder",
+        "notebook-pen"
+      ]
+    },
+    {
+      "sku": "WLT-SLM-001",
+      "slug": "slim-wallet",
+      "name": "Slim Wallet",
+      "price": 1999,
+      "images": [
+        "https://images.unsplash.com/photo-1511389026070-a14ae610a1be?q=80&w=1200&auto=format&fit=crop"
+      ]
+    }
+  ]
+}

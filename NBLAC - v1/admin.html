@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>NBLAC · Products Admin</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: {50:"#f7f7f7",100:"#eaeaea",200:"#cfcfcf",300:"#a6a6a6",400:"#7a7a7a",500:"#525252",600:"#3c3c3c",700:"#2d2d2d",800:"#1f1f1f",900:"#141414",950:"#0b0b0b"}
+          },
+          boxShadow: {
+            glow: "0 0 0 1px rgba(255,255,255,0.06), 0 8px 30px rgba(0,0,0,0.5)"
+          }
+        }
+      }
+    }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    html, body { background:#0b0b0b; color:#eaeaea; font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif; }
+    .card { background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.08); }
+    .input { background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.1); }
+    .pill { background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); }
+  </style>
+
+  <!-- Lucide -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="min-h-screen">
+
+  <!-- Topbar -->
+  <header class="sticky top-0 z-50 border-b border-white/10 bg-black/70 backdrop-blur">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="h-8 w-8 rounded-xl bg-white/5 border border-white/10 grid place-items-center">
+          <i data-lucide="settings" class="w-4 h-4 text-white/80"></i>
+        </div>
+        <strong class="text-lg">NBLAC · Products Admin</strong>
+      </div>
+      <div class="flex items-center gap-2">
+        <button id="btnOpen" class="px-3 py-2 rounded-xl border border-white/15 hover:border-white/25 bg-white/5">Open products.json</button>
+        <button id="btnSave" class="px-3 py-2 rounded-xl bg-white text-black font-semibold disabled:opacity-40">Save</button>
+        <button id="btnDownload" class="px-3 py-2 rounded-xl border border-white/15 hover:border-white/25 bg-white/5">Download JSON</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 py-6 grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <!-- List -->
+    <section class="card rounded-2xl p-4">
+      <div class="flex items-center justify-between">
+        <h2 class="text-lg font-semibold">Products</h2>
+        <div class="flex items-center gap-2">
+          <input id="search" type="search" placeholder="Search name/slug/sku…" class="input px-3 py-2 rounded-xl text-sm w-64">
+          <button id="btnNew" class="px-3 py-2 rounded-xl bg-white text-black font-semibold">New</button>
+        </div>
+      </div>
+
+      <div class="mt-4 border border-white/10 rounded-xl overflow-hidden">
+        <table class="w-full text-sm">
+          <thead class="bg-white/5">
+            <tr class="text-white/70">
+              <th class="text-left px-3 py-2">Name</th>
+              <th class="text-left px-3 py-2">Slug</th>
+              <th class="text-left px-3 py-2">SKU</th>
+              <th class="text-left px-3 py-2">Price</th>
+              <th class="text-left px-3 py-2">Rating</th>
+              <th class="text-right px-3 py-2">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Editor -->
+    <section class="card rounded-2xl p-4">
+      <h2 class="text-lg font-semibold">Editor</h2>
+      <p class="text-white/60 text-sm">Select a product or click <b>New</b>.</p>
+
+      <form id="form" class="mt-4 grid grid-cols-2 gap-3">
+        <!-- left -->
+        <div class="col-span-2">
+          <label class="text-xs text-white/60">Name</label>
+          <input name="name" class="input w-full px-3 py-2 rounded-xl" required />
+        </div>
+
+        <!-- NEW: Tagline -->
+        <div class="col-span-2">
+          <label class="text-xs text-white/60">Tagline</label>
+          <input name="tagline" class="input w-full px-3 py-2 rounded-xl" placeholder="A short punchy line (optional)" />
+        </div>
+
+        <div>
+          <label class="text-xs text-white/60">Slug</label>
+          <input name="slug" class="input w-full px-3 py-2 rounded-xl" required />
+        </div>
+        <div>
+          <label class="text-xs text-white/60">SKU</label>
+          <input name="sku" class="input w-full px-3 py-2 rounded-xl" required />
+        </div>
+
+        <div>
+          <label class="text-xs text-white/60">Price (INR)</label>
+          <input type="number" step="1" min="0" name="price" class="input w-full px-3 py-2 rounded-xl" required />
+        </div>
+        <div>
+          <label class="text-xs text-white/60">Compare At (INR)</label>
+          <input type="number" step="1" min="0" name="compareAtPrice" class="input w-full px-3 py-2 rounded-xl" />
+        </div>
+
+        <div>
+          <label class="text-xs text-white/60">Rating</label>
+          <input type="number" step="0.1" min="0" max="5" name="rating" class="input w-full px-3 py-2 rounded-xl" />
+        </div>
+        <div>
+          <label class="text-xs text-white/60">Review Count</label>
+          <input type="number" step="1" min="0" name="reviewCount" class="input w-full px-3 py-2 rounded-xl" />
+        </div>
+
+        <div class="col-span-2">
+          <label class="text-xs text-white/60">Images (comma separated URLs)</label>
+          <textarea name="images" rows="2" class="input w-full px-3 py-2 rounded-xl"></textarea>
+        </div>
+
+        <div class="col-span-2">
+          <label class="text-xs text-white/60">Colors (comma names)</label>
+          <input name="colors" class="input w-full px-3 py-2 rounded-xl" placeholder="Obsidian, Graphite" />
+        </div>
+        <div class="col-span-2">
+          <label class="text-xs text-white/60">Models (comma names)</label>
+          <input name="models" class="input w-full px-3 py-2 rounded-xl" placeholder="iPhone 16 Pro, iPhone 16 Pro Max" />
+        </div>
+
+        <div class="col-span-2">
+          <label class="text-xs text-white/60">Details</label>
+          <textarea name="details" rows="3" class="input w-full px-3 py-2 rounded-xl"></textarea>
+        </div>
+        <div class="col-span-2">
+          <label class="text-xs text-white/60">Care</label>
+          <textarea name="care" rows="2" class="input w-full px-3 py-2 rounded-xl"></textarea>
+        </div>
+        <div class="col-span-2">
+          <label class="text-xs text-white/60">Shipping</label>
+          <textarea name="shipping" rows="2" class="input w-full px-3 py-2 rounded-xl"></textarea>
+        </div>
+
+        <div class="col-span-2">
+          <label class="text-xs text-white/60">Shipping Note</label>
+          <input name="shippingNote" class="input w-full px-3 py-2 rounded-xl" placeholder="Ships in 24 hours · COD available · 1-year warranty" />
+        </div>
+
+        <div class="col-span-2">
+          <label class="text-xs text-white/60">Related (comma slugs)</label>
+          <input name="related" class="input w-full px-3 py-2 rounded-xl" placeholder="everyday-sling, slim-wallet" />
+        </div>
+
+        <div class="col-span-2 flex items-center justify-between mt-2">
+          <div class="flex items-center gap-2">
+            <button id="btnDuplicate" type="button" class="px-3 py-2 rounded-xl border border-white/15 hover:border-white/25">Duplicate</button>
+            <button id="btnDelete" type="button" class="px-3 py-2 rounded-xl border border-red-400/40 text-red-300 hover:border-red-300/70">Delete</button>
+          </div>
+          <button id="btnApply" type="submit" class="px-4 py-2 rounded-xl bg-white text-black font-semibold">Apply Changes</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <template id="row-tpl">
+    <tr class="border-t border-white/10 hover:bg-white/5">
+      <td class="px-3 py-2 font-medium"></td>
+      <td class="px-3 py-2 text-white/80"></td>
+      <td class="px-3 py-2 text-white/80"></td>
+      <td class="px-3 py-2 text-white/80"></td>
+      <td class="px-3 py-2 text-white/80"></td>
+      <td class="px-3 py-2 text-right">
+        <button class="px-2 py-1 rounded-lg pill hover:bg-white/10" data-action="edit">Edit</button>
+      </td>
+    </tr>
+  </template>
+
+  <script>
+    lucide.createIcons();
+
+    // ---- State ----
+    let handle = null;     // FileSystemFileHandle for products.json (if chosen)
+    let json = { products: [] };
+    let currentIndex = -1;
+
+    const el = (id) => document.getElementById(id);
+    const form = el('form');
+    const rows = el('rows');
+    const tpl = el('row-tpl');
+
+    const supportsFS = 'showOpenFilePicker' in window && 'showSaveFilePicker' in window;
+
+    // ---- UI helpers ----
+    function toast(msg, ok = true) {
+      const t = document.createElement('div');
+      t.className = `fixed bottom-6 left-1/2 -translate-x-1/2 px-4 py-2 rounded-xl ${ok?'bg-white text-black':'bg-red-500 text-white'} shadow-glow z-50`;
+      t.textContent = msg;
+      document.body.appendChild(t);
+      setTimeout(() => { t.classList.add('opacity-0','transition'); }, 1500);
+      setTimeout(() => t.remove(), 1900);
+    }
+
+    function renderList(filter = '') {
+      rows.innerHTML = '';
+      const term = filter.trim().toLowerCase();
+      json.products.forEach((p, idx) => {
+        if (term && !(p.name?.toLowerCase().includes(term) || p.slug?.toLowerCase().includes(term) || p.sku?.toLowerCase().includes(term))) return;
+        const tr = tpl.content.firstElementChild.cloneNode(true);
+        tr.children[0].textContent = p.name || '';
+        tr.children[1].textContent = p.slug || '';
+        tr.children[2].textContent = p.sku || '';
+        tr.children[3].textContent = (p.price ?? '') === '' ? '' : String(p.price);
+        tr.children[4].textContent = (p.rating ?? '') === '' ? '' : String(p.rating);
+        tr.querySelector('[data-action="edit"]').addEventListener('click', () => selectIndex(idx));
+        rows.appendChild(tr);
+      });
+    }
+
+    function selectIndex(idx) {
+      currentIndex = idx;
+      const p = json.products[idx];
+      if (!p) return;
+      form.name.value = p.name || '';
+      form.tagline.value = p.tagline || ''; // NEW
+      form.slug.value = p.slug || '';
+      form.sku.value = p.sku || '';
+      form.price.value = p.price ?? '';
+      form.compareAtPrice.value = p.compareAtPrice ?? '';
+      form.rating.value = p.rating ?? '';
+      form.reviewCount.value = p.reviewCount ?? '';
+      form.images.value = (p.images || []).join(', ');
+      form.colors.value = (p.variants?.colors || []).map(c => c.name || c).join(', ');
+      form.models.value = (p.variants?.models || []).map(m => m.name || m).join(', ');
+      form.details.value = p.copy?.details || '';
+      form.care.value = p.copy?.care || '';
+      form.shipping.value = p.copy?.shipping || '';
+      form.shippingNote.value = p.meta?.shippingNote || '';
+      form.related.value = (p.related || []).join(', ');
+    }
+
+    function readForm() {
+      const p = {};
+      p.name = form.name.value.trim();
+      p.tagline = form.tagline.value.trim() || undefined; // NEW
+      p.slug = form.slug.value.trim();
+      p.sku = form.sku.value.trim();
+      p.price = Number(form.price.value || 0);
+      p.compareAtPrice = form.compareAtPrice.value ? Number(form.compareAtPrice.value) : undefined;
+      p.rating = form.rating.value ? Number(form.rating.value) : undefined;
+      p.reviewCount = form.reviewCount.value ? Number(form.reviewCount.value) : undefined;
+      p.images = form.images.value.trim() ? form.images.value.split(',').map(s => s.trim()).filter(Boolean) : [];
+      const colors = form.colors.value.trim() ? form.colors.value.split(',').map(s => s.trim()).filter(Boolean) : [];
+      const models = form.models.value.trim() ? form.models.value.split(',').map(s => s.trim()).filter(Boolean) : [];
+      if (colors.length || models.length) {
+        p.variants = {};
+        if (colors.length) p.variants.colors = colors.map(name => ({ name }));
+        if (models.length) p.variants.models = models.map(name => ({ name }));
+      }
+      p.copy = {
+        details: form.details.value,
+        care: form.care.value,
+        shipping: form.shipping.value
+      };
+      p.meta = { shippingNote: form.shippingNote.value };
+      p.related = form.related.value.trim() ? form.related.value.split(',').map(s => s.trim()).filter(Boolean) : [];
+      // Remove empty nested objects
+      if (!p.copy.details && !p.copy.care && !p.copy.shipping) delete p.copy;
+      if (!p.meta.shippingNote) delete p.meta;
+      if (!p.compareAtPrice) delete p.compareAtPrice;
+      if (!p.rating) delete p.rating;
+      if (!p.reviewCount) delete p.reviewCount;
+      if (!p.related.length) delete p.related;
+      if (!p.images.length) delete p.images;
+      if (!p.tagline) delete p.tagline; // NEW
+      if (!p.variants || (!p.variants.colors && !p.variants.models)) delete p.variants;
+      return p;
+    }
+
+    function addNew() {
+      const p = {
+        sku: 'SKU-' + Math.random().toString(36).slice(2,7).toUpperCase(),
+        slug: 'new-product-' + Math.random().toString(36).slice(2,5),
+        name: 'New Product',
+        price: 0,
+        images: []
+      };
+      json.products.unshift(p);
+      renderList(el('search').value);
+      selectIndex(0);
+      toast('New product created');
+    }
+
+    function duplicateCurrent() {
+      if (currentIndex < 0) return;
+      const copy = JSON.parse(JSON.stringify(json.products[currentIndex]));
+      copy.slug = copy.slug + '-copy';
+      copy.sku = copy.sku + '-COPY';
+      json.products.unshift(copy);
+      renderList(el('search').value);
+      selectIndex(0);
+      toast('Duplicated');
+    }
+
+    function deleteCurrent() {
+      if (currentIndex < 0) return;
+      const p = json.products[currentIndex];
+      if (!confirm(`Delete "${p.name}"?`)) return;
+      json.products.splice(currentIndex, 1);
+      currentIndex = -1;
+      form.reset();
+      renderList(el('search').value);
+      toast('Deleted', false); // red toast
+    }
+
+    function toPrettyJson() {
+      // stable order of keys for readability
+      const ordered = {
+        products: json.products.map(p => {
+          const q = {};
+          // NEW: include 'tagline' just after 'name'
+          ['sku','slug','name','tagline','price','compareAtPrice','rating','reviewCount','images','variants','copy','meta','reviews','related']
+            .forEach(k => { if (p[k] !== undefined) q[k] = p[k]; });
+          return q;
+        })
+      };
+      return JSON.stringify(ordered, null, 2);
+    }
+
+    // ---- File System Access API flow ----
+    async function openJson() {
+      try {
+        if (supportsFS) {
+          const [h] = await window.showOpenFilePicker({
+            types: [{ description: 'JSON', accept: { 'application/json': ['.json'] } }],
+            excludeAcceptAllOption: true,
+            multiple: false
+          });
+          handle = h;
+          const file = await handle.getFile();
+          const text = await file.text();
+          json = JSON.parse(text.replace(/^\uFEFF/, '')); // strip BOM if any
+        } else {
+          // Fallback: <input type=file>
+          const input = document.createElement('input');
+          input.type = 'file';
+          input.accept = 'application/json';
+          input.onchange = async () => {
+            const file = input.files[0];
+            const text = await file.text();
+            json = JSON.parse(text.replace(/^\uFEFF/, ''));
+            handle = null; // cannot save back directly
+            postLoad();
+          };
+          input.click();
+          return;
+        }
+        postLoad();
+      } catch (e) {
+        console.error(e);
+        toast('Open cancelled or invalid JSON', false);
+      }
+    }
+
+    function postLoad() {
+      // ensure shape
+      if (!json || typeof json !== 'object' || !Array.isArray(json.products)) json = { products: [] };
+      renderList();
+      currentIndex = -1;
+      form.reset();
+      el('btnSave').disabled = false;
+      toast('Loaded products.json');
+    }
+
+    async function saveJson() {
+      try {
+        const data = toPrettyJson();
+        if (supportsFS && handle) {
+          const writable = await handle.createWritable();
+          await writable.write(new Blob([data], { type: 'application/json' }));
+          await writable.close();
+          toast('Saved to products.json');
+        } else {
+          // Fallback: trigger a download
+          const blob = new Blob([data], { type: 'application/json' });
+          const a = document.createElement('a');
+          a.href = URL.createObjectURL(blob);
+          a.download = 'products.json';
+          a.click();
+          URL.revokeObjectURL(a.href);
+          toast('Downloaded products.json');
+        }
+      } catch (e) {
+        console.error(e);
+        toast('Save failed', false);
+      }
+    }
+
+    function downloadJson() {
+      const data = toPrettyJson();
+      const blob = new Blob([data], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'products.json';
+      a.click();
+      URL.revokeObjectURL(a.href);
+      toast('Downloaded products.json');
+    }
+
+    // ---- Events ----
+    el('btnOpen').addEventListener('click', openJson);
+    el('btnSave').addEventListener('click', saveJson);
+    el('btnDownload').addEventListener('click', downloadJson);
+    el('btnNew').addEventListener('click', addNew);
+    el('btnDuplicate').addEventListener('click', duplicateCurrent);
+    el('btnDelete').addEventListener('click', deleteCurrent);
+    el('search').addEventListener('input', (e) => renderList(e.target.value));
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const p = readForm();
+      // simple validations
+      if (!p.name || !p.slug || !p.sku) { toast('Name, slug, SKU are required', false); return; }
+      if (currentIndex >= 0) {
+        json.products[currentIndex] = { ...json.products[currentIndex], ...p };
+      } else {
+        json.products.unshift(p);
+        currentIndex = 0;
+      }
+      renderList(el('search').value);
+      toast('Changes applied');
+    });
+
+    // Start with empty list; user must click Open
+  </script>
+</body>
+</html>

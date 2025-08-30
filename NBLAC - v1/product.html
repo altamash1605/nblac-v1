@@ -1,0 +1,530 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>NBLAC · Product</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ink: {
+                            50: "#f7f7f7", 100: "#eaeaea", 200: "#cfcfcf", 300: "#a6a6a6",
+                            400: "#7a7a7a", 500: "#525252", 600: "#3c3c3c", 700: "#2d2d2d",
+                            800: "#1f1f1f", 900: "#141414", 950: "#0b0b0b"
+                        }
+                    },
+                    boxShadow: {
+                        glow: "0 0 0 1px rgba(255,255,255,0.06), 0 8px 30px rgba(0,0,0,0.5)"
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        html,
+        body {
+            background: #0b0b0b;
+            color: #eaeaea;
+            font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji', sans-serif;
+        }
+
+        .focus-ring {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.12), 0 0 0 4px rgba(255, 255, 255, 0.04);
+        }
+
+        .card {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+    </style>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="min-h-screen flex flex-col">
+    <!-- Header / Navbar -->
+    <header
+        class="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-black/40 bg-black/60 border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="h-16 flex items-center justify-between gap-3">
+                <a href="index.html" class="flex items-center gap-2 group">
+                    <div class="h-8 w-8 rounded-xl bg-white/5 border border-white/10 grid place-items-center">
+                        <i data-lucide="square" class="w-4 h-4 text-white/70"></i>
+                    </div>
+                    <span class="text-xl font-extrabold tracking-wider">NBLAC</span>
+                </a>
+
+                <nav class="hidden md:flex items-center gap-7 text-sm">
+                    <a class="hover:text-white/90 text-white/70 transition" href="index.html">Home</a>
+                    <a class="hover:text-white/90 text-white/70 transition" href="#">Shop</a>
+                    <a class="hover:text-white/90 text-white/70 transition" href="#">Discover</a>
+                    <a class="hover:text-white/90 text-white/70 transition" href="#">About</a>
+                </nav>
+
+                <div class="flex items-center gap-2">
+                    <div id="searchWrap" class="flex items-center gap-2">
+                        <button id="openSearch"
+                            class="p-2 rounded-xl border border-white/10 hover:border-white/20 hover:bg-white/5"
+                            aria-label="Open search (/)">
+                            <i data-lucide="search" class="w-5 h-5 text-white/80"></i>
+                        </button>
+                        <div id="searchBar"
+                            class="hidden md:flex items-center overflow-hidden rounded-xl border border-white/10 focus-within:border-white/20 transition-all w-0">
+                            <i data-lucide="search" class="w-4 h-4 mx-3 text-white/50 shrink-0"></i>
+                            <input id="searchInput" type="search" placeholder="Search products…"
+                                class="bg-transparent text-sm placeholder-white/40 flex-1 py-2 pr-3 focus:outline-none">
+                        </div>
+                    </div>
+
+                    <button class="p-2 rounded-xl border border-white/10 hover:border-white/20 hover:bg-white/5"
+                        aria-label="Account">
+                        <i data-lucide="user" class="w-5 h-5 text-white/80"></i>
+                    </button>
+                    <button
+                        class="p-2 rounded-xl border border-white/10 hover:border-white/20 hover:bg-white/5 relative"
+                        aria-label="Wishlist">
+                        <i data-lucide="heart" class="w-5 h-5 text-white/80"></i>
+                    </button>
+                    <button
+                        class="p-2 rounded-xl border border-white/10 hover:border-white/20 hover:bg-white/5 relative"
+                        aria-label="Cart">
+                        <i data-lucide="shopping-bag" class="w-5 h-5 text-white/80"></i>
+                        <span
+                            class="absolute -top-1 -right-1 text-[10px] bg-white text-black font-bold px-1.5 py-0.5 rounded">2</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main -->
+    <main class="flex-1">
+        <!-- Breadcrumbs -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <nav class="text-xs text-white/50 py-4 flex items-center gap-2">
+                <a href="index.html" class="hover:text-white/80">Home</a>
+                <span>/</span>
+                <a href="#" class="hover:text-white/80">Shop</a>
+                <span>/</span>
+                <span id="breadcrumbName" class="text-white/80">Loading…</span>
+            </nav>
+        </div>
+
+        <!-- Product Section -->
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
+
+                <!-- Left: Gallery -->
+                <div>
+                    <div class="aspect-square w-full rounded-2xl card overflow-hidden shadow-glow relative">
+                        <img id="mainImage" alt="Product image" class="w-full h-full object-cover" src="" />
+                        <button
+                            class="absolute top-3 right-3 p-2 rounded-xl bg-black/40 border border-white/10 hover:bg-black/60"
+                            aria-label="Zoom">
+                            <i data-lucide="maximize-2" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+
+                    <!-- Thumbs -->
+                    <div id="thumbs" class="mt-4 grid grid-cols-4 gap-3"></div>
+                </div>
+
+                <!-- Right: Details -->
+                <div class="space-y-8">
+                    <div class="space-y-2">
+                        <h1 id="productName" class="text-2xl sm:text-3xl font-extrabold tracking-tight">Loading…</h1>
+                        <div class="flex items-center gap-3 text-sm text-white/70">
+                            <div id="ratingStars" class="flex items-center gap-0.5"></div>
+                            <span id="ratingLabel"></span>
+                            <span class="mx-1">•</span>
+                            <button class="underline underline-offset-4 hover:text-white">Free 7-day returns</button>
+                        </div>
+                    </div>
+
+                    <div class="flex items-end gap-4">
+                        <p id="price" class="text-3xl font-extrabold">—</p>
+                        <p id="compareAt" class="text-white/50 line-through hidden">—</p>
+                        <span id="discountBadge"
+                            class="px-2 py-1 rounded-lg bg-emerald-500/15 text-emerald-300 text-xs border border-emerald-400/30 hidden"></span>
+                    </div>
+
+                    <!-- Variants -->
+                    <div class="space-y-5">
+                        <div>
+                            <p class="text-sm mb-2 text-white/70">Color</p>
+                            <div id="colorVariants" class="flex flex-wrap gap-2"></div>
+                        </div>
+                        <div>
+                            <p class="text-sm mb-2 text-white/70">Model</p>
+                            <div id="modelVariants" class="grid grid-cols-3 sm:flex sm:flex-wrap gap-2"></div>
+                        </div>
+                    </div>
+
+                    <!-- Quantity + CTA -->
+                    <div class="space-y-4">
+                        <div class="inline-flex items-center rounded-xl border border-white/10 card overflow-hidden">
+                            <button id="qtyMinus" class="px-3 py-2 hover:bg-white/5" aria-label="Decrease quantity">
+                                <i data-lucide="minus" class="w-4 h-4"></i>
+                            </button>
+                            <input id="qtyInput" type="number" min="1" value="1"
+                                class="w-14 text-center bg-transparent py-2 focus:outline-none" aria-label="Quantity">
+                            <button id="qtyPlus" class="px-3 py-2 hover:bg-white/5" aria-label="Increase quantity">
+                                <i data-lucide="plus" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row gap-3">
+                            <button id="addToCart"
+                                class="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-white text-black font-semibold hover:opacity-90 transition shadow-glow">
+                                <i data-lucide="shopping-cart" class="w-5 h-5"></i>
+                                Add to Cart
+                            </button>
+                            <button
+                                class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl border border-white/15 hover:border-white/25 card">
+                                <i data-lucide="heart" class="w-5 h-5"></i>
+                                Wishlist
+                            </button>
+                        </div>
+
+                        <p id="shippingNote" class="text-sm text-white/60"></p>
+                    </div>
+
+                    <!-- Accordions -->
+                    <div class="divide-y divide-white/10 border border-white/10 rounded-2xl card">
+                        <details class="group open">
+                            <summary class="list-none cursor-pointer select-none flex items-center justify-between p-4">
+                                <span class="font-semibold">Details</span>
+                                <i data-lucide="chevron-down" class="w-4 h-4 transition group-open:rotate-180"></i>
+                            </summary>
+                            <div id="detailsText" class="px-4 pb-4 text-white/80 text-sm leading-6"></div>
+                        </details>
+
+                        <details class="group">
+                            <summary class="list-none cursor-pointer select-none flex items-center justify-between p-4">
+                                <span class="font-semibold">Care & Material</span>
+                                <i data-lucide="chevron-down" class="w-4 h-4 transition group-open:rotate-180"></i>
+                            </summary>
+                            <div id="careText" class="px-4 pb-4 text-white/80 text-sm leading-6"></div>
+                        </details>
+
+                        <details class="group">
+                            <summary class="list-none cursor-pointer select-none flex items-center justify-between p-4">
+                                <span class="font-semibold">Shipping & Returns</span>
+                                <i data-lucide="chevron-down" class="w-4 h-4 transition group-open:rotate-180"></i>
+                            </summary>
+                            <div id="shippingText" class="px-4 pb-4 text-white/80 text-sm leading-6"></div>
+                        </details>
+                    </div>
+
+                    <!-- Trust badges -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                        <div class="card rounded-xl px-3 py-2 flex items-center gap-2 border border-white/10">
+                            <i data-lucide="shield-check" class="w-4 h-4"></i><span class="text-sm">Secure
+                                Checkout</span>
+                        </div>
+                        <div class="card rounded-xl px-3 py-2 flex items-center gap-2 border border-white/10">
+                            <i data-lucide="package" class="w-4 h-4"></i><span class="text-sm">Fast Delivery</span>
+                        </div>
+                        <div class="card rounded-xl px-3 py-2 flex items-center gap-2 border border-white/10">
+                            <i data-lucide="repeat-2" class="w-4 h-4"></i><span class="text-sm">Easy Returns</span>
+                        </div>
+                        <div class="card rounded-xl px-3 py-2 flex items-center gap-2 border border-white/10">
+                            <i data-lucide="badge-check" class="w-4 h-4"></i><span class="text-sm">1-Year
+                                Warranty</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reviews -->
+            <section class="mt-16">
+                <div class="flex items-end justify-between">
+                    <h2 class="text-xl font-bold">Reviews</h2>
+                    <button class="text-sm underline underline-offset-4 text-white/70 hover:text-white">Write a
+                        review</button>
+                </div>
+                <div id="reviewsList" class="mt-6 grid md:grid-cols-2 gap-4"></div>
+            </section>
+
+            <!-- Related -->
+            <section class="mt-20">
+                <div class="flex items-end justify-between">
+                    <h2 class="text-xl font-bold">You may also like</h2>
+                    <a class="text-sm underline underline-offset-4 text-white/70 hover:text-white" href="#">View all</a>
+                </div>
+                <div id="relatedGrid" class="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4"></div>
+            </section>
+        </section>
+    </main>
+
+    <!-- Sticky mobile add-to-cart bar -->
+    <div class="lg:hidden fixed bottom-0 left-0 right-0 z-40 border-t border-white/10 bg-black/70 backdrop-blur">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
+            <div>
+                <p id="mobileBarName" class="text-xs text-white/60">—</p>
+                <p id="mobileBarPrice" class="text-base font-semibold">—</p>
+            </div>
+            <button class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white text-black font-semibold">
+                <i data-lucide="shopping-cart" class="w-4 h-4"></i>
+                Add
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-24 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid md:grid-cols-3 gap-8 text-sm">
+            <div class="space-y-2">
+                <div class="flex items-center gap-2">
+                    <div class="h-8 w-8 rounded-xl bg-white/5 border border-white/10 grid place-items-center">
+                        <i data-lucide="square" class="w-4 h-4 text-white/70"></i>
+                    </div>
+                    <span class="text-lg font-extrabold tracking-wider">NBLAC</span>
+                </div>
+                <p class="text-white/60">Minimal gear for maximal focus.</p>
+            </div>
+            <div class="grid grid-cols-2 gap-6 md:col-span-2">
+                <div class="space-y-2">
+                    <p class="font-semibold">Support</p>
+                    <a class="block text-white/60 hover:text-white/90" href="#">Contact</a>
+                    <a class="block text-white/60 hover:text-white/90" href="#">Shipping</a>
+                    <a class="block text-white/60 hover:text-white/90" href="#">Returns</a>
+                </div>
+                <div class="space-y-2">
+                    <p class="font-semibold">Company</p>
+                    <a class="block text-white/60 hover:text-white/90" href="#">About</a>
+                    <a class="block text-white/60 hover:text-white/90" href="#">Careers</a>
+                    <a class="block text-white/60 hover:text-white/90" href="#">Press</a>
+                </div>
+            </div>
+        </div>
+        <div class="border-t border-white/10 py-6 text-center text-xs text-white/50">
+            © <span id="y"></span> NBLAC. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Lucide init
+        lucide.createIcons();
+        // Year
+        document.getElementById('y').textContent = new Date().getFullYear();
+
+        // Search expand + "/" shortcut (unchanged)
+        const openBtn = document.getElementById('openSearch');
+        const bar = document.getElementById('searchBar');
+        const input = document.getElementById('searchInput');
+        function openSearch() { bar.classList.remove('hidden'); bar.style.width = '280px'; setTimeout(() => input.focus(), 10); }
+        function closeSearch() { bar.style.width = '0px'; setTimeout(() => bar.classList.add('hidden'), 150); }
+        openBtn.addEventListener('click', () => { if (bar.classList.contains('hidden')) openSearch(); else closeSearch(); });
+        document.addEventListener('keydown', (e) => {
+            const tag = (e.target.tagName || '').toLowerCase();
+            if (e.key === '/' && tag !== 'input' && tag !== 'textarea' && !e.metaKey && !e.ctrlKey) { e.preventDefault(); openSearch(); }
+            if (e.key === 'Escape' && !bar.classList.contains('hidden')) closeSearch();
+        });
+
+        // Helpers
+        const formatINR = (n) =>
+            new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(n);
+        function setHTML(id, html) { const el = document.getElementById(id); if (el) el.innerHTML = html; }
+        function show(el) { el.classList.remove('hidden'); }
+        function hide(el) { el.classList.add('hidden'); }
+
+        // Build rating stars
+        function renderStars(el, rating) {
+            const full = Math.floor(rating);
+            const half = rating - full >= 0.5;
+            const stars = [];
+            for (let i = 0; i < full; i++) stars.push('<i data-lucide="star" class="w-4 h-4 fill-white/80 text-white/80"></i>');
+            if (half) stars.push('<i data-lucide="star-half" class="w-4 h-4 text-white/80"></i>');
+            while (stars.length < 5) stars.push('<i data-lucide="star" class="w-4 h-4 text-white/60"></i>');
+            el.innerHTML = stars.join('');
+            lucide.createIcons(); // refresh icons added dynamically
+        }
+
+        // Variant wiring
+        function wireVariantGroup(containerSel, selectedClass = 'selected') {
+            document.querySelectorAll(containerSel + ' .variant').forEach(el => {
+                el.addEventListener('click', () => {
+                    el.parentElement.querySelectorAll('.variant').forEach(b => b.classList.remove(selectedClass, 'ring-2', 'ring-white/20'));
+                    el.classList.add(selectedClass, 'ring-2', 'ring-white/20');
+                    el.dispatchEvent(new CustomEvent('variant:change', { bubbles: true }));
+                });
+            });
+        }
+
+        // Gallery
+        function setMainImage(src) { const main = document.getElementById('mainImage'); if (main) main.src = src; }
+        function renderThumbs(images) {
+            const wrap = document.getElementById('thumbs'); wrap.innerHTML = '';
+            images.forEach((src, i) => {
+                const btn = document.createElement('button');
+                btn.className = 'thumb rounded-xl overflow-hidden card focus-ring';
+                btn.dataset.src = src;
+                btn.innerHTML = `<img class="w-full h-24 object-cover" src="${src}" alt="Angle ${i + 1}">`;
+                btn.addEventListener('click', () => {
+                    wrap.querySelectorAll('.thumb').forEach(b => b.classList.remove('ring-2', 'ring-white/30'));
+                    btn.classList.add('ring-2', 'ring-white/30');
+                    setMainImage(src);
+                });
+                wrap.appendChild(btn);
+                if (i === 0) btn.click();
+            });
+        }
+
+        // Page bootstrap
+        (async function init() {
+            // Read slug/sku from URL
+            const params = new URLSearchParams(location.search);
+            const slug = params.get('slug') || params.get('sku') || 'turtle-phone-case';
+
+            // Fetch product data
+            let data;
+            try {
+                const res = await fetch('products.json', { cache: 'no-store' });
+                data = await res.json();
+            } catch (e) {
+                console.error('Failed to load products.json', e);
+                alert('Failed to load product data.');
+                return;
+            }
+
+            const product = (data.products || []).find(p => p.slug === slug || p.sku === slug);
+            if (!product) {
+                alert('Product not found.');
+                return;
+            }
+
+            // Populate basics
+            setHTML('breadcrumbName', product.name);
+            setHTML('productName', product.name);
+            setHTML('shippingNote', product.meta?.shippingNote || 'Ships in 24 hours · COD available · 1-year warranty');
+            document.title = `NBLAC · ${product.name}`;
+
+            // Prices
+            const priceEl = document.getElementById('price');
+            const compareEl = document.getElementById('compareAt');
+            const badgeEl = document.getElementById('discountBadge');
+            priceEl.textContent = formatINR(product.price);
+            if (product.compareAtPrice && product.compareAtPrice > product.price) {
+                compareEl.textContent = formatINR(product.compareAtPrice);
+                show(compareEl);
+                const pct = Math.round((1 - (product.price / product.compareAtPrice)) * 100);
+                badgeEl.textContent = `${pct}% OFF`;
+                show(badgeEl);
+            }
+
+            // Rating
+            renderStars(document.getElementById('ratingStars'), product.rating || 0);
+            setHTML('ratingLabel', `${product.rating?.toFixed(1) || '0.0'} · ${product.reviewCount || 0} reviews`);
+
+            // Gallery
+            renderThumbs(product.images || []);
+
+            // Variants — color
+            const colorWrap = document.getElementById('colorVariants');
+            colorWrap.innerHTML = '';
+            (product.variants?.colors || []).forEach((c, idx) => {
+                const btn = document.createElement('button');
+                btn.className = 'variant color px-3 py-2 rounded-xl border border-white/10 hover:border-white/20 card';
+                if (idx === 0) btn.classList.add('selected', 'ring-2', 'ring-white/20');
+                btn.dataset.color = c.name || c;
+                btn.textContent = c.name || c;
+                colorWrap.appendChild(btn);
+            });
+
+            // Variants — model
+            const modelWrap = document.getElementById('modelVariants');
+            modelWrap.innerHTML = '';
+            (product.variants?.models || []).forEach((m, idx) => {
+                const btn = document.createElement('button');
+                btn.className = 'variant size px-3 py-2 rounded-xl border border-white/10 hover:border-white/20 card';
+                if (idx === 0) btn.classList.add('selected', 'ring-2', 'ring-white/20');
+                btn.dataset.size = m.name || m;
+                btn.textContent = m.name || m;
+                modelWrap.appendChild(btn);
+            });
+
+            // Wire variants (after inject)
+            wireVariantGroup('#colorVariants');
+            wireVariantGroup('#modelVariants');
+
+            // Accordions
+            setHTML('detailsText', product.copy?.details || '');
+            setHTML('careText', product.copy?.care || '');
+            setHTML('shippingText', product.copy?.shipping || '');
+
+            // Reviews
+            const reviewsWrap = document.getElementById('reviewsList');
+            reviewsWrap.innerHTML = (product.reviews || []).map(r => `
+        <article class="card rounded-2xl p-4 border border-white/10">
+          <div class="flex items-center gap-2 text-sm text-white/70">
+            <div class="flex">
+              ${'<i data-lucide="star" class="w-4 h-4 fill-white/80 text-white/80"></i>'.repeat(Math.floor(r.stars))}
+              ${r.stars % 1 >= 0.5 ? '<i data-lucide="star-half" class="w-4 h-4 outline-white/80 fill-white/80 text-white/60"></i>' : ''}
+              ${Array.from({ length: 5 - Math.ceil(r.stars) }).map(() => '<i data-lucide="star" class="w-4 h-4 text-white/60"></i>').join('')}
+            </div>
+            <span>by ${r.author}</span>
+          </div>
+          <p class="mt-2 text-sm text-white/85">${r.text}</p>
+        </article>
+      `).join('');
+            lucide.createIcons();
+
+            // Related
+            const related = (data.products || []).filter(p => (product.related || []).includes(p.slug));
+            const relatedGrid = document.getElementById('relatedGrid');
+            relatedGrid.innerHTML = related.map(p => `
+        <a href="product.html?slug=${p.slug}" class="group card rounded-2xl overflow-hidden border border-white/10 hover:border-white/20 transition block">
+          <div class="aspect-square overflow-hidden">
+            <img class="w-full h-full object-cover group-hover:scale-105 transition" src="${p.images?.[0] || ''}" alt="${p.name}">
+          </div>
+          <div class="p-3">
+            <p class="text-sm font-semibold">${p.name}</p>
+            <p class="text-xs text-white/60">${formatINR(p.price)}</p >
+          </div >
+        </a >
+            `).join('');
+
+      // Mobile sticky bar
+      setHTML('mobileBarName', product.name);
+      setHTML('mobileBarPrice', formatINR(product.price));
+
+      // Quantity controls
+      const qtyInput = document.getElementById('qtyInput');
+      document.getElementById('qtyMinus').addEventListener('click', () => {
+        qtyInput.value = Math.max(1, (parseInt(qtyInput.value, 10) || 1) - 1);
+      });
+      document.getElementById('qtyPlus').addEventListener('click', () => {
+        qtyInput.value = (parseInt(qtyInput.value, 10) || 1) + 1;
+      });
+
+      // Add to Cart demo (uses selected variants)
+      document.getElementById('addToCart').addEventListener('click', () => {
+        const color = document.querySelector('.variant.color.selected')?.dataset.color || '-';
+        const size  = document.querySelector('.variant.size.selected')?.dataset.size || '-';
+        const qty   = parseInt(qtyInput.value, 10) || 1;
+        const msg = `Added ${ qty } × ${ product.name } (${ size } · ${ color }) to cart`;
+        const t = document.createElement('div');
+        t.className = 'fixed bottom-6 left-1/2 -translate-x-1/2 z-[100] px-4 py-2 rounded-xl bg-white text-black shadow-glow';
+        t.textContent = msg;
+        document.body.appendChild(t);
+        setTimeout(()=>t.classList.add('opacity-0','transition'),1700);
+        setTimeout(()=>t.remove(),2100);
+      });
+    })();
+    </script>
+</body>
+
+</html>
