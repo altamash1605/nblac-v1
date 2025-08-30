@@ -1,497 +1,498 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>NBLAC — Home (Tailwind)</title>
-    <!-- Tailwind CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        bg: "#0a0a0a",
-                        panel: "#111111",
-                        muted: "#1b1b1b",
-                        text: "#eaeaea",
-                        sub: "#b5b5b5",
-                        brand: "#ffffff",
-                        accent: "#c9f31d",
-                        danger: "#ff3b30",
-                    },
-                    boxShadow: {
-                        soft: "0 10px 30px rgba(0,0,0,.35)",
-                    },
-                    borderRadius: {
-                        xl2: "18px",
-                    }
-                }
-            }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NBLAC — Home (Mobile-Optimized)</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bg: "#0a0a0a",
+            panel: "#111111",
+            muted: "#1b1b1b",
+            text: "#eaeaea",
+            sub: "#b5b5b5",
+            brand: "#ffffff",
+            accent: "#c9f31d",
+            danger: "#ff3b30",
+          },
+          boxShadow: { soft: "0 10px 30px rgba(0,0,0,.35)" },
+          borderRadius: { xl2: "18px" },
         }
-    </script>
-    <style>
-        /* smooth width transition for the search wrapper */
-        .search-wrap {
-            transition: width .25s ease, opacity .2s ease;
-        }
-    </style>
+      }
+    }
+  </script>
+
+  <style>
+    /* Reduce animation on low-motion devices */
+    @media (prefers-reduced-motion: reduce) {
+      * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+    }
+    /* Horizontal snap scrolling for category row */
+    .snap-x-mandatory { scroll-snap-type: x mandatory; }
+    .snap-start { scroll-snap-align: start; }
+    /* Mobile search overlay transition */
+    .overlay-enter { opacity: 0; }
+    .overlay-enter-active { opacity: 1; transition: opacity .18s ease; }
+    .overlay-exit { opacity: 1; }
+    .overlay-exit-active { opacity: 0; transition: opacity .14s ease; }
+  </style>
 </head>
 
 <body class="bg-bg text-text font-[Inter,system-ui,-apple-system,Segoe_UI,Roboto,Helvetica,Arial]">
-    <!-- Announcement Bar -->
-    <div class="bg-gradient-to-r from-[#0f0f0f] to-[#111] border-b border-muted text-sub text-sm">
-        <div class="container mx-auto max-w-screen-xl flex items-center justify-center py-2">
-            FREE SHIPPING on orders over <b class="text-text ml-1">₹4,999</b> · 7-day returns · New drop every Friday
-        </div>
+  <!-- Announcement (compact for mobile) -->
+  <div class="bg-[#0f0f0f] border-b border-muted text-[13px] leading-5 text-sub">
+    <div class="mx-auto max-w-screen-xl px-3 py-2 text-center">
+      FREE SHIPPING over <b class="text-text">₹4,999</b> · 7-day returns · New drop every Friday
     </div>
-
-    <!-- Header -->
-    <header class="sticky top-0 z-50 bg-black/60 backdrop-blur border-b border-white/10">
-        <div class="container mx-auto max-w-screen-xl flex items-center justify-between gap-3 py-3">
-            <!-- Logo -->
-            <a href="#" class="flex items-center gap-2" aria-label="NBLAC logo">
-                <span class="w-7 h-7 rounded-lg shadow-soft"
-                    style="background: conic-gradient(from 210deg at 50% 50%,#222, #000 60%, #333 61%, #111);"></span>
-                <span class="tracking-[0.28em] font-bold">NBLAC</span>
-            </a>
-
-            <!-- Nav (desktop) -->
-            <nav class="hidden md:flex items-center gap-6 text-sub" aria-label="Primary">
-                <a class="hover:text-text" href="#">New</a>
-                <a class="hover:text-text" href="#">Best Sellers</a>
-                <a class="hover:text-text" href="#">Men</a>
-                <a class="hover:text-text" href="#">Women</a>
-                <a class="hover:text-text" href="#">Accessories</a>
-                <a class="hover:text-text" href="#">Journal</a>
-            </nav>
-
-            <!-- Actions -->
-            <div class="flex items-center gap-2 min-w-[220px] justify-end">
-                <!-- Expandable Search -->
-                <form id="searchWrap" role="search" aria-label="Site" autocomplete="off"
-                    class="search-wrap overflow-hidden w-0 opacity-0 flex items-center rounded-xl border border-white/10 bg-[#0c0c0c]">
-                    <span class="pl-2 pr-1 flex items-center text-sub"><i data-lucide="search"
-                            class="w-5 h-5"></i></span>
-                    <input id="searchInput" type="search" placeholder="Search products…" aria-label="Search products"
-                        class="flex-1 bg-transparent outline-none text-text placeholder:text-sub py-2 pl-1 pr-2 min-w-0" />
-                    <button id="searchClear" type="button" aria-label="Clear search"
-                        class="hidden md:grid place-items-center w-9 h-9 border border-white/10 rounded-lg mr-1">
-                        <i data-lucide="x" class="w-5 h-5"></i>
-                    </button>
-                </form>
-
-                <!-- Triggers -->
-                <a id="searchToggle" href="#" aria-expanded="false" aria-controls="searchWrap" aria-label="Open search"
-                    class="grid place-items-center w-10 h-10 border border-white/10 rounded-xl bg-gradient-to-b from-[#111] to-[#0b0b0b] shadow-soft">
-                    <i data-lucide="search" class="w-5 h-5"></i>
-                </a>
-                <a href="#" aria-label="Account"
-                    class="grid place-items-center w-10 h-10 border border-white/10 rounded-xl bg-gradient-to-b from-[#111] to-[#0b0b0b] shadow-soft">
-                    <i data-lucide="user" class="w-5 h-5"></i>
-                </a>
-                <a href="#" aria-label="Cart"
-                    class="grid place-items-center w-10 h-10 border border-white/10 rounded-xl bg-gradient-to-b from-[#111] to-[#0b0b0b] shadow-soft">
-                    <i data-lucide="shopping-bag" class="w-5 h-5"></i>
-                </a>
-                <a href="#"
-                    class="hidden sm:inline-block rounded-xl bg-gradient-to-b from-white to-[#dcdcdc] text-black font-semibold py-2 px-3 hover:-translate-y-px transition">
-                    Shop Now
-                </a>
-            </div>
-        </div>
-    </header>
-
-    <!-- Hero -->
-    <section
-        class="container mx-auto max-w-screen-xl my-6 rounded-xl2 overflow-hidden shadow-soft
-                  bg-[radial-gradient(1200px_600px_at_85%_-100%,rgba(201,243,29,.20),transparent_40%),radial-gradient(600px_400px_at_-10%_120%,rgba(255,255,255,.06),transparent_60%),linear-gradient(180deg,#0d0d0d_0%,#050505_100%)]">
-        <div class="grid md:grid-cols-[1.2fr_.8fr] gap-6 items-stretch">
-            <div class="p-10 md:p-14">
-                <div class="uppercase tracking-[0.28em] text-sub text-xs">All-black essentials</div>
-                <h1 class="text-3xl md:text-6xl font-semibold leading-tight mt-2">Minimal. Monochrome. Made to Last.
-                </h1>
-                <p class="text-[#cfcfcf] max-w-prose mt-3">
-                    Elevate your everyday with premium all-black apparel and accessories. Clean silhouettes, heavyweight
-                    fabrics, and matte finishes—designed for timeless wear.
-                </p>
-                <div class="flex flex-wrap gap-3 mt-6">
-                    <a href="#"
-                        class="inline-flex items-center gap-2 rounded-xl border border-black bg-gradient-to-b from-[#fefefe] to-[#d5d5d5] text-[#111] py-2.5 px-4">
-                        Shop New Drop
-                    </a>
-                    <a href="#"
-                        class="inline-flex rounded-xl border border-white/20 bg-[#0f0f0f] text-white py-2.5 px-4">Build
-                        Your Outfit →</a>
-                </div>
-            </div>
-            <div class="border-l border-white/10">
-                <div
-                    class="m-5 md:m-6 rounded-2xl bg-gradient-to-br from-[#141414] to-[#0c0c0c] border border-white/10 overflow-hidden shadow-soft">
-                    <div
-                        class="h-[420px] grid place-items-center bg-[linear-gradient(180deg,rgba(255,255,255,.08),transparent_20%),linear-gradient(120deg,#1d1d1d,#0f0f0f)]">
-                        <!-- Decorative SVG -->
-                        <svg width="140" height="220" viewBox="0 0 140 220" fill="none"
-                            xmlns="http://www.w3.org/2000/svg" class="opacity-85">
-                            <rect x="20" y="10" width="100" height="140" rx="18" fill="#161616" stroke="#2a2a2a" />
-                            <circle cx="70" cy="30" r="16" fill="#0a0a0a" stroke="#2a2a2a" />
-                            <rect x="36" y="154" width="68" height="52" rx="12" fill="#161616" stroke="#2a2a2a" />
-                        </svg>
-                    </div>
-                    <div class="flex items-center justify-between gap-3 px-4 py-3 border-t border-white/10">
-                        <span>Heavyweight Hoodie</span>
-                        <div class="flex items-center gap-2">
-                            <span
-                                class="px-2 py-0.5 rounded-full bg-[#141414] border border-white/10 text-sub text-xs">Matte
-                                Black</span>
-                            <span class="font-bold">₹5,990</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Categories -->
-    <section class="container mx-auto max-w-screen-xl my-10">
-        <div class="grid gap-6 md:grid-cols-3">
-            <!-- Tile -->
-            <a href="#"
-                class="relative rounded-xl2 border border-white/10 bg-gradient-to-b from-[#121212] to-[#090909] overflow-hidden hover:-translate-y-0.5 transition">
-                <div
-                    class="h-60 bg-[linear-gradient(0deg,rgba(0,0,0,.6),transparent),radial-gradient(200px_120px_at_80%_20%,rgba(255,255,255,.1),transparent_50%),linear-gradient(120deg,#1a1a1a,#0d0d0d)]">
-                <img src="images/products/nblac-category-men.webp">
-                </div>
-                <h3 class="absolute left-4 bottom-3 text-xl">Men</h3>
-            </a>
-            <a href="#"
-                class="relative rounded-xl2 border border-white/10 bg-gradient-to-b from-[#121212] to-[#090909] overflow-hidden hover:-translate-y-0.5 transition">
-                <div
-                    class="h-60 bg-[linear-gradient(0deg,rgba(0,0,0,.6),transparent),radial-gradient(200px_120px_at_80%_20%,rgba(255,255,255,.1),transparent_50%),linear-gradient(120deg,#1a1a1a,#0d0d0d)]">
-                </div>
-                <h3 class="absolute left-4 bottom-3 text-xl">Women</h3>
-            </a>
-            <a href="#"
-                class="relative rounded-xl2 border border-white/10 bg-gradient-to-b from-[#121212] to-[#090909] overflow-hidden hover:-translate-y-0.5 transition">
-                <div
-                    class="h-60 bg-[linear-gradient(0deg,rgba(0,0,0,.6),transparent),radial-gradient(200px_120px_at_80%_20%,rgba(255,255,255,.1),transparent_50%),linear-gradient(120deg,#1a1a1a,#0d0d0d)]">
-                </div>
-                <h3 class="absolute left-4 bottom-3 text-xl">Accessories</h3>
-            </a>
-        </div>
-    </section>
-
-<!-- Best Sellers -->
-<section class="container mx-auto max-w-screen-xl">
-  <div class="flex items-center justify-between mb-4">
-    <h2 class="text-xl md:text-2xl">Best Sellers</h2>
-    <a id="bestSellersViewAll" class="text-sub hover:text-text" href="#">View all →</a>
   </div>
 
-  <div id="bestSellersGrid" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4"></div>
-</section>
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-black/70 backdrop-blur border-b border-white/10">
+    <div class="mx-auto max-w-screen-xl px-3 py-2.5 flex items-center justify-between gap-2">
+      <!-- Left: Menu -->
+      <button id="mobileMenuBtn" aria-expanded="false" aria-controls="mobileDrawer" class="w-10 h-10 grid place-items-center rounded-xl border border-white/10">
+        <i data-lucide="menu" class="w-5 h-5"></i>
+      </button>
 
-<script>
-(async function(){
-  // ---- helpers ----
-  const grid = document.getElementById('bestSellersGrid');
-  const viewAll = document.getElementById('bestSellersViewAll');
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-2" aria-label="NBLAC logo">
+        <span class="w-7 h-7 rounded-lg" style="background: conic-gradient(from 210deg at 50% 50%,#222, #000 60%, #333 61%, #111);"></span>
+        <span class="tracking-[0.28em] font-bold">NBLAC</span>
+      </a>
 
-  const formatINR = (n) =>
-    new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(n);
+      <!-- Right: Search & Cart -->
+      <div class="flex items-center gap-2">
+        <button id="openSearch" aria-label="Open search" class="w-10 h-10 grid place-items-center rounded-xl border border-white/10">
+          <i data-lucide="search" class="w-5 h-5"></i>
+        </button>
+        <a href="#" aria-label="Cart" class="w-10 h-10 grid place-items-center rounded-xl border border-white/10">
+          <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+        </a>
+      </div>
+    </div>
 
-  async function loadProductsJson() {
-    // Try common paths (same folder → root → parent), no caching while iterating locally
-    const candidates = ['products.json', '/products.json', '../products.json'];
-    for (const p of candidates) {
-      try {
-        const res = await fetch(p + `?v=${Date.now()}`, { cache: 'no-store' });
-        if (!res.ok) continue;
-        const text = await res.text();
-        return JSON.parse(text.replace(/^\uFEFF/, '')); // strip BOM if present
-      } catch {}
-    }
-    throw new Error('products.json not found');
-  }
+    <!-- Desktop nav (hidden on mobile) -->
+    <nav class="hidden md:flex mx-auto max-w-screen-xl px-3 pb-2 text-sub gap-6" aria-label="Primary">
+      <a class="hover:text-text" href="#">New</a>
+      <a class="hover:text-text" href="#">Best Sellers</a>
+      <a class="hover:text-text" href="#">Men</a>
+      <a class="hover:text-text" href="#">Women</a>
+      <a class="hover:text-text" href="#">Accessories</a>
+      <a class="hover:text-text" href="#">Journal</a>
+    </nav>
+  </header>
 
-  function pickBestSellers(data) {
-    const all = Array.isArray(data.products) ? data.products : [];
-    // 1) Explicit list via collections.bestSellers (array of slugs)
-    const list = data.collections?.bestSellers;
-    if (Array.isArray(list) && list.length) {
-      const map = new Map(all.map(p => [p.slug, p]));
-      return list.map(slug => map.get(slug)).filter(Boolean);
-    }
-    // 2) Fallback: auto-pick top rated by popularity score
-    return [...all]
-      .sort((a,b) => ((b.rating||0)*(b.reviewCount||0)) - ((a.rating||0)*(a.reviewCount||0)));
-  }
-
-  function cardHTML(p) {
-    const href = `product.html?slug=${encodeURIComponent(p.slug)}`;
-    const img = (p.images && p.images[0]) || '';
-    const subtitle = p.subtitle || p.tagline || (p.variants?.models?.[0]?.name) || '—';
-    const hasDiscount = p.compareAtPrice && p.compareAtPrice > p.price;
-    const discountPct = hasDiscount ? Math.round(100 * (1 - (p.price / p.compareAtPrice))) : 0;
-    const badge =
-      hasDiscount
-        ? `<span class="text-white bg-danger text-xs px-2 py-0.5 rounded-full">-${discountPct}%</span>`
-        : (p.meta?.badge
-            ? `<span class="text-[#111] bg-brand text-xs px-2 py-0.5 rounded-full">${p.meta.badge}</span>`
-            : '');
-
-    return `
-      <a href="${href}"
-         class="rounded-xl border border-white/10 bg-gradient-to-b from-[#141414] to-[#0d0d0d] overflow-hidden shadow-soft hover:-translate-y-1 transition">
-        <div class="aspect-[4/5] overflow-hidden">
-          ${img
-            ? `<img src="${img}" class="w-full h-full object-cover" alt="${p.name}">`
-            : `<div class="w-full h-full bg-[linear-gradient(180deg,rgba(255,255,255,.06),transparent_18%),linear-gradient(120deg,#1b1b1b,#0f0f0f)]"></div>`}
+  <!-- Mobile Drawer -->
+  <aside id="mobileDrawer" class="fixed inset-0 z-50 hidden">
+    <!-- Backdrop -->
+    <div id="drawerBackdrop" class="absolute inset-0 bg-black/50"></div>
+    <!-- Panel -->
+    <div class="absolute left-0 top-0 h-full w-[82%] max-w-xs bg-panel border-r border-white/10 p-4">
+      <div class="flex items-center justify-between mb-2">
+        <div class="flex items-center gap-2">
+          <span class="w-6 h-6 rounded-md" style="background: conic-gradient(from 210deg at 50% 50%,#222, #000 60%, #333 61%, #111);"></span>
+          <span class="tracking-[0.22em] font-bold text-sm">NBLAC</span>
         </div>
-        <div class="p-4 space-y-1">
-          <div class="flex items-center justify-between">
-            <strong>${p.name}</strong>
-            ${badge}
+        <button id="closeDrawer" class="w-9 h-9 grid place-items-center rounded-lg border border-white/10" aria-label="Close menu">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+      <nav class="mt-2 text-[15px] space-y-1" aria-label="Mobile">
+        <a class="block rounded-lg px-3 py-2 hover:bg-muted" href="#">New</a>
+        <a class="block rounded-lg px-3 py-2 hover:bg-muted" href="#">Best Sellers</a>
+        <a class="block rounded-lg px-3 py-2 hover:bg-muted" href="#">Men</a>
+        <a class="block rounded-lg px-3 py-2 hover:bg-muted" href="#">Women</a>
+        <a class="block rounded-lg px-3 py-2 hover:bg-muted" href="#">Accessories</a>
+        <a class="block rounded-lg px-3 py-2 hover:bg-muted" href="#">Journal</a>
+        <hr class="border-white/10 my-2" />
+        <a class="block rounded-lg px-3 py-2 hover:bg-muted" href="#">Account</a>
+        <a class="block rounded-lg px-3 py-2 hover:bg-muted" href="#">Contact</a>
+      </nav>
+    </div>
+  </aside>
+
+  <!-- Search Overlay -->
+  <div id="searchOverlay" class="fixed inset-0 z-50 hidden">
+    <div class="absolute inset-0 bg-black/70"></div>
+    <form id="searchForm" role="search" class="relative mx-auto w-full max-w-screen-sm px-3 pt-16" autocomplete="off">
+      <div class="flex items-center gap-2 bg-[#0c0c0c] rounded-xl border border-white/10 px-3 py-2.5">
+        <i data-lucide="search" class="w-5 h-5 text-sub"></i>
+        <input id="searchInput" type="search" placeholder="Search products…" aria-label="Search products"
+               class="flex-1 bg-transparent outline-none text-[16px] placeholder:text-sub" />
+        <button id="clearSearch" type="button" class="hidden w-9 h-9 grid place-items-center rounded-lg border border-white/10" aria-label="Clear">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+      <p class="text-sub text-sm mt-2 px-1">Tip: press <kbd class="px-1 py-0.5 rounded bg-muted text-xs">/</kbd> to search</p>
+    </form>
+  </div>
+
+  <!-- Hero (tighter for mobile) -->
+  <section class="mx-auto max-w-screen-xl px-3 mt-4">
+    <div class="rounded-xl2 overflow-hidden border border-white/10 bg-[radial-gradient(900px_480px_at_85%_-100%,rgba(201,243,29,.20),transparent_40%),radial-gradient(500px_300px_at_-10%_120%,rgba(255,255,255,.06),transparent_60%),linear-gradient(180deg,#0d0d0d_0%,#050505_100%)]">
+      <div class="grid md:grid-cols-[1.1fr_.9fr]">
+        <div class="p-5 sm:p-8">
+          <div class="uppercase tracking-[0.28em] text-sub text-[11px]">All-black essentials</div>
+          <h1 class="text-[26px] sm:text-4xl font-semibold leading-tight mt-1.5">Minimal. Monochrome. Made to Last.</h1>
+          <p class="text-[#cfcfcf] mt-2 text-[15px]">
+            Premium all-black apparel & accessories. Clean silhouettes, heavyweight fabrics, matte finishes.
+          </p>
+          <div class="flex flex-wrap gap-2.5 mt-4">
+            <a href="#" class="inline-flex items-center gap-2 rounded-xl border border-black bg-gradient-to-b from-white to-[#dcdcdc] text-black py-2 px-3">
+              Shop New Drop
+            </a>
+            <a href="#" class="inline-flex rounded-xl border border-white/20 bg-[#0f0f0f] text-white py-2 px-3">
+              Build Your Outfit →
+            </a>
           </div>
-          <div class="flex items-center justify-between text-sub">
-            <span>${subtitle}</span>
-            <span class="text-white font-bold">${formatINR(p.price)}</span>
+        </div>
+        <div class="border-t md:border-t-0 md:border-l border-white/10">
+          <div class="m-4 sm:m-5 rounded-2xl bg-gradient-to-br from-[#141414] to-[#0c0c0c] border border-white/10 overflow-hidden">
+            <div class="h-[300px] sm:h-[380px] grid place-items-center bg-[linear-gradient(180deg,rgba(255,255,255,.08),transparent_20%),linear-gradient(120deg,#1d1d1d,#0f0f0f)]">
+              <img
+                src="images/products/nblac-hero-hoodie.webp"
+                alt="Heavyweight Hoodie"
+                class="w-full h-full object-cover"
+                loading="lazy"
+                sizes="(max-width: 768px) 100vw, 50vw"
+                onerror="this.remove();"
+              />
+            </div>
+            <div class="flex items-center justify-between gap-3 px-4 py-3 border-t border-white/10 text-[15px]">
+              <span>Heavyweight Hoodie</span>
+              <div class="flex items-center gap-2">
+                <span class="px-2 py-0.5 rounded-full bg-[#141414] border border-white/10 text-sub text-xs">Matte Black</span>
+                <span class="font-bold">₹5,990</span>
+              </div>
+            </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories (horizontal on mobile, grid on md+) -->
+  <section class="mx-auto max-w-screen-xl px-3 mt-7">
+    <h2 class="sr-only">Shop by category</h2>
+    <div class="flex gap-3 overflow-x-auto snap-x-mandatory md:grid md:grid-cols-3 md:overflow-visible md:gap-6">
+      <!-- Men -->
+      <a href="#" class="relative min-w-[78%] sm:min-w-[46%] md:min-w-0 snap-start rounded-xl2 border border-white/10 bg-gradient-to-b from-[#121212] to-[#090909] overflow-hidden hover:-translate-y-0.5 transition">
+        <div class="h-48 sm:h-56">
+          <img
+            src="images/products/nblac-category-men.webp"
+            alt="Men"
+            class="w-full h-full object-cover"
+            loading="lazy"
+            sizes="(max-width: 768px) 78vw, 33vw"
+          />
+        </div>
+        <h3 class="absolute left-4 bottom-3 text-lg">Men</h3>
+      </a>
+
+      <!-- Women -->
+      <a href="#" class="relative min-w-[78%] sm:min-w-[46%] md:min-w-0 snap-start rounded-xl2 border border-white/10 bg-gradient-to-b from-[#121212] to-[#090909] overflow-hidden hover:-translate-y-0.5 transition">
+        <div class="h-48 sm:h-56">
+          <img
+            src="images/products/nblac-category-women.webp"
+            alt="Women"
+            class="w-full h-full object-cover"
+            loading="lazy"
+            sizes="(max-width: 768px) 78vw, 33vw"
+          />
+        </div>
+        <h3 class="absolute left-4 bottom-3 text-lg">Women</h3>
+      </a>
+
+      <!-- Accessories -->
+      <a href="#" class="relative min-w-[78%] sm:min-w-[46%] md:min-w-0 snap-start rounded-xl2 border border-white/10 bg-gradient-to-b from-[#121212] to-[#090909] overflow-hidden hover:-translate-y-0.5 transition">
+        <div class="h-48 sm:h-56">
+          <img
+            src="images/products/nblac-category-accessories.webp"
+            alt="Accessories"
+            class="w-full h-full object-cover"
+            loading="lazy"
+            sizes="(max-width: 768px) 78vw, 33vw"
+          />
+        </div>
+        <h3 class="absolute left-4 bottom-3 text-lg">Accessories</h3>
+      </a>
+    </div>
+  </section>
+
+  <!-- Best Sellers (1-col on mobile) -->
+  <section class="mx-auto max-w-screen-xl px-3 mt-8">
+    <div class="flex items-center justify-between mb-3">
+      <h2 class="text-lg sm:text-xl">Best Sellers</h2>
+      <a id="bestSellersViewAll" class="text-sub hover:text-text text-sm" href="#">View all →</a>
+    </div>
+    <div id="bestSellersGrid" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4"></div>
+  </section>
+
+  <!-- Marquee (lighter on mobile) -->
+  <section class="mt-8 border-y border-white/10 bg-gradient-to-b from-[#0c0c0c] to-[#0a0a0a]">
+    <div class="mx-auto max-w-screen-xl px-3 overflow-hidden">
+      <div class="flex gap-10 py-3 text-sub text-sm whitespace-nowrap [mask-image:linear-gradient(90deg,transparent,black_10%,black_90%,transparent)]">
+        <div class="flex gap-10 animate-[marquee_26s_linear_infinite]">
+          <span>VOGUE</span><span>GQ</span><span>HYPEBEAST</span><span>COMPLEX</span><span>ESQUIRE</span><span>HIGH SNOBIETY</span>
+        </div>
+        <div class="flex gap-10 animate-[marquee_26s_linear_infinite]" aria-hidden="true">
+          <span>VOGUE</span><span>GQ</span><span>HYPEBEAST</span><span>COMPLEX</span><span>ESQUIRE</span><span>HIGH SNOBIETY</span>
+        </div>
+      </div>
+    </div>
+    <style>
+      @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    </style>
+  </section>
+
+  <!-- Journal -->
+  <section class="mx-auto max-w-screen-xl px-3 mt-8">
+    <div class="flex items-center justify-between mb-3">
+      <h2 class="text-lg sm:text-xl">Journal</h2>
+      <a class="text-sub hover:text-text text-sm" href="#">Read more →</a>
+    </div>
+    <div class="grid gap-4 md:grid-cols-3">
+      <a href="#" class="rounded-xl border border-white/10 bg-[#0f0f0f] overflow-hidden hover:-translate-y-1 transition">
+        <div class="aspect-video bg-[linear-gradient(120deg,#1a1a1a,#0d0d0d)]"></div>
+        <div class="p-4">
+          <span class="text-sub text-xs">Lookbook</span>
+          <h3 class="text-base mt-1">AW ’25: City Shadows</h3>
+          <p class="text-sub text-sm">Muted layers, reflective trims, and structured knits.</p>
         </div>
       </a>
-    `;
-  }
-
-  try {
-    const data = await loadProductsJson();
-    const best = pickBestSellers(data).slice(0, 4);
-    grid.innerHTML = best.map(cardHTML).join('');
-
-    // Point "View all" to a collection page if you have one
-    viewAll.href = 'shop.html?collection=best-sellers';
-  } catch (e) {
-    console.error(e);
-    // graceful fallback: keep your original static cards if desired
-    grid.innerHTML = `
-      <div class="text-white/70 col-span-full text-sm border border-white/10 rounded-xl p-4">
-        Couldn’t load products.json. Check your server path or JSON validity.
-      </div>`;
-  }
-})();
-</script>
-
-
-    <!-- Marquee -->
-    <section class="my-10 border-y border-white/10 bg-gradient-to-b from-[#0c0c0c] to-[#0a0a0a]">
-        <div class="container mx-auto max-w-screen-xl overflow-hidden">
-            <div
-                class="flex gap-16 py-4 text-sub whitespace-nowrap [mask-image:linear-gradient(90deg,transparent,black_10%,black_90%,transparent)]">
-                <div class="flex gap-16 animate-[marquee_26s_linear_infinite]">
-                    <span>VOGUE</span><span>GQ</span><span>HYPEBEAST</span><span>COMPLEX</span><span>ESQUIRE</span><span>HIGH
-                        SNOBIETY</span>
-                </div>
-                <div class="flex gap-16 animate-[marquee_26s_linear_infinite]" aria-hidden="true">
-                    <span>VOGUE</span><span>GQ</span><span>HYPEBEAST</span><span>COMPLEX</span><span>ESQUIRE</span><span>HIGH
-                        SNOBIETY</span>
-                </div>
-            </div>
+      <a href="#" class="rounded-xl border border-white/10 bg-[#0f0f0f] overflow-hidden hover:-translate-y-1 transition">
+        <div class="aspect-video bg-[linear-gradient(120deg,#1a1a1a,#0d0d0d)]"></div>
+        <div class="p-4">
+          <span class="text-sub text-xs">How we make</span>
+          <h3 class="text-base mt-1">Inside the Atelier</h3>
+          <p class="text-sub text-sm">Heavyweight cotton, double-needle seams, consistent dye lots.</p>
         </div>
-        <style>
-            @keyframes marquee {
-                from {
-                    transform: translateX(0);
-                }
-
-                to {
-                    transform: translateX(-50%);
-                }
-            }
-        </style>
-    </section>
-
-    <!-- Journal -->
-    <section class="container mx-auto max-w-screen-xl">
-        <div class="flex items-center justify-between mb-4">
-            <h2 class="text-xl md:text-2xl">Journal</h2>
-            <a class="text-sub hover:text-text" href="#">Read more →</a>
+      </a>
+      <a href="#" class="rounded-xl border border-white/10 bg-[#0f0f0f] overflow-hidden hover:-translate-y-1 transition">
+        <div class="aspect-video bg-[linear-gradient(120deg,#1a1a1a,#0d0d0d)]"></div>
+        <div class="p-4">
+          <span class="text-sub text-xs">Collab</span>
+          <h3 class="text-base mt-1">NBLAC × Studio-K</h3>
+          <p class="text-sub text-sm">A limited capsule exploring stealth textures.</p>
         </div>
-        <div class="grid gap-6 md:grid-cols-3">
-            <a href="#"
-                class="rounded-xl border border-white/10 bg-[#0f0f0f] overflow-hidden hover:-translate-y-1 transition">
-                <div class="aspect-video bg-[linear-gradient(120deg,#1a1a1a,#0d0d0d)]"></div>
-                <div class="p-4">
-                    <span class="text-sub text-xs">Lookbook</span>
-                    <h3 class="text-lg mt-1">AW ’25: City Shadows</h3>
-                    <p class="text-sub">Muted layers, reflective trims, and structured knits.</p>
-                </div>
-            </a>
-            <a href="#"
-                class="rounded-xl border border-white/10 bg-[#0f0f0f] overflow-hidden hover:-translate-y-1 transition">
-                <div class="aspect-video bg-[linear-gradient(120deg,#1a1a1a,#0d0d0d)]"></div>
-                <div class="p-4">
-                    <span class="text-sub text-xs">How we make</span>
-                    <h3 class="text-lg mt-1">Inside the Atelier</h3>
-                    <p class="text-sub">Heavyweight cotton, double-needle seams, consistent dye lots.</p>
-                </div>
-            </a>
-            <a href="#"
-                class="rounded-xl border border-white/10 bg-[#0f0f0f] overflow-hidden hover:-translate-y-1 transition">
-                <div class="aspect-video bg-[linear-gradient(120deg,#1a1a1a,#0d0d0d)]"></div>
-                <div class="p-4">
-                    <span class="text-sub text-xs">Collab</span>
-                    <h3 class="text-lg mt-1">NBLAC × Studio-K</h3>
-                    <p class="text-sub">A limited capsule exploring stealth textures.</p>
-                </div>
-            </a>
+      </a>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="mx-auto max-w-screen-xl px-3 mt-9">
+    <div class="rounded-2xl border border-white/10 p-4 sm:p-6 bg-[radial-gradient(800px_400px_at_80%_-80%,rgba(201,243,29,.14),transparent_40%),linear-gradient(180deg,#0f0f0f,#0a0a0a)]">
+      <div class="md:grid md:grid-cols-[1.2fr_.8fr] md:items-center md:gap-6">
+        <div>
+          <div class="uppercase tracking-[0.28em] text-sub text-[11px]">Members get early access</div>
+          <h3 class="text-xl mt-1">Join the NBLAC List</h3>
+          <p class="text-sub text-sm">Be first to shop new drops, exclusive collabs, and secret sales.</p>
+          <form class="mt-3 flex gap-2" onsubmit="event.preventDefault(); alert('Thanks! You’re on the list.');">
+            <input type="email" required placeholder="Enter your email" aria-label="Email"
+                   class="flex-1 bg-[#0c0c0c] border border-white/20 rounded-xl px-3 py-3 text-text placeholder:text-sub outline-none" />
+            <button type="submit" class="rounded-xl border border-black bg-gradient-to-b from-white to-[#dcdcdc] text-black font-semibold px-4">
+              Subscribe
+            </button>
+          </form>
         </div>
-    </section>
-
-    <!-- Newsletter CTA -->
-    <section class="container mx-auto max-w-screen-xl my-12">
-        <div
-            class="grid md:grid-cols-[1.2fr_.8fr] gap-6 items-center rounded-2xl border border-white/10
-                bg-[radial-gradient(800px_400px_at_80%_-80%,rgba(201,243,29,.14),transparent_40%),linear-gradient(180deg,#0f0f0f,#0a0a0a)] p-6">
-            <div>
-                <div class="uppercase tracking-[0.28em] text-sub text-xs">Members get early access</div>
-                <h3 class="text-2xl mt-1">Join the NBLAC List</h3>
-                <p class="text-sub">Be first to shop new drops, exclusive collabs, and secret sales. No spam, only good
-                    stuff.</p>
-                <form class="mt-3 flex gap-2" onsubmit="event.preventDefault(); alert('Thanks! You’re on the list.');">
-                    <input type="email" required placeholder="Enter your email" aria-label="Email"
-                        class="flex-1 bg-[#0c0c0c] border border-white/20 rounded-xl px-3 py-3 text-text placeholder:text-sub outline-none" />
-                    <button type="submit"
-                        class="rounded-xl border border-black bg-gradient-to-b from-white to-[#dcdcdc] text-black font-semibold px-4">Subscribe</button>
-                </form>
-            </div>
-            <div
-                class="h-60 grid place-items-center bg-[linear-gradient(180deg,rgba(255,255,255,.08),transparent_20%),linear-gradient(120deg,#1d1d1d,#0f0f0f)] rounded-xl">
-                <svg width="180" height="180" viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="90" cy="90" r="70" fill="#151515" stroke="#2a2a2a" />
-                    <rect x="45" y="70" width="90" height="40" rx="12" fill="#0d0d0d" stroke="#2a2a2a" />
-                </svg>
-            </div>
+        <div class="hidden md:grid h-60 place-items-center bg-[linear-gradient(180deg,rgba(255,255,255,.08),transparent_20%),linear-gradient(120deg,#1d1d1d,#0f0f0f)] rounded-xl mt-4 md:mt-0">
+          <svg width="180" height="180" viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="90" cy="90" r="70" fill="#151515" stroke="#2a2a2a" />
+            <rect x="45" y="70" width="90" height="40" rx="12" fill="#0d0d0d" stroke="#2a2a2a" />
+          </svg>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Footer -->
-    <footer class="mt-12 border-t border-white/10 py-7 text-sub">
-        <div class="container mx-auto max-w-screen-xl grid gap-6 md:grid-cols-4">
-            <div>
-                <div class="flex items-center gap-2 mb-2">
-                    <span class="w-7 h-7 rounded-lg shadow-soft"
-                        style="background: conic-gradient(from 210deg at 50% 50%,#222, #000 60%, #333 61%, #111);"></span>
-                    <span class="tracking-[0.28em] font-bold text-text">NBLAC</span>
-                </div>
-                <p>Timeless all-black essentials. Designed in Paris, made for the world.</p>
-                <div class="mt-3 text-[#888]">© 2025 NBLAC — All rights reserved.</div>
-            </div>
-            <div>
-                <h4 class="text-text mb-2">Shop</h4>
-                <ul class="space-y-1">
-                    <li><a href="#" class="hover:text-text">New Arrivals</a></li>
-                    <li><a href="#" class="hover:text-text">Best Sellers</a></li>
-                    <li><a href="#" class="hover:text-text">Gift Cards</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="text-text mb-2">About</h4>
-                <ul class="space-y-1">
-                    <li><a href="#" class="hover:text-text">Our Story</a></li>
-                    <li><a href="#" class="hover:text-text">Sustainability</a></li>
-                    <li><a href="#" class="hover:text-text">Careers</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="text-text mb-2">Help</h4>
-                <ul class="space-y-1">
-                    <li><a href="#" class="hover:text-text">Shipping</a></li>
-                    <li><a href="#" class="hover:text-text">Returns</a></li>
-                    <li><a href="#" class="hover:text-text">Contact</a></li>
-                </ul>
-            </div>
+  <!-- Footer -->
+  <footer class="mt-10 border-t border-white/10 py-7 text-sub">
+    <div class="mx-auto max-w-screen-xl px-3 grid gap-6 md:grid-cols-4">
+      <div>
+        <div class="flex items-center gap-2 mb-2">
+          <span class="w-7 h-7 rounded-lg" style="background: conic-gradient(from 210deg at 50% 50%,#222, #000 60%, #333 61%, #111);"></span>
+          <span class="tracking-[0.28em] font-bold text-text">NBLAC</span>
         </div>
-    </footer>
+        <p class="text-sm">Timeless all-black essentials. Designed in Paris, made for the world.</p>
+        <div class="mt-3 text-[#888] text-sm">© 2025 NBLAC — All rights reserved.</div>
+      </div>
+      <div>
+        <h4 class="text-text mb-2">Shop</h4>
+        <ul class="space-y-1 text-sm">
+          <li><a href="#" class="hover:text-text">New Arrivals</a></li>
+          <li><a href="#" class="hover:text-text">Best Sellers</a></li>
+          <li><a href="#" class="hover:text-text">Gift Cards</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-text mb-2">About</h4>
+        <ul class="space-y-1 text-sm">
+          <li><a href="#" class="hover:text-text">Our Story</a></li>
+          <li><a href="#" class="hover:text-text">Sustainability</a></li>
+          <li><a href="#" class="hover:text-text">Careers</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-text mb-2">Help</h4>
+        <ul class="space-y-1 text-sm">
+          <li><a href="#" class="hover:text-text">Shipping</a></li>
+          <li><a href="#" class="hover:text-text">Returns</a></li>
+          <li><a href="#" class="hover:text-text">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
 
-    <!-- Lucide + Search Logic -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <script>
-        lucide.createIcons();
+  <!-- Lucide & App Logic -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    lucide.createIcons();
 
-        const toggle = document.getElementById('searchToggle');
-        const wrap = document.getElementById('searchWrap');
-        const input = document.getElementById('searchInput');
-        const clear = document.getElementById('searchClear');
+    // --- Mobile Drawer ---
+    const drawer = document.getElementById('mobileDrawer');
+    const drawerBtn = document.getElementById('mobileMenuBtn');
+    const closeDrawerBtn = document.getElementById('closeDrawer');
+    const drawerBackdrop = document.getElementById('drawerBackdrop');
+    const setDrawer = (open) => {
+      drawer.classList.toggle('hidden', !open);
+      drawerBtn.setAttribute('aria-expanded', String(open));
+      document.body.style.overflow = open ? 'hidden' : '';
+    };
+    drawerBtn.addEventListener('click', () => setDrawer(true));
+    closeDrawerBtn.addEventListener('click', () => setDrawer(false));
+    drawerBackdrop.addEventListener('click', () => setDrawer(false));
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setDrawer(false); });
 
-        // Helpers
-        const openSearch = () => {
-            wrap.style.width = ''; // let CSS classes control width
-            wrap.classList.remove('opacity-0', 'w-0');
-            wrap.classList.add('opacity-100');
-            // Set a default width responsive
-            wrap.classList.add('md:w-72');  // ~288px on md+
-            wrap.classList.add('w-64');     // 256px default
-            toggle.setAttribute('aria-expanded', 'true');
-            setTimeout(() => input.focus(), 120);
-        };
-        const closeSearch = () => {
-            input.value = '';
-            wrap.classList.remove('opacity-100', 'w-64', 'md:w-72');
-            wrap.classList.add('opacity-0', 'w-0');
-            toggle.setAttribute('aria-expanded', 'false');
-            toggle.focus();
-            clear.classList.add('hidden');
-        };
+    // --- Search Overlay ---
+    const searchOverlay = document.getElementById('searchOverlay');
+    const openSearch = document.getElementById('openSearch');
+    const searchForm = document.getElementById('searchForm');
+    const searchInput = document.getElementById('searchInput');
+    const clearSearch = document.getElementById('clearSearch');
 
-        // Initial hidden state classes
-        wrap.classList.add('w-0', 'opacity-0');
-
-        toggle.addEventListener('click', (e) => {
-            e.preventDefault();
-            wrap.classList.contains('opacity-0') ? openSearch() : closeSearch();
+    function setSearch(open) {
+      if (open) {
+        searchOverlay.classList.remove('hidden', 'overlay-exit', 'overlay-exit-active');
+        searchOverlay.classList.add('overlay-enter');
+        // next frame
+        requestAnimationFrame(() => {
+          searchOverlay.classList.add('overlay-enter-active');
+          setTimeout(() => searchInput.focus(), 120);
         });
+      } else {
+        searchOverlay.classList.remove('overlay-enter', 'overlay-enter-active');
+        searchOverlay.classList.add('overlay-exit', 'overlay-exit-active');
+        setTimeout(() => searchOverlay.classList.add('hidden'), 140);
+      }
+      document.body.style.overflow = open ? 'hidden' : '';
+    }
+    openSearch.addEventListener('click', () => setSearch(true));
+    searchOverlay.addEventListener('click', (e) => {
+      if (e.target === searchOverlay) setSearch(false);
+    });
+    document.addEventListener('keydown', (e) => {
+      const active = document.activeElement;
+      const isTyping = active && (active.tagName === 'INPUT' || active.tagName === 'TEXTAREA' || active.isContentEditable);
+      if ((e.key === '/' || e.code === 'Slash') && !e.ctrlKey && !e.metaKey && !e.altKey && !isTyping) {
+        e.preventDefault();
+        setSearch(true);
+        setTimeout(() => { searchInput.focus(); searchInput.select(); }, 0);
+      }
+      if (e.key === 'Escape') setSearch(false);
+    });
+    searchForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const q = searchInput.value.trim();
+      if (!q) return;
+      alert('Searching for: ' + q);
+    });
+    searchInput.addEventListener('input', () => {
+      clearSearch.classList.toggle('hidden', searchInput.value.length === 0);
+    });
+    clearSearch.addEventListener('click', () => {
+      searchInput.value = '';
+      searchInput.focus();
+      clearSearch.classList.add('hidden');
+    });
 
-        input.addEventListener('input', () => {
-            input.value.length > 0 ? clear.classList.remove('hidden') : clear.classList.add('hidden');
-        });
+    // --- Best Sellers dynamic load (same logic, mobile-safe) ---
+    (async function(){
+      const grid = document.getElementById('bestSellersGrid');
+      const viewAll = document.getElementById('bestSellersViewAll');
+      const formatINR = (n) =>
+        new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(n);
 
-        clear.addEventListener('click', () => {
-            input.value = '';
-            input.focus();
-            clear.classList.add('hidden');
-        });
+      async function loadProductsJson() {
+        const candidates = ['products.json', '/products.json', '../products.json'];
+        for (const p of candidates) {
+          try {
+            const res = await fetch(p + `?v=${Date.now()}`, { cache: 'no-store' });
+            if (!res.ok) continue;
+            const text = await res.text();
+            return JSON.parse(text.replace(/^\uFEFF/, ''));
+          } catch {}
+        }
+        throw new Error('products.json not found');
+      }
+      function pickBestSellers(data) {
+        const all = Array.isArray(data.products) ? data.products : [];
+        const list = data.collections?.bestSellers;
+        if (Array.isArray(list) && list.length) {
+          const map = new Map(all.map(p => [p.slug, p]));
+          return list.map(slug => map.get(slug)).filter(Boolean);
+        }
+        return [...all].sort((a,b) => ((b.rating||0)*(b.reviewCount||0)) - ((a.rating||0)*(a.reviewCount||0)));
+      }
+      function cardHTML(p) {
+        const href = `product.html?slug=${encodeURIComponent(p.slug)}`;
+        const img = (p.images && p.images[0]) || '';
+        const subtitle = p.subtitle || p.tagline || (p.variants?.models?.[0]?.name) || '—';
+        const hasDiscount = p.compareAtPrice && p.compareAtPrice > p.price;
+        const discountPct = hasDiscount ? Math.round(100 * (1 - (p.price / p.compareAtPrice))) : 0;
+        const badge = hasDiscount
+          ? `<span class="text-white bg-danger text-[11px] px-2 py-0.5 rounded-full">-${discountPct}%</span>`
+          : (p.meta?.badge ? `<span class="text-[#111] bg-brand text-[11px] px-2 py-0.5 rounded-full">${p.meta.badge}</span>` : '');
 
-        // Close on Escape
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && wrap.classList.contains('opacity-100')) closeSearch();
-        });
+        return `
+          <a href="${href}" class="rounded-xl border border-white/10 bg-gradient-to-b from-[#141414] to-[#0d0d0d] overflow-hidden hover:-translate-y-1 transition">
+            <div class="aspect-[4/5] overflow-hidden">
+              ${img
+                ? `<img src="${img}" alt="${p.name}" class="w-full h-full object-cover" loading="lazy" sizes="(max-width: 640px) 100vw, 25vw">`
+                : `<div class="w-full h-full bg-[linear-gradient(180deg,rgba(255,255,255,.06),transparent_18%),linear-gradient(120deg,#1b1b1b,#0f0f0f)]"></div>`}
+            </div>
+            <div class="p-3 space-y-1">
+              <div class="flex items-center justify-between gap-2">
+                <strong class="text-[15px] line-clamp-1">${p.name}</strong>
+                ${badge}
+              </div>
+              <div class="flex items-center justify-between text-sub text-[13px]">
+                <span class="line-clamp-1">${subtitle}</span>
+                <span class="text-white font-bold">${formatINR(p.price)}</span>
+              </div>
+            </div>
+          </a>
+        `;
+      }
 
-        // Close on outside click
-        document.addEventListener('click', (e) => {
-            if (!wrap.contains(e.target) && e.target !== toggle && wrap.classList.contains('opacity-100')) {
-                closeSearch();
-            }
-        });
-
-        // Keyboard shortcut: '/' to focus search (ignore if in an input/textarea/contenteditable)
-        document.addEventListener('keydown', (e) => {
-            const active = document.activeElement;
-            const isTyping = active && (active.tagName === 'INPUT' || active.tagName === 'TEXTAREA' || active.isContentEditable);
-            if ((e.key === '/' || e.code === 'Slash') && !e.ctrlKey && !e.metaKey && !e.altKey && !isTyping) {
-                e.preventDefault();
-                if (wrap.classList.contains('opacity-0')) openSearch();
-                setTimeout(() => { input.focus(); input.select(); }, 0);
-            }
-        });
-
-        // Demo submit
-        wrap.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const q = input.value.trim();
-            if (!q) return;
-            alert('Searching for: ' + q);
-        });
-    </script>
+      try {
+        const data = await loadProductsJson();
+        const best = pickBestSellers(data).slice(0, 4);
+        grid.innerHTML = best.map(cardHTML).join('');
+        viewAll.href = 'shop.html?collection=best-sellers';
+      } catch (e) {
+        console.error(e);
+        grid.innerHTML = `
+          <div class="text-white/80 col-span-full text-sm border border-white/10 rounded-xl p-4">
+            Couldn’t load products.json. Check your server path or JSON validity.
+          </div>`;
+      }
+    })();
+  </script>
 </body>
-
 </html>
