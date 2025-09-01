@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NBLAC — Everything Black</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&family=Roboto:wght@400&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen antialiased selection:bg-black selection:text-white text-black" style="background-color:#dbdcde;">
+  <!-- Page wrapper -->
+  <div class="relative flex w-full min-h-screen justify-center">
+    <!-- Floating top nav (centered) -->
+    <div class="fixed top-3 left-1/2 -translate-x-1/2 z-[60] w-[372px] max-w-[94vw]">
+      <div class="mx-auto h-12 rounded-xl bg-white/80 backdrop-blur-md ring-1 ring-black/10 shadow-sm flex items-center justify-between px-4">
+        <button id="menuBtn" class="group inline-flex items-center justify-center size-8 rounded-lg hover:bg-black/[0.04] ring-1 ring-transparent hover:ring-black/10 transition-all" aria-label="Open menu" aria-expanded="false">
+          <i data-lucide="menu" class="size-5 text-black/90"></i>
+        </button>
+        <div class="flex-1 flex items-center justify-center pointer-events-none">
+          <span class="text-[25px] leading-[25px] tracking-tight text-black/90" style="font-family:'Roboto',sans-serif;letter-spacing:-0.25px;">NBLAC</span>
+        </div>
+        <button id="searchBtn" class="group inline-flex items-center justify-center size-8 rounded-lg hover:bg-black/[0.04] ring-1 ring-transparent hover:ring-black/10 transition-all" aria-label="Search" aria-expanded="false">
+          <i data-lucide="search" class="size-5 text-black/90"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Content column (phone frame width) -->
+    <main class="w-[372px] max-w-[94vw] mx-auto pt-20 pb-8 space-y-6">
+      <!-- Card: BAGS -->
+      <a href="#" class="group relative block overflow-hidden rounded-xl ring-1 ring-black/10 shadow-sm h-[654px]">
+        <img src="https://images.unsplash.com/photo-1490367532201-b9bc1dc483f6?q=80&w=1600&auto=format&fit=crop" alt="Black crossbody bag" class="absolute inset-0 w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-transparent"></div>
+        <div class="absolute left-2 top-1/2 -translate-y-1/2 z-10">
+          <span class="text-white/95 text-[27px] leading-[41px] tracking-tight drop-shadow-sm" style="font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial,'Noto Sans','Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';writing-mode:vertical-rl;text-orientation:upright;">BAGS</span>
+        </div>
+        <div class="absolute inset-0 ring-1 ring-transparent group-hover:ring-white/20 transition-all"></div>
+      </a>
+
+      <!-- Card: HOODIES -->
+      <a href="#" class="group relative block overflow-hidden rounded-xl ring-1 ring-black/10 shadow-sm h-[654px]">
+        <img src="https://images.unsplash.com/photo-1621619856624-42fd193a0661?w=1080&q=80&auto=format&fit=crop" alt="Black hoodie" class="absolute inset-0 w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-transparent"></div>
+        <div class="absolute left-2 top-1/2 -translate-y-1/2 z-10">
+          <span class="text-white/95 text-[27px] leading-[41px] tracking-tight drop-shadow-sm" style="font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial,'Noto Sans','Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';writing-mode:vertical-rl;text-orientation:upright;">HOODIES</span>
+        </div>
+        <div class="absolute inset-0 ring-1 ring-transparent group-hover:ring-white/20 transition-all"></div>
+      </a>
+
+      <!-- Card: WALLETS -->
+      <a href="#" class="group relative block overflow-hidden rounded-xl ring-1 ring-black/10 shadow-sm h-[654px]">
+        <img src="https://images.unsplash.com/photo-1473187983305-f615310e7daa?q=80&w=1600&auto=format&fit=crop" alt="Black leather wallet" class="absolute inset-0 w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-transparent"></div>
+        <div class="absolute left-2 top-1/2 -translate-y-1/2 z-10">
+          <span class="text-white/95 text-[27px] leading-[41px] tracking-tight drop-shadow-sm" style="font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial,'Noto Sans','Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';writing-mode:vertical-rl;text-orientation:upright;">WALLETS</span>
+        </div>
+        <div class="absolute inset-0 ring-1 ring-transparent group-hover:ring-white/20 transition-all"></div>
+      </a>
+
+      <!-- Card: SNEAKERS -->
+      <a href="#" class="group relative block overflow-hidden rounded-xl ring-1 ring-black/10 shadow-sm h-[654px]">
+        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1600&auto=format&fit=crop" alt="Black sneakers" class="absolute inset-0 w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-transparent"></div>
+        <div class="absolute left-2 top-1/2 -translate-y-1/2 z-10">
+          <span class="text-white/95 text-[27px] leading-[41px] tracking-tight drop-shadow-sm" style="font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial,'Noto Sans','Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';writing-mode:vertical-rl;text-orientation:upright;">SNEAKERS</span>
+        </div>
+        <div class="absolute inset-0 ring-1 ring-transparent group-hover:ring-white/20 transition-all"></div>
+      </a>
+
+      <!-- Card: WATCHES -->
+      <a href="#" class="group relative block overflow-hidden rounded-xl ring-1 ring-black/10 shadow-sm h-[654px]">
+        <img src="https://images.unsplash.com/photo-1516822003754-cca485356ecb?q=80&w=1600&auto=format&fit=crop" alt="Black watch" class="absolute inset-0 w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-transparent"></div>
+        <div class="absolute left-2 top-1/2 -translate-y-1/2 z-10">
+          <span class="text-white/95 text-[27px] leading-[41px] tracking-tight drop-shadow-sm" style="font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial,'Noto Sans','Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';writing-mode:vertical-rl;text-orientation:upright;">WATCHES</span>
+        </div>
+        <div class="absolute inset-0 ring-1 ring-transparent group-hover:ring-white/20 transition-all"></div>
+      </a>
+
+      <!-- Card: JACKETS -->
+      <a href="#" class="group relative block overflow-hidden rounded-xl ring-1 ring-black/10 shadow-sm h-[654px]">
+        <img src="https://images.unsplash.com/photo-1539533113208-f6df03b22f8d?q=80&w=1600&auto=format&fit=crop" alt="Black jacket" class="absolute inset-0 w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-transparent"></div>
+        <div class="absolute left-2 top-1/2 -translate-y-1/2 z-10">
+          <span class="text-white/95 text-[27px] leading-[41px] tracking-tight drop-shadow-sm" style="font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial,'Noto Sans','Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';writing-mode:vertical-rl;text-orientation:upright;">JACKETS</span>
+        </div>
+        <div class="absolute inset-0 ring-1 ring-transparent group-hover:ring-white/20 transition-all"></div>
+      </a>
+
+      <!-- Card: HATS -->
+      <a href="#" class="group relative block overflow-hidden rounded-xl ring-1 ring-black/10 shadow-sm h-[654px]">
+        <img src="https://images.unsplash.com/photo-1532170579297-281918c8ae72?q=80&w=1600&auto=format&fit=crop" alt="Black hat" class="absolute inset-0 w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-transparent"></div>
+        <div class="absolute left-2 top-1/2 -translate-y-1/2 z-10">
+          <span class="text-white/95 text-[27px] leading-[41px] tracking-tight drop-shadow-sm" style="font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial,'Noto Sans','Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';writing-mode:vertical-rl;text-orientation:upright;">HATS</span>
+        </div>
+        <div class="absolute inset-0 ring-1 ring-transparent group-hover:ring-white/20 transition-all"></div>
+      </a>
+
+      <!-- Card: SUNGLASSES -->
+      <a href="#" class="group relative block overflow-hidden rounded-xl ring-1 ring-black/10 shadow-sm h-[654px]">
+        <img src="https://images.unsplash.com/photo-1511871893393-82e9c16b81e2?q=80&w=1600&auto=format&fit=crop" alt="Black sunglasses" class="absolute inset-0 w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-transparent"></div>
+        <div class="absolute left-2 top-1/2 -translate-y-1/2 z-10">
+          <span class="text-white/95 text-[27px] leading-[41px] tracking-tight drop-shadow-sm" style="font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial,'Noto Sans','Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';writing-mode:vertical-rl;text-orientation:upright;">SUNGLASSES</span>
+        </div>
+        <div class="absolute inset-0 ring-1 ring-transparent group-hover:ring-white/20 transition-all"></div>
+      </a>
+
+      <!-- Card: BELTS -->
+      <a href="#" class="group relative block overflow-hidden rounded-xl ring-1 ring-black/10 shadow-sm h-[654px]">
+        <img src="https://images.unsplash.com/photo-1517632298129-5b4ae1bc79ab?q=80&w=1600&auto=format&fit=crop" alt="Black leather belt" class="absolute inset-0 w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-transparent"></div>
+        <div class="absolute left-2 top-1/2 -translate-y-1/2 z-10">
+          <span class="text-white/95 text-[27px] leading-[41px] tracking-tight drop-shadow-sm" style="font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial,'Noto Sans','Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';writing-mode:vertical-rl;text-orientation:upright;">BELTS</span>
+        </div>
+        <div class="absolute inset-0 ring-1 ring-transparent group-hover:ring-white/20 transition-all"></div>
+      </a>
+    </main>
+  </div>
+
+  <!-- Menu overlay -->
+  <div id="menuOverlay" class="fixed inset-0 z-50 opacity-0 pointer-events-none transition-opacity duration-300">
+    <button data-close-menu class="absolute inset-0 bg-black/40" aria-label="Close menu overlay"></button>
+    <div class="absolute left-1/2 -translate-x-1/2 top-16 w-[372px] max-w-[94vw] px-3">
+      <div id="menuPanel" class="rounded-xl bg-white/95 backdrop-blur-md ring-1 ring-black/10 shadow-lg overflow-hidden -translate-y-2 opacity-0 transition-all duration-300">
+        <div class="flex items-center justify-between px-3 py-2">
+          <span class="text-[15px] tracking-tight text-black/80" style="font-family:'Roboto',sans-serif;">Menu</span>
+          <button data-close-menu class="inline-flex items-center justify-center size-8 rounded-lg hover:bg-black/[0.04] ring-1 ring-transparent hover:ring-black/10 transition" aria-label="Close menu">
+            <i data-lucide="x" class="size-5 text-black/80"></i>
+          </button>
+        </div>
+        <div class="border-t border-black/10"></div>
+        <nav class="px-1 py-1">
+          <a href="#" class="flex items-center justify-between px-3 py-2 rounded-lg hover:bg-black/[0.04] ring-1 ring-transparent hover:ring-black/10 transition">
+            <span class="text-[14px] text-black/80" style="font-family:'Roboto',sans-serif;">Home</span>
+            <i data-lucide="chevron-right" class="size-4 text-black/60"></i>
+          </a>
+          <a href="#" class="flex items-center justify-between px-3 py-2 rounded-lg hover:bg-black/[0.04] ring-1 ring-transparent hover:ring-black/10 transition">
+            <span class="text-[14px] text-black/80" style="font-family:'Roboto',sans-serif;">Shop All</span>
+            <i data-lucide="chevron-right" class="size-4 text-black/60"></i>
+          </a>
+          <a href="#" class="flex items-center justify-between px-3 py-2 rounded-lg hover:bg-black/[0.04] ring-1 ring-transparent hover:ring-black/10 transition">
+            <span class="text-[14px] text-black/80" style="font-family:'Roboto',sans-serif;">New Arrivals</span>
+            <i data-lucide="chevron-right" class="size-4 text-black/60"></i>
+          </a>
+          <div class="my-1 mx-3 h-px bg-black/10"></div>
+          <div class="px-3 pb-1">
+            <div class="grid grid-cols-2 gap-2">
+              <a href="#" class="flex items-center justify-between px-2 py-2 rounded-lg ring-1 ring-black/10 hover:ring-black/20 hover:bg-black/[0.02] transition"><span class="text-[13px] text-black/75" style="font-family:'Roboto',sans-serif;">Bags</span><i data-lucide="arrow-up-right" class="size-4 text-black/60"></i></a>
+              <a href="#" class="flex items-center justify-between px-2 py-2 rounded-lg ring-1 ring-black/10 hover:ring-black/20 hover:bg-black/[0.02] transition"><span class="text-[13px] text-black/75" style="font-family:'Roboto',sans-serif;">Hoodies</span><i data-lucide="arrow-up-right" class="size-4 text-black/60"></i></a>
+              <a href="#" class="flex items-center justify-between px-2 py-2 rounded-lg ring-1 ring-black/10 hover:ring-black/20 hover:bg-black/[0.02] transition"><span class="text-[13px] text-black/75" style="font-family:'Roboto',sans-serif;">Wallets</span><i data-lucide="arrow-up-right" class="size-4 text-black/60"></i></a>
+              <a href="#" class="flex items-center justify-between px-2 py-2 rounded-lg ring-1 ring-black/10 hover:ring-black/20 hover:bg-black/[0.02] transition"><span class="text-[13px] text-black/75" style="font-family:'Roboto',sans-serif;">Sneakers</span><i data-lucide="arrow-up-right" class="size-4 text-black/60"></i></a>
+              <a href="#" class="flex items-center justify-between px-2 py-2 rounded-lg ring-1 ring-black/10 hover:ring-black/20 hover:bg-black/[0.02] transition"><span class="text-[13px] text-black/75" style="font-family:'Roboto',sans-serif;">Watches</span><i data-lucide="arrow-up-right" class="size-4 text-black/60"></i></a>
+              <a href="#" class="flex items-center justify-between px-2 py-2 rounded-lg ring-1 ring-black/10 hover:ring-black/20 hover:bg-black/[0.02] transition"><span class="text-[13px] text-black/75" style="font-family:'Roboto',sans-serif;">Sunglasses</span><i data-lucide="arrow-up-right" class="size-4 text-black/60"></i></a>
+            </div>
+          </div>
+          <div class="my-1 mx-3 h-px bg-black/10"></div>
+          <a href="#" class="flex items-center justify-between px-3 py-2 rounded-lg hover:bg-black/[0.04] ring-1 ring-transparent hover:ring-black/10 transition">
+            <span class="text-[14px] text-black/80" style="font-family:'Roboto',sans-serif;">About</span>
+            <i data-lucide="chevron-right" class="size-4 text-black/60"></i>
+          </a>
+          <a href="#" class="flex items-center justify-between px-3 py-2 rounded-lg hover:bg-black/[0.04] ring-1 ring-transparent hover:ring-black/10 transition">
+            <span class="text-[14px] text-black/80" style="font-family:'Roboto',sans-serif;">Contact</span>
+            <i data-lucide="chevron-right" class="size-4 text-black/60"></i>
+          </a>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+  <!-- Search overlay -->
+  <div id="searchOverlay" class="fixed inset-0 z-50 opacity-0 pointer-events-none transition-opacity duration-300">
+    <button data-close-search class="absolute inset-0 bg-black/40" aria-label="Close search overlay"></button>
+    <div class="absolute left-1/2 -translate-x-1/2 top-3 w-[372px] max-w-[94vw] px-3">
+      <div id="searchPanel" class="rounded-xl bg-white/95 backdrop-blur-md ring-1 ring-black/10 shadow-lg -translate-y-2 opacity-0 transition-all duration-300">
+        <div class="flex items-center justify-between px-3 py-2">
+          <span class="text-[15px] tracking-tight text-black/80" style="font-family:'Roboto',sans-serif;">Search</span>
+          <button data-close-search class="inline-flex items-center justify-center size-8 rounded-lg hover:bg-black/[0.04] ring-1 ring-transparent hover:ring-black/10 transition" aria-label="Close search">
+            <i data-lucide="x" class="size-5 text-black/80"></i>
+          </button>
+        </div>
+        <div class="border-t border-black/10"></div>
+        <div class="p-3">
+          <div class="relative">
+            <i data-lucide="search" class="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-black/60 pointer-events-none"></i>
+            <input id="searchInput" type="text" placeholder="Search products" class="w-full h-11 pl-9 pr-3 rounded-lg bg-white ring-1 ring-black/10 focus:ring-black/30 focus:outline-none text-[14px] text-black/80 placeholder-black/40 transition" style="font-family:'Roboto',sans-serif;">
+          </div>
+          <div class="mt-3">
+            <div class="text-[12px] text-black/50 mb-2" style="font-family:'Roboto',sans-serif;">Popular</div>
+            <div class="flex flex-wrap gap-2">
+              <button class="px-3 py-1.5 rounded-lg text-[12px] text-black/70 bg-black/[0.04] hover:bg-black/[0.06] ring-1 ring-black/10 hover:ring-black/20 transition" style="font-family:'Roboto',sans-serif;">Bags</button>
+              <button class="px-3 py-1.5 rounded-lg text-[12px] text-black/70 bg-black/[0.04] hover:bg-black/[0.06] ring-1 ring-black/10 hover:ring-black/20 transition" style="font-family:'Roboto',sans-serif;">Sneakers</button>
+              <button class="px-3 py-1.5 rounded-lg text-[12px] text-black/70 bg-black/[0.04] hover:bg-black/[0.06] ring-1 ring-black/10 hover:ring-black/20 transition" style="font-family:'Roboto',sans-serif;">Watches</button>
+              <button class="px-3 py-1.5 rounded-lg text-[12px] text-black/70 bg-black/[0.04] hover:bg-black/[0.06] ring-1 ring-black/10 hover:ring-black/20 transition" style="font-family:'Roboto',sans-serif;">Hoodies</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lucide Icons (UMD build for global) -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+  <!-- Interactions -->
+  <script>
+    // Icons
+    window.lucide && window.lucide.createIcons({ attrs: { 'stroke-width': 1.5 } });
+
+    const $ = (sel, ctx = document) => ctx.querySelector(sel);
+    const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
+
+    const body = document.body;
+
+    const menuBtn = $('#menuBtn');
+    const menuOverlay = $('#menuOverlay');
+    const menuPanel = $('#menuPanel');
+    const closeMenuEls = $$('[data-close-menu]');
+
+    const searchBtn = $('#searchBtn');
+    const searchOverlay = $('#searchOverlay');
+    const searchPanel = $('#searchPanel');
+    const closeSearchEls = $$('[data-close-search]');
+    const searchInput = $('#searchInput');
+
+    function lockScroll() { body.classList.add('overflow-hidden'); }
+    function unlockScroll() { body.classList.remove('overflow-hidden'); }
+
+    function openOverlay(overlayEl, panelEl) {
+      overlayEl.classList.remove('opacity-0', 'pointer-events-none');
+      overlayEl.classList.add('opacity-100', 'pointer-events-auto');
+      panelEl.classList.remove('-translate-y-2', 'opacity-0');
+      panelEl.classList.add('translate-y-0', 'opacity-100');
+      window.lucide && window.lucide.createIcons();
+      lockScroll();
+    }
+
+    function closeOverlay(overlayEl, panelEl) {
+      overlayEl.classList.add('pointer-events-none');
+      overlayEl.classList.remove('opacity-100');
+      overlayEl.classList.add('opacity-0');
+      panelEl.classList.add('-translate-y-2');
+      panelEl.classList.remove('translate-y-0');
+      panelEl.classList.add('opacity-0');
+      unlockScroll();
+    }
+
+    function closeMenu() {
+      closeOverlay(menuOverlay, menuPanel);
+      menuBtn.setAttribute('aria-expanded', 'false');
+    }
+    function closeSearch() {
+      closeOverlay(searchOverlay, searchPanel);
+      searchBtn.setAttribute('aria-expanded', 'false');
+    }
+
+    // Ensure only one overlay open at a time
+    function closeAll() {
+      closeMenu();
+      closeSearch();
+    }
+
+    // MENU
+    menuBtn.addEventListener('click', () => {
+      const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
+      if (!expanded) {
+        closeSearch();
+        openOverlay(menuOverlay, menuPanel);
+      } else {
+        closeMenu();
+      }
+      menuBtn.setAttribute('aria-expanded', String(!expanded));
+    });
+
+    closeMenuEls.forEach(el => {
+      el.addEventListener('click', closeMenu);
+    });
+
+    // SEARCH
+    function focusSearchSoon() {
+      setTimeout(() => searchInput && searchInput.focus(), 120);
+    }
+
+    searchBtn.addEventListener('click', () => {
+      const expanded = searchBtn.getAttribute('aria-expanded') === 'true';
+      if (!expanded) {
+        closeMenu();
+        openOverlay(searchOverlay, searchPanel);
+        searchBtn.setAttribute('aria-expanded', 'true');
+        focusSearchSoon();
+      } else {
+        closeSearch();
+      }
+    });
+
+    closeSearchEls.forEach(el => {
+      el.addEventListener('click', closeSearch);
+    });
+
+    // Keyboard: '/' to open search, Esc to close
+    window.addEventListener('keydown', (e) => {
+      const active = document.activeElement;
+      const typing = active && (active.tagName === 'INPUT' || active.tagName === 'TEXTAREA' || active.isContentEditable);
+
+      if (e.key === '/' && !typing) {
+        e.preventDefault();
+        if (searchOverlay.classList.contains('pointer-events-none')) {
+          closeMenu();
+          openOverlay(searchOverlay, searchPanel);
+          searchBtn.setAttribute('aria-expanded', 'true');
+          focusSearchSoon();
+        }
+      }
+
+      if (e.key === 'Escape') {
+        closeAll();
+      }
+    });
+
+    // Re-init icons after transitions (defensive)
+    ['transitionend', 'resize', 'orientationchange'].forEach(evt => {
+      window.addEventListener(evt, () => window.lucide && window.lucide.createIcons());
+    });
+  </script>
+</body>
+</html>

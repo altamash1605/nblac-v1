@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>NBLAC — Grid Flip Hero (Dual-Side Heading)</title>
+  <title>NBLAC — Mosaic Flip Hero</title>
 
-  <!-- Tailwind CDN -->
+  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
-          colors: { ink: {950:"#0b0b0b"} , sub:"#b5b5b5" },
+          colors: { ink: {950:"#0b0b0b"}, sub:"#b5b5b5" },
           boxShadow: { soft: "0 10px 30px rgba(0,0,0,.35)" }
         }
       }
@@ -24,59 +24,48 @@
     .flip-face { backface-visibility: hidden; }
     .flip-back { transform: rotateY(180deg); }
 
-    /* “Glass” faces: show heading behind by staying translucent on both sides */
-    .glass-face {
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,0));
-      border: 1px solid rgba(255,255,255,.10);
-      backdrop-filter: blur(1px);
+    /* faces */
+    .front-face img { display:block; width:100%; height:100%; object-fit:cover; }
+    .back-face {
+      background-repeat: no-repeat;
+      /* background-image/size/position set inline via JS per tile */
+      border: 1px solid rgba(255,255,255,.12);
+      background-color: rgba(0,0,0,.15); /* subtle glass so edges read */
     }
 
-    /* Image layer transitions */
-    .img-layer { transition: opacity 400ms ease; }
-    .reveal-heading .img-layer { opacity: 0 !important; } /* global reveal state */
-
+    /* accessibility */
     @media (prefers-reduced-motion: reduce) {
       .flip-card { transition: none !important; }
-      .img-layer { transition: none !important; }
     }
   </style>
 </head>
 <body class="bg-ink-950 text-white">
   <section class="relative min-h-[90svh] grid place-items-center overflow-hidden">
-    <!-- Big heading behind the grid, visible through both faces -->
+    <!-- Optional faint heading behind for vibe (doesn't affect the mosaic) -->
     <div aria-hidden="true" class="absolute inset-0 grid place-items-center pointer-events-none select-none">
-      <h1 class="text-center font-semibold leading-tight tracking-tight" style="text-wrap:balance;">
-        <span class="block text-3xl sm:text-5xl md:text-7xl lg:text-8xl opacity-[0.09]">NBLAC</span>
-        <span class="block text-lg sm:text-2xl md:text-4xl lg:text-5xl opacity-[0.10] mt-2">Essentials in Black</span>
-      </h1>
+      <h1 class="text-center font-semibold tracking-tight opacity-[0.05] text-6xl sm:text-7xl md:text-8xl">NBLAC</h1>
     </div>
 
-    <!-- Grid -->
+    <!-- Grid container -->
     <div id="grid"
          class="relative z-10 w-full max-w-6xl
-                grid grid-cols-3 [grid-auto-rows:1fr] gap-2 p-3
-                sm:gap-3 sm:p-6
-                md:grid-cols-6 md:gap-3 lg:max-w-7xl">
+                grid grid-cols-3 [grid-auto-rows:1fr] gap-0 p-3
+                sm:gap-0 sm:p-6
+                md:grid-cols-6 md:gap-0 lg:max-w-7xl">
+    </div>
+
+    <div class="absolute top-4 right-4 flex gap-2">
+      <button id="revealNow" class="text-xs px-3 py-1.5 border border-white/15 hover:border-white/30 bg-white/5 backdrop-blur">Reveal heading now</button>
     </div>
 
     <p class="absolute bottom-4 left-0 right-0 text-center text-xs text-sub">
-      Random flips keep motion alive; periodic sync hides images so the heading shows through every tile.
+      Tiles flip randomly; every few seconds they sync to show the full heading.
     </p>
-
-    <div class="absolute top-4 right-4 flex gap-2">
-      <button id="toggleMotion"
-              class="text-xs px-3 py-1.5 rounded-full border border-white/15 hover:border-white/30 bg-white/5 backdrop-blur">
-        Pause motion
-      </button>
-      <button id="forceReveal"
-              class="text-xs px-3 py-1.5 rounded-full border border-white/15 hover:border-white/30 bg-white/5 backdrop-blur">
-        Reveal heading now
-      </button>
-    </div>
   </section>
 
   <script>
     // ---------- CONFIG ----------
+    // Replace with your actual square-ish product images
     const images = [
       { src: "https://images.unsplash.com/photo-1511385348-a52b4a160dc2?q=80&w=800&auto=format&fit=crop", alt: "Wallet" },
       { src: "https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=800&auto=format&fit=crop", alt: "Watch" },
@@ -90,128 +79,159 @@
       { src: "https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=800&auto=format&fit=crop", alt: "Tech Accessory" },
     ];
 
-    const mobileCols = 3, mobileRows = 5;       // 15 tiles on phones
-    const desktopCols = 6, desktopRows = 5;     // 30 tiles on md+
+    // Grid layout: phones = 3x5 (15 tiles); md+ = 6x5 (30 tiles)
+    const mobileCols = 3, mobileRows = 5;
+    const desktopCols = 6, desktopRows = 5;
 
-    const MIN_DELAY = 1500;
-    const MAX_DELAY = 5000;
-    const FLIP_DURATION = 1100;
-    const SYNC_EVERY_MS = 5000;
-    const SYNC_SHOW_MS  = 3000;  // how long to keep heading revealed
+    // Flip timing
+    const MIN_DELAY = 1200;   // per-tile random delay
+    const MAX_DELAY = 4200;
+    const FLIP_DURATION = 850;
+
+    // Sync reveal cadence
+    const SYNC_EVERY_MS = 6000;  // every 6s, flip all to show heading
+    const SYNC_HOLD_MS  = 5000;  // keep the heading visible for ~5s
 
     const grid = document.getElementById("grid");
+    const revealBtn = document.getElementById("revealNow");
 
-    function targetTileCount() {
-      return window.matchMedia("(min-width: 768px)").matches
-        ? desktopCols * desktopRows
-        : mobileCols * mobileRows;
+    // ---------- Create a shared heading image as SVG (crisp at any size) ----------
+    // You can replace this with your own PNG/SVG URL if you prefer.
+    function makeHeadingDataURI() {
+      const svg = `
+        <svg xmlns='http://www.w3.org/2000/svg' width='1600' height='600' viewBox='0 0 1600 600'>
+          <defs>
+            <linearGradient id='g' x1='0' y1='0' x2='0' y2='1'>
+              <stop offset='0' stop-color='#ffffff' stop-opacity='1'/>
+              <stop offset='1' stop-color='#dddddd' stop-opacity='1'/>
+            </linearGradient>
+          </defs>
+          <rect width='100%' height='100%' fill='transparent'/>
+          <g font-family='Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Noto Sans, "Apple Color Emoji", "Segoe UI Emoji"' text-anchor='middle'>
+            <text x='800' y='320' font-size='220' font-weight='800' fill='url(#g)'>NBLAC</text>
+            <text x='800' y='420' font-size='56' font-weight='600' fill='#cfcfcf'>Essentials in Black</text>
+          </g>
+        </svg>`;
+      return "url('data:image/svg+xml;utf8," + encodeURIComponent(svg) + "')";
     }
+    const HEADING_BG = makeHeadingDataURI();
 
-    function createTile(i) {
-      const scene = document.createElement("div");
-      scene.className = "flip-scene aspect-square";
+    // ---------- Helpers ----------
+    const mqMd = () => window.matchMedia("(min-width: 768px)").matches;
+    const dims = () => mqMd()
+      ? { cols: desktopCols, rows: desktopRows }
+      : { cols: mobileCols, rows: mobileRows };
 
-      const card = document.createElement("div");
-      card.className = "flip-card relative w-full h-full rounded-lg overflow-hidden shadow-soft";
-
-      // Shared image layer (will be hidden during reveal)
-      const imgLayer = document.createElement("img");
-      const chosen = images[i % images.length];
-      imgLayer.src = chosen.src;
-      imgLayer.alt = chosen.alt;
-      imgLayer.className = "img-layer absolute inset-0 w-full h-full object-cover";
-
-      // FRONT glass (heading will be seen through)
-      const front = document.createElement("div");
-      front.className = "flip-face glass-face absolute inset-0";
-
-      // BACK glass (also lets heading through)
-      const back = document.createElement("div");
-      back.className  = "flip-face flip-back glass-face absolute inset-0";
-
-      // Optional subtle grid border so tiles are visible during reveal
-      const border = document.createElement("div");
-      border.className = "absolute inset-0 rounded-lg border border-white/10 pointer-events-none";
-
-      card.appendChild(imgLayer);
-      card.appendChild(front);
-      card.appendChild(back);
-      card.appendChild(border);
-      scene.appendChild(card);
-
-      scene._card = card;
-      scene._imgLayer = imgLayer;
-      scene._busy = false;
-      return scene;
-    }
+    let buildVersion = 0;    // cancel stale timers across rebuilds
+    let revealing = false;   // during sync hold, pause random flips
 
     function buildGrid() {
+      buildVersion++;
+      const v = buildVersion;
+
       grid.innerHTML = "";
-      const count = targetTileCount();
-      for (let i = 0; i < count; i++) grid.appendChild(createTile(i));
+      const { cols, rows } = dims();
+      const count = cols * rows;
+
+      // background-size so each tile shows 1/cols × 1/rows slice
+      const bgSize = `${cols * 100}% ${rows * 100}%`;
+
+      for (let i = 0; i < count; i++) {
+        const col = i % cols;
+        const row = Math.floor(i / cols);
+
+        // Tile skeleton
+        const scene = document.createElement("div");
+        scene.className = "flip-scene aspect-square";
+
+        const card = document.createElement("div");
+        card.className = "flip-card relative w-full h-full rounded-lg overflow-hidden shadow-soft";
+
+        // FRONT: product image
+        const front = document.createElement("div");
+        front.className = "flip-face front-face absolute inset-0";
+        const img = document.createElement("img");
+        const chosen = images[i % images.length];
+        img.src = chosen.src;
+        img.alt = chosen.alt;
+        front.appendChild(img);
+
+        // BACK: mosaic slice of heading
+        const back = document.createElement("div");
+        back.className = "flip-face flip-back back-face absolute inset-0 grid place-items-center";
+        back.style.backgroundImage = HEADING_BG;
+        back.style.backgroundSize = bgSize;
+
+        // Position the slice (percentages align the mosaic)
+        const posX = (cols > 1) ? (col / (cols - 1)) * 100 : 0;
+        const posY = (rows > 1) ? (row / (rows - 1)) * 100 : 0;
+        back.style.backgroundPosition = `${posX}% ${posY}%`;
+
+        // Optional overlay for subtle grid edge
+        const border = document.createElement("div");
+        border.className = "pointer-events-none absolute inset-0 rounded-lg border border-white/10";
+
+        card.appendChild(front);
+        card.appendChild(back);
+        card.appendChild(border);
+        scene.appendChild(card);
+        grid.appendChild(scene);
+
+        // attach refs
+        scene._card = card;
+
+        // start per-tile random flip loop
+        scheduleRandomFlip(scene, v);
+      }
     }
 
-    buildGrid();
-    window.addEventListener("resize", () => {
-      const prev = grid.children.length, next = targetTileCount();
-      if (prev !== next) buildGrid();
-    });
-
-    function flip(tile, forceState=null) {
-      if (!tile?._card || tile._busy) return;
-      tile._busy = true;
-      const c = tile._card;
-      if (forceState === true) c.classList.add("flipped");
-      else if (forceState === false) c.classList.remove("flipped");
-      else c.classList.toggle("flipped");
-      setTimeout(() => tile._busy = false, FLIP_DURATION);
+    function flip(tile, forceState = null) {
+      const card = tile?._card;
+      if (!card) return;
+      if (forceState === true) card.classList.add("flipped");
+      else if (forceState === false) card.classList.remove("flipped");
+      else card.classList.toggle("flipped");
     }
 
-    const rand = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+    function randomDelay(min = MIN_DELAY, max = MAX_DELAY) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
 
-    function scheduleRandomFlip(tile) {
-      const go = () => {
+    function scheduleRandomFlip(tile, version) {
+      const run = () => {
+        if (version !== buildVersion) return;          // canceled by rebuild
+        if (revealing) {                               // pause during reveal hold
+          setTimeout(run, 200);
+          return;
+        }
+        // 50/50 flip or unflip for variety
         const isFlipped = tile._card.classList.contains("flipped");
         flip(tile, Math.random() < 0.5 ? !isFlipped : null);
-        setTimeout(go, rand(MIN_DELAY, MAX_DELAY));
+        setTimeout(run, randomDelay());
       };
-      setTimeout(go, rand(MIN_DELAY, MAX_DELAY));
+      setTimeout(run, randomDelay());
     }
 
-    // Start random flips
-    [...grid.children].forEach(scheduleRandomFlip);
-
-    // Sync reveal: hide images everywhere for a moment so heading shows on BOTH faces
-    function revealHeadingOnce() {
-      document.body.classList.add("reveal-heading");
-      setTimeout(() => {
-        document.body.classList.remove("reveal-heading");
-      }, SYNC_SHOW_MS);
+    // Sync reveal: flip every tile to BACK and hold
+    function revealHeading() {
+      revealing = true;
+      [...grid.children].forEach(tile => flip(tile, true)); // all to back (mosaic visible)
+      setTimeout(() => { revealing = false; }, SYNC_HOLD_MS);
     }
 
-    // Periodic sync
-    const syncTimer = setInterval(() => {
-      // Optionally align all faces first for a crisp reveal:
-      [...grid.children].forEach(t => flip(t, true)); // all to back (glass)
-      revealHeadingOnce();
-    }, SYNC_EVERY_MS);
+    // ---------- Init & behaviors ----------
+    buildGrid();
+    window.addEventListener("resize", () => {
+      // rebuild only if tile count changes (i.e., breakpoint crossed)
+      const { cols, rows } = dims();
+      if (grid.children.length !== cols * rows) buildGrid();
+    });
 
-    // Controls
-    const toggleBtn = document.getElementById("toggleMotion");
-    const forceBtn  = document.getElementById("forceReveal");
-    let paused = false;
+    // periodic sync
+    setInterval(revealHeading, SYNC_EVERY_MS);
 
-    function setPaused(state) {
-      paused = state;
-      document.querySelectorAll(".flip-card").forEach(card => {
-        card.style.transitionDuration = paused ? "0ms" : "800ms";
-      });
-      toggleBtn.textContent = paused ? "Resume motion" : "Pause motion";
-    }
-    toggleBtn.addEventListener("click", () => setPaused(!paused));
-    forceBtn.addEventListener("click", revealHeadingOnce);
-
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) setPaused(true);
+    // manual button
+    document.getElementById("revealNow").addEventListener("click", revealHeading);
   </script>
 </body>
 </html>
