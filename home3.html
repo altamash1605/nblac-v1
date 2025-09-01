@@ -45,33 +45,68 @@
       </div>
     </header>
 
-    <!-- Hero -->
-    <section class="px-4 pt-4">
-      <div class="relative aspect-[4/5] w-full border border-white/10 overflow-hidden">
-        <img alt="Monochrome lifestyle hero" class="absolute inset-0 h-full w-full object-cover contrast-125" src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&auto=format&fit=crop&w=1200&grayscale"/>
-        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent pointer-events-none"></div>
-        <div class="absolute bottom-0 left-0 right-0 p-4">
-          <div class="flex items-center gap-2 text-[11px] uppercase tracking-wide">
-            <span class="px-2 py-1 border border-white/20 bg-black/40">New Drop</span>
-            <div class="h-px flex-1 bg-white/15"></div>
-          </div>
-          <h1 class="mt-3 text-3xl tracking-tight leading-[1.1] font-semibold">
-            Objects for the modern day.
-          </h1>
-          <p class="mt-2 text-sm text-white/80">
-            Essential pieces in black and white—quiet confidence, everyday ready.
-          </p>
-          <div class="mt-3 flex items-center gap-2">
-            <a href="#grid" class="px-4 h-10 border border-white/20 bg-white text-black hover:bg-white/90 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 inline-flex items-center justify-center" style="font-weight: 500;">
-              Shop now
-            </a>
-            <button class="px-4 h-10 border border-white/20 hover:border-white/40 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30" style="font-weight: 500;">
-              Lookbook
-            </button>
-          </div>
+  <!-- Hero (Full-screen) -->
+<section id="hero"
+  class="relative w-full border-b border-white/10"
+  style="--nav:56px; --footer:56px; min-height: calc(100vh - var(--nav) - var(--footer));">
+
+  <!-- Background -->
+  <div class="absolute inset-0 overflow-hidden">
+    <img
+      src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&auto=format&fit=crop&w=1600&grayscale"
+      alt="Monochrome still life in black"
+      class="h-full w-full object-cover contrast-125" />
+    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+  </div>
+
+  <!-- Content -->
+  <div class="relative h-full flex flex-col justify-end sm:justify-center">
+    <div class="px-4 pb-6 sm:pb-0">
+      <div class="max-w-md">
+        <div class="flex items-center gap-2 text-[11px] uppercase tracking-wide">
+          <span class="px-2 py-1 border border-white/20 bg-black/40">New Drop</span>
+          <div class="h-px flex-1 bg-white/15"></div>
+        </div>
+
+        <h1 class="mt-3 text-4xl sm:text-5xl leading-[1.05] tracking-tight font-semibold">
+          Less noise. More living.
+        </h1>
+
+        <p class="mt-3 text-sm sm:text-base text-white/80">
+          Monochrome essentials designed to disappear into your day—wallets, watches,
+          hoodies and more. Thoughtful materials. Zero fuss.
+        </p>
+
+        <div class="mt-4 flex items-center gap-2">
+          <a href="#grid"
+             class="px-5 h-11 inline-flex items-center justify-center border border-white/20 bg-white text-black hover:bg-white/90 transition-colors font-medium">
+            Shop the edit
+          </a>
+          <a href="#"
+             class="px-5 h-11 inline-flex items-center justify-center border border-white/20 hover:border-white/40 transition-colors font-medium">
+            View lookbook
+          </a>
+        </div>
+
+        <!-- Small reassurance row -->
+        <div class="mt-4 flex items-center gap-3 text-[11px] text-white/70">
+          <span class="inline-flex items-center gap-1">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m20 6-11 11-5-5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Free shipping $100+
+          </span>
+          <span class="inline-flex items-center gap-1">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 21v-8a2 2 0 0 0-2-2h-4V5a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v16" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            30-day returns
+          </span>
+          <span class="inline-flex items-center gap-1">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 6v6l4 2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Ships in 24h
+          </span>
         </div>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
 
     <!-- Category Filter -->
     <section class="px-4 pt-5">
