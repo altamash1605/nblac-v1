@@ -75,36 +75,44 @@
     </div>
     -->
 
-    <header class="absolute top-0 left-0 w-full z-50">
-        <div class="max-w-7xl mx-auto px-4 md:px-6">
-            <div class="h-16 flex items-center justify-between text-white">
-                <nav class="hidden md:flex items-center gap-8 text-xs tracking-widest uppercase">
-                    <a class="hover:text-gray-200" href="#">New</a>
-                    <a class="hover:text-gray-200" href="#">Men</a>
-                    <a class="hover:text-gray-200" href="#">Women</a>
-                    <a class="hover:text-gray-200" href="#">Accessories</a>
-                </nav>
+<header class="absolute top-0 left-0 w-full z-50">
+  <div class="max-w-7xl mx-auto px-4 md:px-6">
+    <div class="relative h-16 flex items-center justify-between text-white">
+      
+      <!-- Left nav -->
+      <nav class="hidden md:flex items-center gap-8 text-xs tracking-widest uppercase">
+        <a class="hover:text-gray-200" href="#">New</a>
+        <a class="hover:text-gray-200" href="#">Men</a>
+        <a class="hover:text-gray-200" href="#">Women</a>
+        <a class="hover:text-gray-200" href="#">Accessories</a>
+      </nav>
 
-                <a href="#" class="font-display text-xl tracking-[0.2em]">NBLAC</a>
+      <!-- Center logo -->
+      <a href="#"
+         class="absolute left-1/2 transform -translate-x-1/2 font-display text-xl tracking-[0.2em]">
+        NBLAC
+      </a>
 
-                <div class="flex items-center gap-4 text-sm">
-                    <button aria-label="Search" class="hover:opacity-80">Search</button>
-                    <button aria-label="Bag" class="hover:opacity-80">Bag (0)</button>
-                    <button class="md:hidden hover:opacity-80" id="menuBtn" aria-label="Menu">Menu</button>
-                </div>
-            </div>
-        </div>
+      <!-- Right actions -->
+      <div class="flex items-center gap-4 text-sm ml-auto">
+        <button aria-label="Search" class="hover:opacity-80">SEARCH</button>
+        <button aria-label="Bag" class="hover:opacity-80">BAG</button>
+        <button class="md:hidden hover:opacity-80" id="menuBtn" aria-label="Menu"><i data-lucide="grip-vertical" class="h-5 w-5"></i></button>
+      </div>
+    </div>
+  </div>
 
-        <!-- Mobile menu -->
-        <div id="mobileMenu" class="hidden md:hidden bg-black/80 backdrop-blur border-t border-white/10">
-            <div class="px-4 py-3 text-sm uppercase tracking-widest space-y-2 text-white">
-                <a class="block py-2 border-b border-white/10" href="#">New</a>
-                <a class="block py-2 border-b border-white/10" href="#">Men</a>
-                <a class="block py-2 border-b border-white/10" href="#">Women</a>
-                <a class="block py-2" href="#">Accessories</a>
-            </div>
-        </div>
-    </header>
+  <!-- Mobile menu -->
+  <div id="mobileMenu" class="hidden md:hidden bg-black/80 backdrop-blur border-t border-white/10">
+    <div class="px-4 py-3 text-sm uppercase tracking-widest space-y-2 text-white">
+      <a class="block py-2 border-b border-white/10" href="#">New</a>
+      <a class="block py-2 border-b border-white/10" href="#">Men</a>
+      <a class="block py-2 border-b border-white/10" href="#">Women</a>
+      <a class="block py-2" href="#">Accessories</a>
+    </div>
+  </div>
+</header>
+
 
 
     <!-- Hero -->
