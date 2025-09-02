@@ -109,16 +109,27 @@
                             Singular focus on black essentials.
                         </p>
 
-                        <div class="mt-6 flex items-center justify-end gap-3">
-                            <a href="#"
-                                class="px-5 py-3 bg-neutral-900 text-white text-[14px] tracking-tight font-medium hover:bg-neutral-800 active:bg-neutral-900 transition">
+
+                        <!-- Buttons (auto-contrast) -->
+                        <div id="heroButtons" class="mt-6 flex items-center gap-3 group">
+                            <!-- Primary -->
+                            <a href="#" class="px-5 py-3 bg-neutral-900 text-white text-[14px] tracking-tight font-medium transition
+            hover:bg-neutral-800 active:bg-neutral-900
+            group-[.on-dark]:bg-white group-[.on-dark]:text-neutral-900 group-[.on-dark]:hover:bg-neutral-100">
                                 Shop Everything
                             </a>
+
+                            <!-- Secondary -->
                             <a href="#"
-                                class="px-5 py-3 border border-neutral-300 text-neutral-900 text-[14px] tracking-tight font-medium hover:border-neutral-900 hover:text-neutral-950 transition">
+                                class="px-5 py-3 border border-neutral-300 text-neutral-900 text-[14px] tracking-tight font-medium transition
+            hover:border-neutral-900 hover:text-neutral-950
+            group-[.on-dark]:border-white group-[.on-dark]:text-white group-[.on-dark]:hover:bg-white group-[.on-dark]:hover:text-neutral-900">
                                 View Categories
                             </a>
                         </div>
+
+
+
                     </div>
                 </div>
             </div>
@@ -145,104 +156,83 @@
         </div>
     </div>
 
-    <!-- Category tiles -->
-    <section class="bg-white">
-        <div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-12 md:py-16">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-                <!-- Hoodies -->
-                <a href="#" class="group relative block">
-                    <div class="aspect-[4/5] overflow-hidden border border-neutral-200 bg-neutral-100">
-                        <img src="https://images.unsplash.com/photo-1516478177764-9fe5bd7e9717?q=80&w=1600&auto=format&fit=crop"
-                            alt="Black hoodies"
-                            class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
-                            loading="lazy">
-                    </div>
-                    <div class="mt-3 flex items-center justify-between">
-                        <span class="text-[16px] tracking-tight font-medium">Hoodies</span>
-                        <i data-lucide="arrow-up-right"
-                            class="w-4 h-4 text-neutral-700 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
-                    </div>
-                </a>
+    <section class="w-full">
+        <!-- Slideshow -->
+        <div id="slideshow" class="relative w-full overflow-hidden">
+            <div class="slides flex transition-transform duration-700 ease-in-out">
+                <!-- Slide 1 -->
+                <div class="min-w-full">
+                    <img src="images/products/nblac-model-1.webp"
+                        class="w-full h-[70vh] object-cover" alt="Model 1">
+                </div>
+                <!-- Slide 2 -->
+                <div class="min-w-full">
+                    <img src="images/products/nblac-model-2.webp"
+                        class="w-full h-[70vh] object-cover" alt="Model 2">
+                </div>
+                <!-- Slide 3 -->
+                <div class="min-w-full">
+                    <img src="images/products/nblac-model-3.webp"
+                        class="w-full h-[70vh] object-cover" alt="Model 3">
+                </div>
+            </div>
+        </div>
 
-                <!-- Tees -->
-                <a href="#" class="group relative block">
-                    <div class="aspect-[4/5] overflow-hidden border border-neutral-200 bg-neutral-100">
-                        <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?q=80&w=1600&auto=format&fit=crop"
-                            alt="Black tees"
-                            class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
-                            loading="lazy">
-                    </div>
-                    <div class="mt-3 flex items-center justify-between">
-                        <span class="text-[16px] tracking-tight font-medium">Tees</span>
-                        <i data-lucide="arrow-up-right"
-                            class="w-4 h-4 text-neutral-700 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
-                    </div>
-                </a>
-
-                <!-- Office Essentials -->
-                <a href="#" class="group relative block">
-                    <div class="aspect-[4/5] overflow-hidden border border-neutral-200 bg-neutral-100">
-                        <img src="https://images.unsplash.com/photo-1515263487990-61b07816b324?q=80&w=1600&auto=format&fit=crop"
-                            alt="Black office essentials"
-                            class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
-                            loading="lazy">
-                    </div>
-                    <div class="mt-3 flex items-center justify-between">
-                        <span class="text-[16px] tracking-tight font-medium">Office Essentials</span>
-                        <i data-lucide="arrow-up-right"
-                            class="w-4 h-4 text-neutral-700 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
-                    </div>
-                </a>
-
-                <!-- Wallets (wide) -->
-                <a href="#" class="group relative block md:col-span-2">
-                    <div class="aspect-[8/5] overflow-hidden border border-neutral-200 bg-neutral-100">
-                        <img src="https://images.unsplash.com/photo-1642615835477-d303d7dc9ee9?w=1080&q=80"
-                            alt="Black leather wallets"
-                            class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
-                            loading="lazy">
-                    </div>
-                    <div class="mt-3 flex items-center justify-between">
-                        <span class="text-[16px] tracking-tight font-medium">Wallets</span>
-                        <i data-lucide="arrow-up-right"
-                            class="w-4 h-4 text-neutral-700 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
-                    </div>
-                </a>
-
-                <!-- Belts -->
-                <a href="#" class="group relative block">
-                    <div class="aspect-[8/5] overflow-hidden border border-neutral-200 bg-neutral-100">
-                        <img src="https://images.unsplash.com/photo-1635151227785-429f420c6b9d?w=1080&q=80"
-                            alt="Black belt"
-                            class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
-                            loading="lazy">
-                    </div>
-                    <div class="mt-3 flex items-center justify-between">
-                        <span class="text-[16px] tracking-tight font-medium">Belts</span>
-                        <i data-lucide="arrow-up-right"
-                            class="w-4 h-4 text-neutral-700 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
-                    </div>
-                </a>
-
-                <!-- Caps -->
-                <a href="#" class="group relative block">
-                    <div class="aspect-[4/5] overflow-hidden border border-neutral-200 bg-neutral-100">
-                        <img src="https://images.unsplash.com/photo-1520975916090-3105956dac38?q=80&w=1600&auto=format&fit=crop"
-                            alt="Black cap"
-                            class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
-                            loading="lazy">
-                    </div>
-                    <div class="mt-3 flex items-center justify-between">
-                        <span class="text-[16px] tracking-tight font-medium">Caps</span>
-                        <i data-lucide="arrow-up-right"
-                            class="w-4 h-4 text-neutral-700 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
-                    </div>
-                </a>
+        <!-- Product Tiles -->
+        <div id="productTiles" class="grid grid-cols-2 gap-0">
+            <!-- Product 1 -->
+            <div>
+                <img id="tile1" src="https://images.unsplash.com/photo-1635151227785-429f420c6b9d?w=800&q=80"
+                    class="w-full h-64 object-cover" alt="Product 1">
+            </div>
+            <!-- Product 2 -->
+            <div>
+                <img id="tile2" src="https://images.unsplash.com/photo-1642615835477-d303d7dc9ee9?w=800&q=80"
+                    class="w-full h-64 object-cover" alt="Product 2">
             </div>
         </div>
     </section>
 
-    <!-- The Core (Featured Products) -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const slides = document.querySelector("#slideshow .slides");
+            const slideCount = slides.children.length;
+            let index = 0;
+
+            // product sets linked to slides
+            const productSets = [
+                [
+                    "images/products/nblac-crossbody-bag",
+                    ""
+                ],
+                [
+                    "",
+                    "https://images.unsplash.com/photo-1520975916090-3105956dac38?q=80&w=800&auto=format"
+                ],
+                [
+                    "https://images.unsplash.com/photo-1556821840-3a63f95609a7?q=80&w=800&auto=format",
+                    "https://images.unsplash.com/photo-1516478177764-9fe5bd7e9717?q=80&w=800&auto=format"
+                ]
+            ];
+
+            const tile1 = document.getElementById("tile1");
+            const tile2 = document.getElementById("tile2");
+
+            function showSlide(i) {
+                slides.style.transform = `translateX(-${i * 100}%)`;
+                tile1.src = productSets[i][0];
+                tile2.src = productSets[i][1];
+            }
+
+            setInterval(() => {
+                index = (index + 1) % slideCount;
+                showSlide(index);
+            }, 4000); // change every 4s
+        });
+    </script>
+
+
+    <!-- 
     <section class="bg-white border-t border-neutral-200">
         <div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-12 md:py-16">
             <div class="flex items-end justify-between">
@@ -253,7 +243,7 @@
             </div>
 
             <div class="mt-6 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
-                <!-- Product cards -->
+                
                 <a href="#" class="group block">
                     <div class="relative overflow-hidden border border-neutral-200 bg-neutral-100">
                         <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=1400&auto=format&fit=crop"
@@ -385,7 +375,7 @@
         </div>
     </section>
 
-    <!-- Editorial split -->
+   
     <section class="bg-white border-t border-neutral-200">
         <div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-12 md:py-16">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
@@ -427,7 +417,7 @@
         </div>
     </section>
 
-    <!-- Newsletter -->
+   
     <section class="bg-white border-t border-neutral-200">
         <div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-12 md:py-16">
             <div class="max-w-2xl">
@@ -446,7 +436,7 @@
                 </div>
             </form>
         </div>
-    </section>
+    </section> -->
 
     <!-- Footer -->
     <footer class="bg-white border-t border-neutral-200">
@@ -543,7 +533,101 @@
         // Footer year
         const y = document.getElementById('y');
         if (y) y.textContent = new Date().getFullYear();
+
     </script>
+
+    <script>
+        (function () {
+            // CONFIG
+            const LUMA_THRESHOLD = 0.52; // 0..1 — lower = darker. Tune between 0.48–0.58 to taste.
+
+            const buttons = document.getElementById('heroButtons');
+            const img = document.querySelector('section img'); // your hero <img>. Use a tighter selector if needed.
+            if (!buttons || !img) return;
+
+            // ensure we can sample the image (same-origin or CORS-enabled)
+            function ready(img) {
+                return img.complete && img.naturalWidth > 0;
+            }
+
+            function getAvgLumaUnder(el, imgEl) {
+                const ir = imgEl.getBoundingClientRect();
+                const er = el.getBoundingClientRect();
+
+                // intersection with the image area
+                const x = Math.max(er.left, ir.left);
+                const y = Math.max(er.top, ir.top);
+                const w = Math.max(0, Math.min(er.right, ir.right) - x);
+                const h = Math.max(0, Math.min(er.bottom, ir.bottom) - y);
+                if (w < 2 || h < 2) return null;
+
+                // map screen rect to image pixel space
+                const scaleX = imgEl.naturalWidth / ir.width;
+                const scaleY = imgEl.naturalHeight / ir.height;
+                const sx = (x - ir.left) * scaleX;
+                const sy = (y - ir.top) * scaleY;
+                const sw = w * scaleX;
+                const sh = h * scaleY;
+
+                // sample at a reduced resolution for speed
+                const sampleW = Math.max(16, Math.min(64, Math.round(sw / 8)));
+                const sampleH = Math.max(16, Math.min(64, Math.round(sh / 8)));
+
+                const c = document.createElement('canvas');
+                c.width = sampleW; c.height = sampleH;
+                const ctx = c.getContext('2d', { willReadFrequently: true });
+                // Draw the subregion into our small canvas
+                ctx.drawImage(imgEl, sx, sy, sw, sh, 0, 0, sampleW, sampleH);
+
+                const data = ctx.getImageData(0, 0, sampleW, sampleH).data;
+                let sum = 0, n = data.length / 4;
+                for (let i = 0; i < data.length; i += 4) {
+                    const r = data[i] / 255, g = data[i + 1] / 255, b = data[i + 2] / 255;
+                    // perceived luminance (sRGB)
+                    const l = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+                    sum += l;
+                }
+                return sum / n; // 0..1
+            }
+
+            function apply() {
+                if (!ready(img)) return;
+                const luma = getAvgLumaUnder(buttons, img);
+                if (luma == null) return;
+                // If background is dark, flip to white buttons by adding .on-dark to the group
+                buttons.classList.toggle('on-dark', luma < LUMA_THRESHOLD);
+            }
+
+            // run on load, resize, and after fonts/layout settle
+            if (!ready(img)) img.addEventListener('load', apply, { once: true });
+            window.addEventListener('resize', apply);
+            window.addEventListener('scroll', apply, { passive: true });
+            requestAnimationFrame(() => setTimeout(apply, 50));
+        })();
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const tiles = document.querySelectorAll("#categoryGrid .tile");
+
+            function randomFlip(tile) {
+                tile.classList.toggle("rotateY-180");
+            }
+
+            // add rotation style
+            const style = document.createElement("style");
+            style.innerHTML = `
+      .rotateY-180 { transform: rotateY(180deg); }
+    `;
+            document.head.appendChild(style);
+
+            // flip tiles randomly at intervals
+            setInterval(() => {
+                const tile = tiles[Math.floor(Math.random() * tiles.length)];
+                randomFlip(tile);
+            }, 2000); // every 2 seconds a random tile flips
+        });
+    </script>
+
+
 </body>
 
 </html>
