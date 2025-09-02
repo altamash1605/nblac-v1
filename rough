@@ -1,0 +1,29 @@
+    <header class="sticky top-0 z-40 bg-ink-950/70 backdrop-blur border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4 md:px-6">
+            <div class="h-16 flex items-center justify-between">
+                <nav class="hidden md:flex items-center gap-8 text-xs tracking-widest uppercase text-white/80">
+                    <a class="hover:text-white" href="#">New</a>
+                    <a class="hover:text-white" href="#">Men</a>
+                    <a class="hover:text-white" href="#">Women</a>
+                    <a class="hover:text-white" href="#">Accessories</a>
+                </nav>
+
+                <a href="#" class="font-display text-xl tracking-[0.2em]">NBLAC</a>
+
+                <div class="flex items-center gap-4 text-sm">
+                    <button aria-label="Search" class="hover:opacity-80">Search</button>
+                    <button aria-label="Bag" class="hover:opacity-80">Bag (0)</button>
+                    <button class="md:hidden hover:opacity-80" id="menuBtn" aria-label="Menu">Menu</button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobileMenu" class="hidden md:hidden border-t border-white/10">
+            <div class="px-4 py-3 text-sm uppercase tracking-widest space-y-2">
+                <a class="block py-2 border-b border-white/10" href="#">New</a>
+                <a class="block py-2 border-b border-white/10" href="#">Men</a>
+                <a class="block py-2 border-b border-white/10" href="#">Women</a>
+                <a class="block py-2" href="#">Accessories</a>
+            </div>
+        </div>
+    </header>

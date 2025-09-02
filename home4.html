@@ -1,322 +1,353 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>NBLAC — Quiet Utility in Black</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>NBLAC — Quiet Utility in Black</title>
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- Inter (UI) + Archivo (condensed, editorial caps vibe) -->
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Inter (UI) + Archivo (condensed, editorial caps vibe) -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;600;700&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
 
-  <!-- Tailwind CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Inter', 'ui-sans-serif', 'system-ui'],
-            display: ['Archivo', 'Inter', 'ui-sans-serif', 'system-ui']
-          },
-          colors: {
-            ink: {
-              50:'#f6f6f6',100:'#eee',200:'#dcdcdc',300:'#bdbdbd',
-              400:'#9a9a9a',500:'#7a7a7a',600:'#565656',700:'#3a3a3a',
-              800:'#1f1f1f',900:'#0e0e0e',950:'#060606'
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'ui-sans-serif', 'system-ui'],
+                        display: ['Archivo', 'Inter', 'ui-sans-serif', 'system-ui']
+                    },
+                    colors: {
+                        ink: {
+                            50: '#f6f6f6', 100: '#eee', 200: '#dcdcdc', 300: '#bdbdbd',
+                            400: '#9a9a9a', 500: '#7a7a7a', 600: '#565656', 700: '#3a3a3a',
+                            800: '#1f1f1f', 900: '#0e0e0e', 950: '#060606'
+                        }
+                    },
+                    letterSpacing: {
+                        wideplus: '.18em',
+                        ultra: '.28em'
+                    },
+                    boxShadow: {
+                        soft: '0 10px 30px rgba(0,0,0,.35)'
+                    },
+                    transitionTimingFunction: {
+                        smooth: 'cubic-bezier(.2,.6,0,1)'
+                    },
+                    keyframes: {
+                        marquee: { '0%': { transform: 'translateX(0%)' }, '100%': { transform: 'translateX(-50%)' } }
+                    },
+                    animation: {
+                        marquee: 'marquee 24s linear infinite'
+                    }
+                }
             }
-          },
-          letterSpacing: {
-            wideplus: '.18em',
-            ultra: '.28em'
-          },
-          boxShadow: {
-            soft: '0 10px 30px rgba(0,0,0,.35)'
-          },
-          transitionTimingFunction: {
-            smooth: 'cubic-bezier(.2,.6,0,1)'
-          },
-          keyframes: {
-            marquee: { '0%': { transform: 'translateX(0%)' }, '100%': { transform: 'translateX(-50%)' } }
-          },
-          animation: {
-            marquee: 'marquee 24s linear infinite'
-          }
         }
-      }
-    }
-  </script>
-  <style>
-    body{ font-feature-settings: "liga","kern"; }
-    /* smooth fade for images */
-    img{ transition: transform .6s var(--tw-ease, cubic-bezier(.2,.6,0,1)), opacity .6s var(--tw-ease, cubic-bezier(.2,.6,0,1)); }
-    a.image-link:hover img{ transform: scale(1.015); }
-  </style>
+    </script>
+    <style>
+        body {
+            font-feature-settings: "liga", "kern";
+        }
+
+        /* smooth fade for images */
+        img {
+            transition: transform .6s var(--tw-ease, cubic-bezier(.2, .6, 0, 1)), opacity .6s var(--tw-ease, cubic-bezier(.2, .6, 0, 1));
+        }
+
+        a.image-link:hover img {
+            transform: scale(1.015);
+        }
+    </style>
 </head>
 
 <body class="bg-ink-950 text-white font-sans antialiased selection:bg-white selection:text-black">
 
-  <!-- Announcement -->
-  <div class="w-full text-center text-[10px] md:text-xs tracking-wideplus uppercase py-2 bg-ink-900/70 backdrop-blur">
-    Free shipping in India on orders over ₹2,000
-  </div>
+    <!-- Announcement -->
+    <div class="w-full text-center text-[10px] md:text-xs tracking-wideplus uppercase py-2 bg-ink-900/70 backdrop-blur">
+        Free shipping in India on orders over ₹2,000
+    </div>
 
-  <!-- Header -->
-  <header class="sticky top-0 z-40 bg-ink-950/70 backdrop-blur border-b border-white/5">
-    <div class="max-w-7xl mx-auto px-4 md:px-6">
-      <div class="h-16 flex items-center justify-between">
-        <nav class="hidden md:flex items-center gap-8 text-xs tracking-widest uppercase text-white/80">
-          <a class="hover:text-white" href="#">New</a>
-          <a class="hover:text-white" href="#">Men</a>
-          <a class="hover:text-white" href="#">Women</a>
-          <a class="hover:text-white" href="#">Accessories</a>
-        </nav>
+    <header class="absolute top-0 left-0 w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 md:px-6">
+            <div class="h-16 flex items-center justify-between text-white">
+                <nav class="hidden md:flex items-center gap-8 text-xs tracking-widest uppercase">
+                    <a class="hover:text-gray-200" href="#">New</a>
+                    <a class="hover:text-gray-200" href="#">Men</a>
+                    <a class="hover:text-gray-200" href="#">Women</a>
+                    <a class="hover:text-gray-200" href="#">Accessories</a>
+                </nav>
 
-        <a href="#" class="font-display text-xl tracking-[0.2em]">NBLAC</a>
+                <a href="#" class="font-display text-xl tracking-[0.2em]">NBLAC</a>
 
-        <div class="flex items-center gap-4 text-sm">
-          <button aria-label="Search" class="hover:opacity-80">Search</button>
-          <button aria-label="Bag" class="hover:opacity-80">Bag (0)</button>
-          <button class="md:hidden hover:opacity-80" id="menuBtn" aria-label="Menu">Menu</button>
+                <div class="flex items-center gap-4 text-sm">
+                    <button aria-label="Search" class="hover:opacity-80">Search</button>
+                    <button aria-label="Bag" class="hover:opacity-80">Bag (0)</button>
+                    <button class="md:hidden hover:opacity-80" id="menuBtn" aria-label="Menu">Menu</button>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-    <!-- Mobile menu -->
-    <div id="mobileMenu" class="hidden md:hidden border-t border-white/10">
-      <div class="px-4 py-3 text-sm uppercase tracking-widest space-y-2">
-        <a class="block py-2 border-b border-white/10" href="#">New</a>
-        <a class="block py-2 border-b border-white/10" href="#">Men</a>
-        <a class="block py-2 border-b border-white/10" href="#">Women</a>
-        <a class="block py-2" href="#">Accessories</a>
-      </div>
-    </div>
-  </header>
 
-<!-- Hero -->
-<section class="relative min-h-screen grid">
-  <picture>
-    <!-- Large editorial black-on-black fashion image -->
-    <img
-      src="images/products/nblac-tee-women-model.webp"
-      alt="Editorial black-on-black styling"
-      class="absolute inset-0 w-full h-full object-cover opacity-90">
-  </picture>
-  <div class="absolute inset-0 bg-gradient-to-t from-ink-950/70 via-ink-950/30 to-transparent"></div>
+        <!-- Mobile menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-black/80 backdrop-blur border-t border-white/10">
+            <div class="px-4 py-3 text-sm uppercase tracking-widest space-y-2 text-white">
+                <a class="block py-2 border-b border-white/10" href="#">New</a>
+                <a class="block py-2 border-b border-white/10" href="#">Men</a>
+                <a class="block py-2 border-b border-white/10" href="#">Women</a>
+                <a class="block py-2" href="#">Accessories</a>
+            </div>
+        </div>
+    </header>
 
-  <div class="relative z-10 max-w-7xl mx-auto px-4 md:px-6 flex items-end">
-    <div class="pb-20 md:pb-24 space-y-6">
-      <h1 class="font-display text-4xl md:text-6xl lg:text-7xl tracking-wideplus md:tracking-[0.22em] uppercase">
-        Quiet Utility. Singular Focus.
-      </h1>
-      <p class="max-w-xl text-white/80 text-sm md:text-base">
-        NBLAC reduces choice to sharpen intent. One color. Elevated forms. Everyday pieces engineered for calm.
-      </p>
-      <div class="flex gap-3">
-        <a href="#"
-           class="inline-flex items-center justify-center h-10 px-6 bg-white text-black text-xs uppercase tracking-widest hover:opacity-90">
-          Shop Men
+
+    <!-- Hero -->
+    <section class="relative min-h-screen grid">
+        <picture>
+            <!-- Large editorial black-on-black fashion image -->
+            <img src="images/products/nblac-tee-women-model.webp" alt="Editorial black-on-black styling"
+                class="absolute inset-0 w-full h-full object-cover opacity-90">
+        </picture>
+        <div class="absolute inset-0 bg-gradient-to-t from-ink-950/70 via-ink-950/30 to-transparent"></div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 md:px-6 flex items-end">
+            <div class="pb-20 md:pb-24 space-y-6">
+                <h1
+                    class="font-display text-4xl md:text-6xl lg:text-7xl tracking-wideplus md:tracking-[0.22em] uppercase">
+                    Quiet Utility. Singular Focus.
+                </h1>
+                <p class="max-w-xl text-white/80 text-sm md:text-base">
+                    NBLAC reduces choice to sharpen intent. One color. Elevated forms. Everyday pieces engineered for
+                    calm.
+                </p>
+                <div class="flex gap-3">
+                    <a href="#"
+                        class="inline-flex items-center justify-center h-10 px-6 bg-white text-black text-xs uppercase tracking-widest hover:opacity-90">
+                        Shop Men
+                    </a>
+                    <a href="#"
+                        class="inline-flex items-center justify-center h-10 px-6 border border-white/30 text-white text-xs uppercase tracking-widest hover:bg-white hover:text-black">
+                        Shop Women
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Marquee -->
+    <section class="border-y border-white/10">
+        <div
+            class="overflow-hidden whitespace-nowrap py-3 text-[10px] md:text-xs uppercase tracking-ultra text-white/60">
+            <div class="inline-flex gap-8 animate-marquee will-change-transform">
+                <span>Everything Black</span><span>Quiet Utility</span><span>Reduced Choices</span>
+                <span>Everyday Forms</span><span>Considered Details</span><span>Seasonless</span>
+                <span>Everything Black</span><span>Quiet Utility</span><span>Reduced Choices</span>
+                <span>Everyday Forms</span><span>Considered Details</span><span>Seasonless</span>
+            </div>
+            <div class="inline-flex gap-8 animate-marquee will-change-transform" aria-hidden="true">
+                <span>Everything Black</span><span>Quiet Utility</span><span>Reduced Choices</span>
+                <span>Everyday Forms</span><span>Considered Details</span><span>Seasonless</span>
+                <span>Everything Black</span><span>Quiet Utility</span><span>Reduced Choices</span>
+                <span>Everyday Forms</span><span>Considered Details</span><span>Seasonless</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Twin editorial banners -->
+    <section class="max-w-7xl mx-auto px-4 md:px-6 py-16 md:py-24 grid md:grid-cols-2 gap-6 md:gap-8">
+        <!-- Left -->
+        <a href="#" class="image-link group relative rounded-2xl overflow-hidden border border-white/10">
+            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1800&auto=format&fit=crop"
+                alt="Monochrome outerwear in motion" class="w-full h-[520px] object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent"></div>
+            <div class="absolute bottom-0 p-6 md:p-8">
+                <h3 class="font-display text-2xl md:text-3xl tracking-wideplus uppercase">Outer — Form</h3>
+                <p class="text-white/80 text-sm max-w-md">Layered protection with soft structure. Weather-ready. Studio
+                    clean.</p>
+            </div>
         </a>
-        <a href="#"
-           class="inline-flex items-center justify-center h-10 px-6 border border-white/30 text-white text-xs uppercase tracking-widest hover:bg-white hover:text-black">
-          Shop Women
+        <!-- Right -->
+        <a href="#" class="image-link group relative rounded-2xl overflow-hidden border border-white/10">
+            <img src="https://images.unsplash.com/photo-1542326237-94b1c5a538d6?q=80&w=1800&auto=format&fit=crop"
+                alt="Editorial tailoring set in black" class="w-full h-[520px] object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent"></div>
+            <div class="absolute bottom-0 p-6 md:p-8">
+                <h3 class="font-display text-2xl md:text-3xl tracking-wideplus uppercase">Tailored — Ease</h3>
+                <p class="text-white/80 text-sm max-w-md">Relaxed precision. Minimal seams, maximal comfort.</p>
+            </div>
         </a>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-
-  <!-- Marquee -->
-  <section class="border-y border-white/10">
-    <div class="overflow-hidden whitespace-nowrap py-3 text-[10px] md:text-xs uppercase tracking-ultra text-white/60">
-      <div class="inline-flex gap-8 animate-marquee will-change-transform">
-        <span>Everything Black</span><span>Quiet Utility</span><span>Reduced Choices</span>
-        <span>Everyday Forms</span><span>Considered Details</span><span>Seasonless</span>
-        <span>Everything Black</span><span>Quiet Utility</span><span>Reduced Choices</span>
-        <span>Everyday Forms</span><span>Considered Details</span><span>Seasonless</span>
-      </div>
-      <div class="inline-flex gap-8 animate-marquee will-change-transform" aria-hidden="true">
-        <span>Everything Black</span><span>Quiet Utility</span><span>Reduced Choices</span>
-        <span>Everyday Forms</span><span>Considered Details</span><span>Seasonless</span>
-        <span>Everything Black</span><span>Quiet Utility</span><span>Reduced Choices</span>
-        <span>Everyday Forms</span><span>Considered Details</span><span>Seasonless</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- Twin editorial banners -->
-  <section class="max-w-7xl mx-auto px-4 md:px-6 py-16 md:py-24 grid md:grid-cols-2 gap-6 md:gap-8">
-    <!-- Left -->
-    <a href="#" class="image-link group relative rounded-2xl overflow-hidden border border-white/10">
-      <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1800&auto=format&fit=crop"
-           alt="Monochrome outerwear in motion" class="w-full h-[520px] object-cover">
-      <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent"></div>
-      <div class="absolute bottom-0 p-6 md:p-8">
-        <h3 class="font-display text-2xl md:text-3xl tracking-wideplus uppercase">Outer — Form</h3>
-        <p class="text-white/80 text-sm max-w-md">Layered protection with soft structure. Weather-ready. Studio clean.</p>
-      </div>
-    </a>
-    <!-- Right -->
-    <a href="#" class="image-link group relative rounded-2xl overflow-hidden border border-white/10">
-      <img src="https://images.unsplash.com/photo-1542326237-94b1c5a538d6?q=80&w=1800&auto=format&fit=crop"
-           alt="Editorial tailoring set in black" class="w-full h-[520px] object-cover">
-      <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent"></div>
-      <div class="absolute bottom-0 p-6 md:p-8">
-        <h3 class="font-display text-2xl md:text-3xl tracking-wideplus uppercase">Tailored — Ease</h3>
-        <p class="text-white/80 text-sm max-w-md">Relaxed precision. Minimal seams, maximal comfort.</p>
-      </div>
-    </a>
-  </section>
-
-  <!-- Essentials (tight, minimal product grid) -->
-  <section class="max-w-7xl mx-auto px-4 md:px-6 pb-8">
-    <div class="flex items-end justify-between mb-6">
-      <h2 class="font-display text-xl md:text-2xl tracking-widest uppercase">Essentials</h2>
-      <a href="#" class="text-xs uppercase tracking-widest text-white/70 hover:text-white">View all</a>
-    </div>
-    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-      <!-- Card -->
-      <a href="#" class="group block rounded-xl overflow-hidden border border-white/10">
-        <div class="aspect-[4/5] bg-[linear-gradient(180deg,rgba(255,255,255,.06),transparent_18%),linear-gradient(120deg,#1b1b1b,#0f0f0f)] grid place-items-center">
-          <img src="https://images.unsplash.com/photo-1520975922284-8b456906c813?q=80&w=1400&auto=format&fit=crop" alt="Phantom Hoodie" class="h-full w-full object-cover opacity-90">
+    <!-- Essentials (tight, minimal product grid) -->
+    <section class="max-w-7xl mx-auto px-4 md:px-6 pb-8">
+        <div class="flex items-end justify-between mb-6">
+            <h2 class="font-display text-xl md:text-2xl tracking-widest uppercase">Essentials</h2>
+            <a href="#" class="text-xs uppercase tracking-widest text-white/70 hover:text-white">View all</a>
         </div>
-        <div class="p-4">
-          <div class="flex items-center justify-between">
-            <strong class="text-sm">Phantom Hoodie</strong>
-            <span class="text-[10px] uppercase tracking-widest text-white/60">₹4,990</span>
-          </div>
-          <div class="text-xs text-white/60">Heavyweight fleece · Drop shoulder</div>
+        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            <!-- Card -->
+            <a href="#" class="group block rounded-xl overflow-hidden border border-white/10">
+                <div
+                    class="aspect-[4/5] bg-[linear-gradient(180deg,rgba(255,255,255,.06),transparent_18%),linear-gradient(120deg,#1b1b1b,#0f0f0f)] grid place-items-center">
+                    <img src="https://images.unsplash.com/photo-1520975922284-8b456906c813?q=80&w=1400&auto=format&fit=crop"
+                        alt="Phantom Hoodie" class="h-full w-full object-cover opacity-90">
+                </div>
+                <div class="p-4">
+                    <div class="flex items-center justify-between">
+                        <strong class="text-sm">Phantom Hoodie</strong>
+                        <span class="text-[10px] uppercase tracking-widest text-white/60">₹4,990</span>
+                    </div>
+                    <div class="text-xs text-white/60">Heavyweight fleece · Drop shoulder</div>
+                </div>
+            </a>
+
+            <a href="#" class="group block rounded-xl overflow-hidden border border-white/10">
+                <div
+                    class="aspect-[4/5] bg-[linear-gradient(180deg,rgba(255,255,255,.06),transparent_18%),linear-gradient(120deg,#1b1b1b,#0f0f0f)] grid place-items-center">
+                    <img src="https://images.unsplash.com/photo-1592878904946-b3cd4a3a6b48?q=80&w=1400&auto=format&fit=crop"
+                        alt="Mono Tee" class="h-full w-full object-cover opacity-90">
+                </div>
+                <div class="p-4">
+                    <div class="flex items-center justify-between">
+                        <strong class="text-sm">Mono Tee</strong>
+                        <span class="text-[10px] uppercase tracking-widest text-white/60">₹1,490</span>
+                    </div>
+                    <div class="text-xs text-white/60">Enzyme wash · Oversized</div>
+                </div>
+            </a>
+
+            <a href="#" class="group block rounded-xl overflow-hidden border border-white/10">
+                <div
+                    class="aspect-[4/5] bg-[linear-gradient(180deg,rgba(255,255,255,.06),transparent_18%),linear-gradient(120deg,#1b1b1b,#0f0f0f)] grid place-items-center">
+                    <img src="https://images.unsplash.com/photo-1520975954732-35dd22f67c46?q=80&w=1400&auto=format&fit=crop"
+                        alt="Nile Crossbody" class="h-full w-full object-cover opacity-90">
+                </div>
+                <div class="p-4">
+                    <div class="flex items-center justify-between">
+                        <strong class="text-sm">Nile Crossbody</strong>
+                        <span class="text-[10px] uppercase tracking-widest text-white/60">₹2,990</span>
+                    </div>
+                    <div class="text-xs text-white/60">Matte nylon · Adjustable strap</div>
+                </div>
+            </a>
+
+            <a href="#" class="group block rounded-xl overflow-hidden border border-white/10">
+                <div
+                    class="aspect-[4/5] bg-[linear-gradient(180deg,rgba(255,255,255,.06),transparent_18%),linear-gradient(120deg,#1b1b1b,#0f0f0f)] grid place-items-center">
+                    <img src="https://images.unsplash.com/photo-1520975716213-8f9f6e1d2d2f?q=80&w=1400&auto=format&fit=crop"
+                        alt="Obsidian Cap" class="h-full w-full object-cover opacity-90">
+                </div>
+                <div class="p-4">
+                    <div class="flex items-center justify-between">
+                        <strong class="text-sm">Obsidian Cap</strong>
+                        <span class="text-[10px] uppercase tracking-widest text-white/60">₹1,290</span>
+                    </div>
+                    <div class="text-xs text-white/60">Curved brim · Tonal logo</div>
+                </div>
+            </a>
         </div>
-      </a>
+    </section>
 
-      <a href="#" class="group block rounded-xl overflow-hidden border border-white/10">
-        <div class="aspect-[4/5] bg-[linear-gradient(180deg,rgba(255,255,255,.06),transparent_18%),linear-gradient(120deg,#1b1b1b,#0f0f0f)] grid place-items-center">
-          <img src="https://images.unsplash.com/photo-1592878904946-b3cd4a3a6b48?q=80&w=1400&auto=format&fit=crop" alt="Mono Tee" class="h-full w-full object-cover opacity-90">
+    <!-- Lookbook strip -->
+    <section class="max-w-7xl mx-auto px-0 md:px-6 py-16 md:py-24">
+        <div class="px-4 md:px-0 flex items-end justify-between">
+            <h2 class="px-0 font-display text-xl md:text-2xl tracking-widest uppercase">Lookbook</h2>
+            <a href="#"
+                class="px-4 md:px-0 text-xs uppercase tracking-widest text-white/70 hover:text-white">Explore</a>
         </div>
-        <div class="p-4">
-          <div class="flex items-center justify-between">
-            <strong class="text-sm">Mono Tee</strong>
-            <span class="text-[10px] uppercase tracking-widest text-white/60">₹1,490</span>
-          </div>
-          <div class="text-xs text-white/60">Enzyme wash · Oversized</div>
+
+        <div class="mt-6 overflow-x-auto no-scrollbar">
+            <div
+                class="grid grid-flow-col auto-cols-[70%] sm:auto-cols-[40%] md:auto-cols-[28%] gap-4 md:gap-6 px-4 md:px-0">
+                <a href="#" class="image-link block relative rounded-2xl overflow-hidden border border-white/10">
+                    <img src="https://images.unsplash.com/photo-1519014816548-bf5fe059798b?q=80&w=1600&auto=format&fit=crop"
+                        alt="Longline coat" class="w-full h-[520px] object-cover">
+                </a>
+                <a href="#" class="image-link block relative rounded-2xl overflow-hidden border border-white/10">
+                    <img src="https://images.unsplash.com/photo-1555689502-c8a3b5d4d0d2?q=80&w=1600&auto=format&fit=crop"
+                        alt="Studio denim" class="w-full h-[520px] object-cover">
+                </a>
+                <a href="#" class="image-link block relative rounded-2xl overflow-hidden border border-white/10">
+                    <img src="https://images.unsplash.com/photo-1544441892-7c00b3b08fc1?q=80&w=1600&auto=format&fit=crop"
+                        alt="Monochrome knit" class="w-full h-[520px] object-cover">
+                </a>
+                <a href="#" class="image-link block relative rounded-2xl overflow-hidden border border-white/10">
+                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1600&auto=format&fit=crop"
+                        alt="Draped layers" class="w-full h-[520px] object-cover">
+                </a>
+            </div>
         </div>
-      </a>
+    </section>
 
-      <a href="#" class="group block rounded-xl overflow-hidden border border-white/10">
-        <div class="aspect-[4/5] bg-[linear-gradient(180deg,rgba(255,255,255,.06),transparent_18%),linear-gradient(120deg,#1b1b1b,#0f0f0f)] grid place-items-center">
-          <img src="https://images.unsplash.com/photo-1520975954732-35dd22f67c46?q=80&w=1400&auto=format&fit=crop" alt="Nile Crossbody" class="h-full w-full object-cover opacity-90">
+    <!-- Story / Philosophy -->
+    <section class="max-w-5xl mx-auto px-4 md:px-6 pb-20 md:pb-28">
+        <div class="grid md:grid-cols-12 gap-8">
+            <div class="md:col-span-5">
+                <h3 class="font-display text-2xl tracking-widest uppercase">The NBLAC Philosophy</h3>
+            </div>
+            <div class="md:col-span-7 text-white/80 leading-relaxed">
+                <p class="mb-4">
+                    We design for clarity. By removing color, we remove noise—leaving form, proportion, and function to
+                    do the speaking.
+                </p>
+                <p class="mb-4">
+                    Each piece is seasonless, constructed to live across wardrobes and years. Materials are selected for
+                    hand feel, drape, and durability.
+                </p>
+                <p>
+                    Fewer choices. Better choices. Everything black.
+                </p>
+            </div>
         </div>
-        <div class="p-4">
-          <div class="flex items-center justify-between">
-            <strong class="text-sm">Nile Crossbody</strong>
-            <span class="text-[10px] uppercase tracking-widest text-white/60">₹2,990</span>
-          </div>
-          <div class="text-xs text-white/60">Matte nylon · Adjustable strap</div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 py-12 grid md:grid-cols-4 gap-8 text-sm">
+            <div class="md:col-span-2">
+                <div class="font-display text-lg tracking-[0.18em] uppercase">NBLAC</div>
+                <p class="mt-3 text-white/70 max-w-md">Monochrome essentials crafted for everyday calm.</p>
+            </div>
+            <div>
+                <div class="uppercase tracking-widest text-xs text-white/60 mb-3">Shop</div>
+                <ul class="space-y-1 text-white/80">
+                    <li><a class="hover:text-white" href="#">Men</a></li>
+                    <li><a class="hover:text-white" href="#">Women</a></li>
+                    <li><a class="hover:text-white" href="#">Accessories</a></li>
+                </ul>
+            </div>
+            <div>
+                <div class="uppercase tracking-widest text-xs text-white/60 mb-3">Help</div>
+                <ul class="space-y-1 text-white/80">
+                    <li><a class="hover:text-white" href="#">Shipping</a></li>
+                    <li><a class="hover:text-white" href="#">Returns</a></li>
+                    <li><a class="hover:text-white" href="#">Contact</a></li>
+                </ul>
+            </div>
         </div>
-      </a>
-
-      <a href="#" class="group block rounded-xl overflow-hidden border border-white/10">
-        <div class="aspect-[4/5] bg-[linear-gradient(180deg,rgba(255,255,255,.06),transparent_18%),linear-gradient(120deg,#1b1b1b,#0f0f0f)] grid place-items-center">
-          <img src="https://images.unsplash.com/photo-1520975716213-8f9f6e1d2d2f?q=80&w=1400&auto=format&fit=crop" alt="Obsidian Cap" class="h-full w-full object-cover opacity-90">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 pb-10 flex items-center justify-between text-xs text-white/50">
+            <span>© 2025 NBLAC</span>
+            <div class="flex gap-4">
+                <a href="#" class="hover:text-white">Instagram</a>
+                <a href="#" class="hover:text-white">X</a>
+            </div>
         </div>
-        <div class="p-4">
-          <div class="flex items-center justify-between">
-            <strong class="text-sm">Obsidian Cap</strong>
-            <span class="text-[10px] uppercase tracking-widest text-white/60">₹1,290</span>
-          </div>
-          <div class="text-xs text-white/60">Curved brim · Tonal logo</div>
-        </div>
-      </a>
-    </div>
-  </section>
+    </footer>
 
-  <!-- Lookbook strip -->
-  <section class="max-w-7xl mx-auto px-0 md:px-6 py-16 md:py-24">
-    <div class="px-4 md:px-0 flex items-end justify-between">
-      <h2 class="px-0 font-display text-xl md:text-2xl tracking-widest uppercase">Lookbook</h2>
-      <a href="#" class="px-4 md:px-0 text-xs uppercase tracking-widest text-white/70 hover:text-white">Explore</a>
-    </div>
-
-    <div class="mt-6 overflow-x-auto no-scrollbar">
-      <div class="grid grid-flow-col auto-cols-[70%] sm:auto-cols-[40%] md:auto-cols-[28%] gap-4 md:gap-6 px-4 md:px-0">
-        <a href="#" class="image-link block relative rounded-2xl overflow-hidden border border-white/10">
-          <img src="https://images.unsplash.com/photo-1519014816548-bf5fe059798b?q=80&w=1600&auto=format&fit=crop" alt="Longline coat" class="w-full h-[520px] object-cover">
-        </a>
-        <a href="#" class="image-link block relative rounded-2xl overflow-hidden border border-white/10">
-          <img src="https://images.unsplash.com/photo-1555689502-c8a3b5d4d0d2?q=80&w=1600&auto=format&fit=crop" alt="Studio denim" class="w-full h-[520px] object-cover">
-        </a>
-        <a href="#" class="image-link block relative rounded-2xl overflow-hidden border border-white/10">
-          <img src="https://images.unsplash.com/photo-1544441892-7c00b3b08fc1?q=80&w=1600&auto=format&fit=crop" alt="Monochrome knit" class="w-full h-[520px] object-cover">
-        </a>
-        <a href="#" class="image-link block relative rounded-2xl overflow-hidden border border-white/10">
-          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1600&auto=format&fit=crop" alt="Draped layers" class="w-full h-[520px] object-cover">
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Story / Philosophy -->
-  <section class="max-w-5xl mx-auto px-4 md:px-6 pb-20 md:pb-28">
-    <div class="grid md:grid-cols-12 gap-8">
-      <div class="md:col-span-5">
-        <h3 class="font-display text-2xl tracking-widest uppercase">The NBLAC Philosophy</h3>
-      </div>
-      <div class="md:col-span-7 text-white/80 leading-relaxed">
-        <p class="mb-4">
-          We design for clarity. By removing color, we remove noise—leaving form, proportion, and function to do the speaking.
-        </p>
-        <p class="mb-4">
-          Each piece is seasonless, constructed to live across wardrobes and years. Materials are selected for hand feel, drape, and durability.
-        </p>
-        <p>
-          Fewer choices. Better choices. Everything black.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="border-t border-white/10">
-    <div class="max-w-7xl mx-auto px-4 md:px-6 py-12 grid md:grid-cols-4 gap-8 text-sm">
-      <div class="md:col-span-2">
-        <div class="font-display text-lg tracking-[0.18em] uppercase">NBLAC</div>
-        <p class="mt-3 text-white/70 max-w-md">Monochrome essentials crafted for everyday calm.</p>
-      </div>
-      <div>
-        <div class="uppercase tracking-widest text-xs text-white/60 mb-3">Shop</div>
-        <ul class="space-y-1 text-white/80">
-          <li><a class="hover:text-white" href="#">Men</a></li>
-          <li><a class="hover:text-white" href="#">Women</a></li>
-          <li><a class="hover:text-white" href="#">Accessories</a></li>
-        </ul>
-      </div>
-      <div>
-        <div class="uppercase tracking-widest text-xs text-white/60 mb-3">Help</div>
-        <ul class="space-y-1 text-white/80">
-          <li><a class="hover:text-white" href="#">Shipping</a></li>
-          <li><a class="hover:text-white" href="#">Returns</a></li>
-          <li><a class="hover:text-white" href="#">Contact</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="max-w-7xl mx-auto px-4 md:px-6 pb-10 flex items-center justify-between text-xs text-white/50">
-      <span>© 2025 NBLAC</span>
-      <div class="flex gap-4">
-        <a href="#" class="hover:text-white">Instagram</a>
-        <a href="#" class="hover:text-white">X</a>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    // mobile menu toggle
-    const menuBtn = document.getElementById('menuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    if (menuBtn) {
-      menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
-    }
-  </script>
+    <script>
+        // mobile menu toggle
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        if (menuBtn) {
+            menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+        }
+    </script>
 </body>
+
 </html>
