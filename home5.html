@@ -11,14 +11,8 @@
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
-<body class="antialiased bg-neutral-50 text-neutral-900 selection:bg-neutral-900 selection:text-neutral-50"
+<body class="antialiased bg-black text-white selection:bg-white selection:text-black"
     style="font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif;">
-    <!-- Top Announcement / Minimal bar 
-  <div class="w-full bg-neutral-100 text-neutral-600 text-[12px] md:text-[13px] tracking-tight border-b border-neutral-200">
-    <div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-2 flex items-center justify-center">
-      <p class="leading-none">All black. Always. Free shipping on orders over $100.</p>
-    </div>
-  </div> -->
 
     <!-- Header (overlay) -->
     <header class="absolute inset-x-0 top-0 z-50 bg-transparent">
@@ -27,123 +21,108 @@
             <div class="flex items-center gap-1.5">
                 <!-- Mobile menu -->
                 <button aria-label="Menu"
-                    class="md:hidden p-1.5 rounded hover:bg-neutral-100 active:bg-neutral-200 transition">
-                    <i data-lucide="menu" class="w-4 h-4 text-neutral-700"></i>
+                    class="md:hidden p-1.5 rounded hover:bg-neutral-900/60 active:bg-neutral-800 transition">
+                    <i data-lucide="menu" class="w-4 h-4 text-white"></i>
                 </button>
 
                 <!-- Desktop text links -->
                 <nav class="hidden md:flex items-center gap-7 text-[14px] tracking-tight">
                     <a href="#"
-                        class="text-neutral-800 hover:text-neutral-950 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-neutral-300">Shop</a>
+                        class="text-white/90 hover:text-white transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-white/30">Shop</a>
                     <a href="#"
-                        class="text-neutral-600 hover:text-neutral-950 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-neutral-300">New</a>
+                        class="text-white/70 hover:text-white transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-white/30">New</a>
                     <a href="#"
-                        class="text-neutral-600 hover:text-neutral-950 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-neutral-300">Collections</a>
+                        class="text-white/70 hover:text-white transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-white/30">Collections</a>
                     <a href="#"
-                        class="text-neutral-600 hover:text-neutral-950 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-neutral-300">Journal</a>
+                        class="text-white/70 hover:text-white transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-white/30">Journal</a>
                 </nav>
             </div>
 
-            <!-- Center: Logo (always centered) -->
+            <!-- Center: Logo -->
             <a href="#" class="justify-self-center text-[20px] md:text-[22px] tracking-tight font-bold leading-none">
                 NBLAC
             </a>
 
             <!-- Right: Utilities -->
             <div class="justify-self-end flex items-center gap-1.5 md:gap-3">
-                <!-- Mobile icons (small & subtle) -->
+                <!-- Mobile icons -->
                 <div class="flex items-center gap-1.5 md:hidden">
                     <button aria-label="Search"
-                        class="p-1.5 rounded hover:bg-neutral-100 active:bg-neutral-200 transition">
-                        <i data-lucide="search" class="w-4 h-4 text-neutral-700"></i>
+                        class="p-1.5 rounded hover:bg-neutral-900/60 active:bg-neutral-800 transition">
+                        <i data-lucide="search" class="w-4 h-4 text-white"></i>
                     </button>
                     <button aria-label="Cart"
-                        class="relative p-1.5 rounded hover:bg-neutral-100 active:bg-neutral-200 transition">
-                        <i data-lucide="shopping-bag" class="w-4 h-4 text-neutral-700"></i>
+                        class="relative p-1.5 rounded hover:bg-neutral-900/60 active:bg-neutral-800 transition">
+                        <i data-lucide="shopping-bag" class="w-4 h-4 text-white"></i>
                     </button>
                 </div>
 
                 <!-- Desktop utilities -->
                 <div class="hidden md:flex items-center gap-3">
                     <button aria-label="Search"
-                        class="p-2 hover:bg-neutral-100 active:bg-neutral-200 rounded transition">
+                        class="p-2 hover:bg-neutral-900/60 active:bg-neutral-800 rounded transition">
                         <i data-lucide="search" class="w-5 h-5"></i>
                     </button>
                     <button aria-label="Account"
-                        class="p-2 hover:bg-neutral-100 active:bg-neutral-200 rounded transition">
+                        class="p-2 hover:bg-neutral-900/60 active:bg-neutral-800 rounded transition">
                         <i data-lucide="user" class="w-5 h-5"></i>
                     </button>
                     <button aria-label="Cart"
-                        class="relative p-2 hover:bg-neutral-100 active:bg-neutral-200 rounded transition">
+                        class="relative p-2 hover:bg-neutral-900/60 active:bg-neutral-800 rounded transition">
                         <i data-lucide="shopping-bag" class="w-5 h-5"></i>
                         <span
-                            class="absolute -top-1 -right-1 text-[10px] px-[6px] py-[1px] bg-neutral-900 text-white rounded-full leading-none">2</span>
+                            class="absolute -top-1 -right-1 text-[10px] px-[6px] py-[1px] bg-white text-black rounded-full leading-none">2</span>
                     </button>
                 </div>
             </div>
         </div>
     </header>
 
-
-
-    <!-- Hero (full-viewport, centered content) -->
+    <!-- Hero -->
     <section class="relative">
         <div class="relative w-full">
             <img src="images/products/nblac-tee-women-model4.webp" alt="Minimal black wardrobe"
                 class="w-full h-[100svh] object-cover object-[48%_0%]" loading="eager">
-
-            <!-- overlay (kept empty; see note below for optional gradient) -->
-            <div class="absolute inset-0 pointer-events-none"></div>
+            <!-- subtle left-to-right dark gradient to ensure readability on dark theme -->
+            <div class="absolute inset-0 bg-gradient-to-l from-black/10 via-black/20 to-black/60 pointer-events-none">
+            </div>
 
             <!-- Content: center-right -->
             <div class="absolute inset-0">
                 <div class="max-w-7xl mx-auto h-full px-4 md:px-6 lg:px-8 flex items-center justify-end">
-                    <!-- ml-auto + text-right pushes content to the right -->
                     <div class="max-w-xl text-right ml-auto pr-2 md:pr-0">
-                        <h1
-                            class="text-[36px] md:text-[48px] tracking-tight font-semibold text-neutral-950 leading-[1.05]">
+                        <h1 class="text-[36px] md:text-[48px] tracking-tight font-semibold text-white leading-[1.05]">
                             Less choice.<br>More clarity.
                         </h1>
 
-                        <p class="mt-3 text-[15px] md:text-[16px] text-neutral-700">
+                        <p class="mt-3 text-[15px] md:text-[16px] text-white/80">
                             Singular focus on black essentials.
                         </p>
 
-
-                        <!-- Buttons (auto-contrast) -->
+                        <!-- Buttons (auto-contrast toggles with .on-dark) -->
                         <div id="heroButtons" class="mt-6 flex items-center gap-3 group">
-                            <!-- Primary -->
-                            <a href="#" class="px-5 py-3 bg-neutral-900 text-white text-[14px] tracking-tight font-medium transition
-            hover:bg-neutral-800 active:bg-neutral-900
-            group-[.on-dark]:bg-white group-[.on-dark]:text-neutral-900 group-[.on-dark]:hover:bg-neutral-100">
+                            <a href="#" class="px-5 py-3 bg-white text-black text-[14px] tracking-tight font-medium transition
+                 hover:bg-neutral-200 active:bg-white
+                 group-[.on-dark]:bg-white group-[.on-dark]:text-black group-[.on-dark]:hover:bg-neutral-200">
                                 Shop Everything
                             </a>
-
-                            <!-- Secondary -->
-                            <a href="#"
-                                class="px-5 py-3 border border-neutral-300 text-neutral-900 text-[14px] tracking-tight font-medium transition
-            hover:border-neutral-900 hover:text-neutral-950
-            group-[.on-dark]:border-white group-[.on-dark]:text-white group-[.on-dark]:hover:bg-white group-[.on-dark]:hover:text-neutral-900">
+                            <a href="#" class="px-5 py-3 border border-white/30 text-white text-[14px] tracking-tight font-medium transition
+                 hover:border-white hover:bg-white/10">
                                 View Categories
                             </a>
                         </div>
-
-
-
                     </div>
                 </div>
             </div>
 
-
         </div>
     </section>
 
-
     <!-- Category ribbon -->
-    <div class="border-y border-neutral-200 bg-white">
+    <div class="border-y border-neutral-900 bg-black">
         <div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
             <div
-                class="flex items-center justify-between gap-6 overflow-x-auto py-3 text-[12px] md:text-[13px] text-neutral-600 tracking-tight">
+                class="flex items-center justify-between gap-6 overflow-x-auto py-3 text-[12px] md:text-[13px] text-white/70 tracking-tight">
                 <span class="shrink-0">WALLETS</span>
                 <span class="shrink-0">TEES</span>
                 <span class="shrink-0">BELTS</span>
@@ -156,412 +135,156 @@
         </div>
     </div>
 
+    <!-- Slideshow + Linked Tiles -->
     <section class="w-full">
         <!-- Slideshow -->
         <div id="slideshow" class="relative w-full overflow-hidden">
             <div class="slides flex transition-transform duration-700 ease-in-out">
-                <!-- Slide 1 -->
                 <div class="min-w-full">
-                    <img src="images/products/nblac-model-1.webp"
-                        class="w-full h-[70vh] object-cover" alt="Model 1">
+                    <img src="images/products/nblac-model-1.webp" class="w-full h-[70vh] object-cover" alt="Model 1">
                 </div>
-                <!-- Slide 2 -->
                 <div class="min-w-full">
-                    <img src="images/products/nblac-model-2.webp"
-                        class="w-full h-[70vh] object-cover" alt="Model 2">
+                    <img src="images/products/nblac-model-2.webp" class="w-full h-[70vh] object-cover" alt="Model 2">
                 </div>
-                <!-- Slide 3 -->
                 <div class="min-w-full">
-                    <img src="images/products/nblac-model-3.webp"
-                        class="w-full h-[70vh] object-cover" alt="Model 3">
+                    <img src="images/products/nblac-model-3.webp" class="w-full h-[70vh] object-cover" alt="Model 3">
                 </div>
             </div>
+        </div>
+
+        <div class="flex m-auto">
+            <p class="text-white items-center justify-between p-auto mx-auto my-3 text-2xl">SHOP THE LOOK</p>
         </div>
 
         <!-- Product Tiles -->
         <div id="productTiles" class="grid grid-cols-2 gap-0">
-            <!-- Product 1 -->
             <div>
-                <img id="tile1" src="https://images.unsplash.com/photo-1635151227785-429f420c6b9d?w=800&q=80"
-                    class="w-full h-64 object-cover" alt="Product 1">
+                <img id="tile1" src="images/products/nblac-crossbody-bag-model.webp" class="w-full h-64 object-cover"
+                    alt="Product 1">
             </div>
-            <!-- Product 2 -->
             <div>
-                <img id="tile2" src="https://images.unsplash.com/photo-1642615835477-d303d7dc9ee9?w=800&q=80"
-                    class="w-full h-64 object-cover" alt="Product 2">
+                <img id="tile2" src="images/products/nblac-tee-men-model.webp" class="w-full h-64 object-cover"
+                    alt="Product 2">
             </div>
         </div>
     </section>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const slides = document.querySelector("#slideshow .slides");
-            const slideCount = slides.children.length;
-            let index = 0;
-
-            // product sets linked to slides
-            const productSets = [
-                [
-                    "images/products/nblac-crossbody-bag",
-                    ""
-                ],
-                [
-                    "",
-                    "https://images.unsplash.com/photo-1520975916090-3105956dac38?q=80&w=800&auto=format"
-                ],
-                [
-                    "https://images.unsplash.com/photo-1556821840-3a63f95609a7?q=80&w=800&auto=format",
-                    "https://images.unsplash.com/photo-1516478177764-9fe5bd7e9717?q=80&w=800&auto=format"
-                ]
-            ];
-
-            const tile1 = document.getElementById("tile1");
-            const tile2 = document.getElementById("tile2");
-
-            function showSlide(i) {
-                slides.style.transform = `translateX(-${i * 100}%)`;
-                tile1.src = productSets[i][0];
-                tile2.src = productSets[i][1];
-            }
-
-            setInterval(() => {
-                index = (index + 1) % slideCount;
-                showSlide(index);
-            }, 4000); // change every 4s
-        });
-    </script>
-
-
-    <!-- 
-    <section class="bg-white border-t border-neutral-200">
-        <div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-12 md:py-16">
-            <div class="flex items-end justify-between">
-                <h2 class="text-[28px] md:text-[32px] tracking-tight font-semibold text-neutral-950">The Core</h2>
-                <a href="#"
-                    class="text-[14px] text-neutral-700 hover:text-neutral-950 tracking-tight transition-colors">View
-                    all</a>
-            </div>
-
-            <div class="mt-6 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
-                
-                <a href="#" class="group block">
-                    <div class="relative overflow-hidden border border-neutral-200 bg-neutral-100">
-                        <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=1400&auto=format&fit=crop"
-                            alt="Heavyweight Black Tee"
-                            class="w-full h-72 object-cover group-hover:scale-[1.02] transition-transform duration-500"
-                            loading="lazy">
-                    </div>
-                    <div class="mt-3 flex items-center justify-between">
-                        <div>
-                            <p class="text-[14px] tracking-tight text-neutral-900">Heavyweight Tee</p>
-                            <p class="text-[13px] tracking-tight text-neutral-600">Jet Black</p>
-                        </div>
-                        <span class="text-[14px] tracking-tight text-neutral-900">$45</span>
-                    </div>
-                </a>
-
-                <a href="#" class="group block">
-                    <div class="relative overflow-hidden border border-neutral-200 bg-neutral-100">
-                        <img src="https://images.unsplash.com/photo-1535320903710-d993d3d77d29?q=80&w=1400&auto=format&fit=crop"
-                            alt="Structured Black Hoodie"
-                            class="w-full h-72 object-cover group-hover:scale-[1.02] transition-transform duration-500"
-                            loading="lazy">
-                    </div>
-                    <div class="mt-3 flex items-center justify-between">
-                        <div>
-                            <p class="text-[14px] tracking-tight text-neutral-900">Structured Hoodie</p>
-                            <p class="text-[13px] tracking-tight text-neutral-600">Matte Black</p>
-                        </div>
-                        <span class="text-[14px] tracking-tight text-neutral-900">$120</span>
-                    </div>
-                </a>
-
-                <a href="#" class="group block">
-                    <div class="relative overflow-hidden border border-neutral-200 bg-neutral-100">
-                        <img src="https://images.unsplash.com/photo-1621619856624-42fd193a0661?w=1080&q=80"
-                            alt="Black Leather Wallet"
-                            class="w-full h-72 object-cover group-hover:scale-[1.02] transition-transform duration-500"
-                            loading="lazy">
-                    </div>
-                    <div class="mt-3 flex items-center justify-between">
-                        <div>
-                            <p class="text-[14px] tracking-tight text-neutral-900">Leather Wallet</p>
-                            <p class="text-[13px] tracking-tight text-neutral-600">Full Grain</p>
-                        </div>
-                        <span class="text-[14px] tracking-tight text-neutral-900">$95</span>
-                    </div>
-                </a>
-
-                <a href="#" class="group block">
-                    <div class="relative overflow-hidden border border-neutral-200 bg-neutral-100">
-                        <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=1400&auto=format&fit=crop"
-                            alt="Minimal Black Cap"
-                            class="w-full h-72 object-cover group-hover:scale-[1.02] transition-transform duration-500"
-                            loading="lazy">
-                    </div>
-                    <div class="mt-3 flex items-center justify-between">
-                        <div>
-                            <p class="text-[14px] tracking-tight text-neutral-900">Minimal Cap</p>
-                            <p class="text-[13px] tracking-tight text-neutral-600">Unstructured</p>
-                        </div>
-                        <span class="text-[14px] tracking-tight text-neutral-900">$38</span>
-                    </div>
-                </a>
-
-                <a href="#" class="group block">
-                    <div class="relative overflow-hidden border border-neutral-200 bg-neutral-100">
-                        <img src="https://images.unsplash.com/photo-1642615835477-d303d7dc9ee9?w=1080&q=80"
-                            alt="Black Leather Belt"
-                            class="w-full h-72 object-cover group-hover:scale-[1.02] transition-transform duration-500"
-                            loading="lazy">
-                    </div>
-                    <div class="mt-3 flex items-center justify-between">
-                        <div>
-                            <p class="text-[14px] tracking-tight text-neutral-900">Leather Belt</p>
-                            <p class="text-[13px] tracking-tight text-neutral-600">Matte Buckle</p>
-                        </div>
-                        <span class="text-[14px] tracking-tight text-neutral-900">$75</span>
-                    </div>
-                </a>
-
-                <a href="#" class="group block">
-                    <div class="relative overflow-hidden border border-neutral-200 bg-neutral-100">
-                        <img src="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?q=80&w=1400&auto=format&fit=crop"
-                            alt="Black Notebook"
-                            class="w-full h-72 object-cover group-hover:scale-[1.02] transition-transform duration-500"
-                            loading="lazy">
-                    </div>
-                    <div class="mt-3 flex items-center justify-between">
-                        <div>
-                            <p class="text-[14px] tracking-tight text-neutral-900">Hardcover Notebook</p>
-                            <p class="text-[13px] tracking-tight text-neutral-600">Dot Grid</p>
-                        </div>
-                        <span class="text-[14px] tracking-tight text-neutral-900">$22</span>
-                    </div>
-                </a>
-
-                <a href="#" class="group block">
-                    <div class="relative overflow-hidden border border-neutral-200 bg-neutral-100">
-                        <img src="https://images.unsplash.com/photo-1505685296765-3a2736de412f?q=80&w=1400&auto=format&fit=crop"
-                            alt="Black Tote"
-                            class="w-full h-72 object-cover group-hover:scale-[1.02] transition-transform duration-500"
-                            loading="lazy">
-                    </div>
-                    <div class="mt-3 flex items-center justify-between">
-                        <div>
-                            <p class="text-[14px] tracking-tight text-neutral-900">Everyday Tote</p>
-                            <p class="text-[13px] tracking-tight text-neutral-600">Recycled Nylon</p>
-                        </div>
-                        <span class="text-[14px] tracking-tight text-neutral-900">$65</span>
-                    </div>
-                </a>
-
-                <a href="#" class="group block">
-                    <div class="relative overflow-hidden border border-neutral-200 bg-neutral-100">
-                        <img src="https://images.unsplash.com/photo-1518544801976-3e159e50e5bb?q=80&w=1400&auto=format&fit=crop"
-                            alt="Black Crewneck"
-                            class="w-full h-72 object-cover group-hover:scale-[1.02] transition-transform duration-500"
-                            loading="lazy">
-                    </div>
-                    <div class="mt-3 flex items-center justify-between">
-                        <div>
-                            <p class="text-[14px] tracking-tight text-neutral-900">Crewneck</p>
-                            <p class="text-[13px] tracking-tight text-neutral-600">Brushed Fleece</p>
-                        </div>
-                        <span class="text-[14px] tracking-tight text-neutral-900">$85</span>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </section>
-
-   
-    <section class="bg-white border-t border-neutral-200">
-        <div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-12 md:py-16">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-                <a href="#" class="group block">
-                    <div class="relative aspect-[16/10] overflow-hidden border border-neutral-200 bg-neutral-100">
-                        <img src="https://images.unsplash.com/photo-1516826957135-700dedea698c?q=80&w=2000&auto=format&fit=crop"
-                            alt="Uniform for work"
-                            class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700"
-                            loading="lazy">
-                    </div>
-                    <div class="mt-3 flex items-center justify-between">
-                        <div>
-                            <h3 class="text-[18px] tracking-tight font-medium text-neutral-950">Uniform for Work</h3>
-                            <p class="text-[13px] tracking-tight text-neutral-600">Cut the noise. Dress with intent.</p>
-                        </div>
-                        <i data-lucide="arrow-up-right"
-                            class="w-4 h-4 text-neutral-700 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
-                    </div>
-                </a>
-
-                <a href="#" class="group block">
-                    <div class="relative aspect-[16/10] overflow-hidden border border-neutral-200 bg-neutral-100">
-                        <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=2000&auto=format&fit=crop"
-                            alt="Minimal systems"
-                            class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700"
-                            loading="lazy">
-                    </div>
-                    <div class="mt-3 flex items-center justify-between">
-                        <div>
-                            <h3 class="text-[18px] tracking-tight font-medium text-neutral-950">Systems, not trends</h3>
-                            <p class="text-[13px] tracking-tight text-neutral-600">Pieces that work together—season
-                                after season.</p>
-                        </div>
-                        <i data-lucide="arrow-up-right"
-                            class="w-4 h-4 text-neutral-700 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </section>
-
-   
-    <section class="bg-white border-t border-neutral-200">
-        <div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-12 md:py-16">
-            <div class="max-w-2xl">
-                <h3 class="text-[24px] md:text-[28px] tracking-tight font-semibold text-neutral-950">Stay minimal.</h3>
-                <p class="mt-2 text-[14px] text-neutral-700 tracking-tight">New drops, restocks, and journal notes—no
-                    spam.</p>
-            </div>
-            <form class="mt-6 max-w-xl">
-                <div class="flex items-stretch gap-3">
-                    <input type="email" required placeholder="Enter your email"
-                        class="w-full h-12 px-4 text-[14px] tracking-tight border border-neutral-300 focus:border-neutral-900 outline-none bg-white placeholder:text-neutral-400">
-                    <button type="submit"
-                        class="h-12 px-5 bg-neutral-900 text-white text-[14px] tracking-tight font-medium hover:bg-neutral-800 active:bg-neutral-900 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-neutral-300">
-                        Subscribe
-                    </button>
-                </div>
-            </form>
-        </div>
-    </section> -->
 
     <!-- Footer -->
-    <footer class="bg-white border-t border-neutral-200">
+    <footer class="bg-black border-t border-neutral-900">
         <div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-12">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
                 <div>
                     <div class="text-[18px] tracking-tight font-semibold">NBLAC</div>
-                    <p class="mt-3 text-[13px] text-neutral-600 tracking-tight max-w-xs">
+                    <p class="mt-3 text-[13px] text-white/70 tracking-tight max-w-xs">
                         Minimal black essentials for everyday clarity.
                     </p>
                     <div class="mt-4 flex items-center gap-3">
                         <a href="#" aria-label="Instagram"
-                            class="p-2 border border-neutral-300 hover:border-neutral-900 transition-colors">
+                            class="p-2 border border-white/20 hover:border-white transition-colors">
                             <i data-lucide="instagram" class="w-4 h-4"></i>
                         </a>
                         <a href="#" aria-label="Twitter"
-                            class="p-2 border border-neutral-300 hover:border-neutral-900 transition-colors">
+                            class="p-2 border border-white/20 hover:border-white transition-colors">
                             <i data-lucide="twitter" class="w-4 h-4"></i>
                         </a>
                     </div>
                 </div>
                 <div>
-                    <div class="text-[13px] tracking-tight text-neutral-900 font-medium">Shop</div>
-                    <ul class="mt-3 space-y-2 text-[13px] tracking-tight text-neutral-600">
-                        <li><a href="#" class="hover:text-neutral-950 transition-colors">Hoodies</a></li>
-                        <li><a href="#" class="hover:text-neutral-950 transition-colors">Tees</a></li>
-                        <li><a href="#" class="hover:text-neutral-950 transition-colors">Wallets</a></li>
-                        <li><a href="#" class="hover:text-neutral-950 transition-colors">Belts</a></li>
-                        <li><a href="#" class="hover:text-neutral-950 transition-colors">Office</a></li>
-                        <li><a href="#" class="hover:text-neutral-950 transition-colors">Caps</a></li>
+                    <div class="text-[13px] tracking-tight text-white font-medium">Shop</div>
+                    <ul class="mt-3 space-y-2 text-[13px] tracking-tight text-white/70">
+                        <li><a href="#" class="hover:text-white transition-colors">Hoodies</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Tees</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Wallets</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Belts</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Office</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Caps</a></li>
                     </ul>
                 </div>
                 <div>
-                    <div class="text-[13px] tracking-tight text-neutral-900 font-medium">Company</div>
-                    <ul class="mt-3 space-y-2 text-[13px] tracking-tight text-neutral-600">
-                        <li><a href="#" class="hover:text-neutral-950 transition-colors">About</a></li>
-                        <li><a href="#" class="hover:text-neutral-950 transition-colors">Journal</a></li>
-                        <li><a href="#" class="hover:text-neutral-950 transition-colors">Careers</a></li>
-                        <li><a href="#" class="hover:text-neutral-950 transition-colors">Contact</a></li>
+                    <div class="text-[13px] tracking-tight text-white font-medium">Company</div>
+                    <ul class="mt-3 space-y-2 text-[13px] tracking-tight text-white/70">
+                        <li><a href="#" class="hover:text-white transition-colors">About</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Journal</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Careers</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Contact</a></li>
                     </ul>
                 </div>
                 <div>
-                    <div class="text-[13px] tracking-tight text-neutral-900 font-medium">Help</div>
-                    <ul class="mt-3 space-y-2 text-[13px] tracking-tight text-neutral-600">
-                        <li><a href="#" class="hover:text-neutral-950 transition-colors">Shipping</a></li>
-                        <li><a href="#" class="hover:text-neutral-950 transition-colors">Returns</a></li>
-                        <li><a href="#" class="hover:text-neutral-950 transition-colors">Sizing</a></li>
-                        <li><a href="#" class="hover:text-neutral-950 transition-colors">FAQ</a></li>
+                    <div class="text-[13px] tracking-tight text-white font-medium">Help</div>
+                    <ul class="mt-3 space-y-2 text-[13px] tracking-tight text-white/70">
+                        <li><a href="#" class="hover:text-white transition-colors">Shipping</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Returns</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Sizing</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">FAQ</a></li>
                     </ul>
                 </div>
             </div>
 
             <div
-                class="mt-10 pt-6 border-t border-neutral-200 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-                <p class="text-[12px] tracking-tight text-neutral-600">© <span id="y"></span> NBLAC. All rights
-                    reserved.</p>
-                <div class="flex items-center gap-4 text-[12px] tracking-tight text-neutral-600">
-                    <a href="#" class="hover:text-neutral-950 transition-colors">Privacy</a>
-                    <span class="text-neutral-300">/</span>
-                    <a href="#" class="hover:text-neutral-950 transition-colors">Terms</a>
-                    <span class="text-neutral-300">/</span>
-                    <a href="#" class="hover:text-neutral-950 transition-colors">Cookies</a>
+                class="mt-10 pt-6 border-t border-neutral-900 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                <p class="text-[12px] tracking-tight text-white/70">© <span id="y"></span> NBLAC. All rights reserved.
+                </p>
+                <div class="flex items-center gap-4 text-[12px] tracking-tight text-white/70">
+                    <a href="#" class="hover:text-white transition-colors">Privacy</a>
+                    <span class="text-white/20">/</span>
+                    <a href="#" class="hover:text-white transition-colors">Terms</a>
+                    <span class="text-white/20">/</span>
+                    <a href="#" class="hover:text-white transition-colors">Cookies</a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Mobile sticky glass bar (3 buttons, borderless) -->
+    <!-- Mobile sticky glass bar -->
     <div class="md:hidden fixed bottom-3 left-0 right-0 z-[60] px-4">
         <div
-            class="mx-auto max-w-md rounded-2xl bg-white/70 backdrop-blur-md shadow-lg flex items-center justify-between px-5 py-2.5 ring-1 ring-black/5 border border-white/20">
-            <button class="flex flex-col items-center gap-1 text-[11px] text-neutral-800">
+            class="mx-auto max-w-md rounded-2xl bg-white/10 backdrop-blur-md shadow-lg flex items-center justify-between px-5 py-2.5 ring-1 ring-white/10 border border-white/10">
+            <button class="flex flex-col items-center gap-1 text-[11px] text-white">
                 <i data-lucide="home" class="w-5 h-5"></i>
                 <span>Home</span>
             </button>
-            <button class="flex flex-col items-center gap-1 text-[11px] text-neutral-800">
+            <button class="flex flex-col items-center gap-1 text-[11px] text-white">
                 <i data-lucide="search" class="w-5 h-5"></i>
                 <span>Search</span>
             </button>
-            <button class="flex flex-col items-center gap-1 text-[11px] text-neutral-800">
+            <button class="flex flex-col items-center gap-1 text-[11px] text-white">
                 <i data-lucide="shopping-bag" class="w-5 h-5"></i>
                 <span>Cart</span>
             </button>
         </div>
-        <!-- safe-area padding for iOS -->
         <div class="h-[env(safe-area-inset-bottom)]"></div>
     </div>
 
-    <!-- Scripts: icons + year -->
+    <!-- Scripts -->
     <script>
         // Icons
-        lucide.createIcons({ attrs: { 'stroke-width': 1.5 } });
+        lucide.createIcons({ attrs: { 'stroke-width': 1.5, color: 'currentColor' } });
 
         // Footer year
         const y = document.getElementById('y');
         if (y) y.textContent = new Date().getFullYear();
-
     </script>
 
     <script>
         (function () {
-            // CONFIG
-            const LUMA_THRESHOLD = 0.52; // 0..1 — lower = darker. Tune between 0.48–0.58 to taste.
-
+            // Auto-contrast for hero buttons, based on local image luminance
+            const LUMA_THRESHOLD = 0.52;
             const buttons = document.getElementById('heroButtons');
-            const img = document.querySelector('section img'); // your hero <img>. Use a tighter selector if needed.
+            const img = document.querySelector('section img');
             if (!buttons || !img) return;
 
-            // ensure we can sample the image (same-origin or CORS-enabled)
-            function ready(img) {
-                return img.complete && img.naturalWidth > 0;
-            }
+            function ready(img) { return img.complete && img.naturalWidth > 0; }
 
             function getAvgLumaUnder(el, imgEl) {
                 const ir = imgEl.getBoundingClientRect();
                 const er = el.getBoundingClientRect();
-
-                // intersection with the image area
                 const x = Math.max(er.left, ir.left);
                 const y = Math.max(er.top, ir.top);
                 const w = Math.max(0, Math.min(er.right, ir.right) - x);
                 const h = Math.max(0, Math.min(er.bottom, ir.bottom) - y);
                 if (w < 2 || h < 2) return null;
 
-                // map screen rect to image pixel space
                 const scaleX = imgEl.naturalWidth / ir.width;
                 const scaleY = imgEl.naturalHeight / ir.height;
                 const sx = (x - ir.left) * scaleX;
@@ -569,61 +292,97 @@
                 const sw = w * scaleX;
                 const sh = h * scaleY;
 
-                // sample at a reduced resolution for speed
                 const sampleW = Math.max(16, Math.min(64, Math.round(sw / 8)));
                 const sampleH = Math.max(16, Math.min(64, Math.round(sh / 8)));
 
                 const c = document.createElement('canvas');
                 c.width = sampleW; c.height = sampleH;
                 const ctx = c.getContext('2d', { willReadFrequently: true });
-                // Draw the subregion into our small canvas
                 ctx.drawImage(imgEl, sx, sy, sw, sh, 0, 0, sampleW, sampleH);
 
                 const data = ctx.getImageData(0, 0, sampleW, sampleH).data;
                 let sum = 0, n = data.length / 4;
                 for (let i = 0; i < data.length; i += 4) {
                     const r = data[i] / 255, g = data[i + 1] / 255, b = data[i + 2] / 255;
-                    // perceived luminance (sRGB)
                     const l = 0.2126 * r + 0.7152 * g + 0.0722 * b;
                     sum += l;
                 }
-                return sum / n; // 0..1
+                return sum / n;
             }
 
             function apply() {
                 if (!ready(img)) return;
                 const luma = getAvgLumaUnder(buttons, img);
                 if (luma == null) return;
-                // If background is dark, flip to white buttons by adding .on-dark to the group
                 buttons.classList.toggle('on-dark', luma < LUMA_THRESHOLD);
             }
 
-            // run on load, resize, and after fonts/layout settle
             if (!ready(img)) img.addEventListener('load', apply, { once: true });
             window.addEventListener('resize', apply);
             window.addEventListener('scroll', apply, { passive: true });
             requestAnimationFrame(() => setTimeout(apply, 50));
         })();
+    </script>
 
+
+    <script>
+        // Slideshow → tiles linkage (1:1 mapping per slide)
         document.addEventListener("DOMContentLoaded", () => {
-            const tiles = document.querySelectorAll("#categoryGrid .tile");
+            const slides = document.querySelector("#slideshow .slides");
+            const slideCount = slides?.children?.length ?? 0;
+            if (!slides || slideCount === 0) return;
 
-            function randomFlip(tile) {
-                tile.classList.toggle("rotateY-180");
+            let index = 0;
+
+            // Map slides to two specific product images each
+            // Slide 0 (model 1) -> product 1 & 2
+            // Slide 1 (model 2) -> product 3 & 4
+            // Slide 2 (model 3) -> product 5 & 6
+            const productSets = [
+                // Slide 0 (Model 1)
+                [
+                    "images/products/nblac-crossbody-bag.webp",
+                    "images/products/nblac-hoodie.webp",
+                ],
+                // Slide 1 (Model 2)
+                [
+                    "images/products/nblac-jacket.webp",
+                    "images/products/nblac-watch-phantomwatch.webp",
+                ],
+                // Slide 2 (Model 3)
+                [
+                    "images/products/nblac-belt.webp",
+                    "images/products/nblac-card-holder.webp",
+                ],
+            ];
+
+            // If you’re already using your own file names, swap the paths above
+            // e.g.
+            // ["images/products/nblac-crossbody-bag-model.webp", "images/products/nblac-tee-men-model.webp"],
+            // ["images/products/nblac-wallet-flat.webp", "images/products/nblac-belt-flat.webp"],
+            // ["images/products/nblac-hoodie-model.webp", "images/products/nblac-cap-flat.webp"],
+
+            const tile1 = document.getElementById("tile1");
+            const tile2 = document.getElementById("tile2");
+
+            function showSlide(i) {
+                slides.style.transform = `translateX(-${i * 100}%)`;
+
+                // Defensive: if a mapping is missing, keep previous image
+                const set = productSets[i] || productSets[0];
+                if (set?.[0]) tile1.src = set[0];
+                if (set?.[1]) tile2.src = set[1];
             }
 
-            // add rotation style
-            const style = document.createElement("style");
-            style.innerHTML = `
-      .rotateY-180 { transform: rotateY(180deg); }
-    `;
-            document.head.appendChild(style);
+            // Initialize tiles for the first slide
+            showSlide(0);
 
-            // flip tiles randomly at intervals
+            // Auto-advance every 4s
+            const intervalMs = 4000;
             setInterval(() => {
-                const tile = tiles[Math.floor(Math.random() * tiles.length)];
-                randomFlip(tile);
-            }, 2000); // every 2 seconds a random tile flips
+                index = (index + 1) % slideCount;
+                showSlide(index);
+            }, intervalMs);
         });
     </script>
 
